@@ -6,6 +6,10 @@ TagManager:
   tags:
   - floor
   - wall
+  - Obstacle
+  - (L)Leg
+  - (R)Leg
+  - Body
   layers:
   - Default
   - TransparentFX
