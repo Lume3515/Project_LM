@@ -2,30 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class Camera : MonoBehaviour
 {
-    private Transform playerTr;
+    // 마우스 x축
+    private float mouseX;
 
-    // 보정 범위
+    // 움직일 방향
+    private Vector3 moveDirection;
+
+    // 카메라 위치
     private Vector3 offSet;
 
-    private void Start()
-    {
-        playerTr = GameObject.FindWithTag("Player").transform;
+    // 플레이어 트랜스폼
+    private Transform playerTr;  
 
-        offSet = new Vector3(0, 2.24f, 2.29f);
-    }
-
-    private void LateUpdate()
+    private void Update()
     {
+        Rotation();
         Movement();
     }
 
     private void Movement()
     {
-        // 위치 이동
-        transform.position = offSet + playerTr.position;
+        moveDirection = playerTr.position + offSet;
+
+        Vector3.Slerp();
     }
+
+    private void Rotation()
+    {
+        mouseX = Input.GetAxisRaw("Mouse Y");        
+
+        transform.Rotate(-mouseX, 0, 0);
+    }
+
 
     private void OnTriggerStay(Collider other)
     {

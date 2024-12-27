@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     // 움직임 방향
     private Vector3 moveDirection;
 
+    // 마우스 키 값(축 기준)
+    private float mouseY;      
+
     private void Start()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -27,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
+        Rotation();
     }
 
     // 움직임
@@ -40,5 +44,12 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = transform.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0);
 
         playerRb.velocity = moveDirection;
+    }
+
+    private void Rotation()
+    {
+        mouseY = Input.GetAxisRaw("Mouse X");
+
+        transform.Rotate(0, mouseY, 0);
     }
 }
