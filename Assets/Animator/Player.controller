@@ -63,7 +63,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Turn Right
+  m_Name: Sit Down
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
