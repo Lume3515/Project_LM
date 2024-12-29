@@ -17,7 +17,8 @@ public class BackendManager : MonoBehaviour
         else
         {
             Debug.LogError("초기화 실패 : " + responceOfBackend); // 실패일 경우 statusCode 400대 에러 발생
-        }      
+        }
+
 
     }
 

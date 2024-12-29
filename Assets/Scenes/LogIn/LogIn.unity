@@ -1403,8 +1403,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -2049,6 +2049,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1029605444}
   - component: {fileID: 1029605445}
+  - component: {fileID: 1029605447}
+  - component: {fileID: 1029605448}
   m_Layer: 0
   m_Name: LogInManager
   m_TagString: Untagged
@@ -2095,14 +2097,35 @@ MonoBehaviour:
   making: {fileID: 1947306297}
   deleteAccount: {fileID: 451464669}
   gameQuit: {fileID: 1063951827}
-  gameStartGamaObject: {fileID: 46081400}
   textBackGroundGameObject: {fileID: 1549682478}
-  howToPlayAndRank:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  howToPlayAndRank: []
   createAnAccount: {fileID: 1947306295}
   inputPWCheck_GameObject: {fileID: 751724030}
+--- !u!114 &1029605447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029605443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1303a4c7a0d7dc3478b00661056b4d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1029605448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029605443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e0e7d48b3c8d64e8a7899834d54f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  console: {fileID: 496504507}
 --- !u!1 &1033069312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,8 +3834,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
