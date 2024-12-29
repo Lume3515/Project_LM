@@ -17,17 +17,12 @@ public class CameraMovement : MonoBehaviour
     // 마우스 X축
     private float mouseX;
 
+    private bool start = true;
 
 
     private void Start()
     {
         playerTr = GameObject.FindWithTag("Player").transform;
-
-        for (int i = 0; i < 10; i++)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            mouseX = 0;
-        }
     }
 
     private void Update()
@@ -89,7 +84,16 @@ public class CameraMovement : MonoBehaviour
             mouseX = Input.GetAxisRaw("Mouse Y");
         }
         #endregion
+        if (start)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                mouseX = 0;
+            }
 
+            start = false;
+        }
         transform.Rotate(-mouseX * 5, 0, 0);
 
 
