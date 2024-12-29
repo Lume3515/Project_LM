@@ -36,10 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            playerAnimator.SetBool("isSitDown", true);
-            sitDown = !sitDown;
 
-            if (!sitDown) playerAnimator.SetBool("isSitDown", false);
         }
 
     }
@@ -60,7 +57,10 @@ public class PlayerMovement : MonoBehaviour
     // 마우스 키 값(축 기준)
     private float mouseY;
 
+    // true : 앉았다
+    private bool sitDown;
 
+    private AnimationClip sitDownLoop;
 
     // 움직임
     private void Movement()
@@ -69,22 +69,61 @@ public class PlayerMovement : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Vertical");
 
-        playerAnimator.SetBool("isWalk", true);
+        if (playerRb.velocity.magnitude == 0 && !sitDown)
+        {
+            playerAnimator.SetBool("isWalk", false);
+            playerAnimator.SetBool("isRun", false);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown)
+        {
+            playerAnimator.SetBool("isWalk", false);
+            playerAnimator.SetBool("isRun", true);
+
+            moveSpeed = 8f;
+        }
+        else if (!sitDown)
+        {
+            playerAnimator.SetBool("isWalk", true);
+            playerAnimator.SetBool("isRun", false);
+            
+
+            moveSpeed = 3.8f;
+        }
+
+
+
+        if (Input.GetKeyDown(KeyCode.C) && !sitDown)
+        {
+            sitDown = true;
+
+            playerAnimator.SetBool("isWalk", false);
+            playerAnimator.SetBool("isRun", false);
+            playerAnimator.SetBool("isSitDown", true);
+
+            moveSpeed = 2f;
+        }
+        else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
+        {
+            sitDown = false;
+
+            playerAnimator.SetBool("isSitDown", false);
+        }
+        else if (sitDown)
+        {
+            if(playerRb.velocity.magnitude == 0)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
 
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
         moveDirection = transform.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0);
 
         playerRb.velocity = moveDirection;
-
-        if (playerRb.velocity.magnitude == 0)
-        {
-            playerAnimator.SetBool("isWalk", false);
-        }
-        else
-        {
-
-            playerAnimator.SetBool("isSitDown", false);
-        }
     }
 
     private void Rotation()
@@ -95,15 +134,4 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    #region// 앉기 
-
-    // true가 앉은 거
-    private bool sitDown;
-
-    private IEnumerator SitDown()
-    {
-        yield return null;
-    }
-
-    #endregion
 }

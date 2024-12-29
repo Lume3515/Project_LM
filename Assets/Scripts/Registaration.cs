@@ -5,11 +5,19 @@ using BackEnd;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+public enum Type
+{
+    logIn,
+    signUp,
+    newName
+}
+
 public class Registaration : MonoBehaviour
 {
     private static Registaration instance = null;
 
-    [SerializeField] TextMeshProUGUI console;
+    private bool newName;
+
     public static Registaration Instance
     {
         get
@@ -23,16 +31,15 @@ public class Registaration : MonoBehaviour
         }
     }
 
-    public void SignUp(string id, string pw)
+    public void SignUp(string id, string pw, TextMeshProUGUI console)
     {
-        // Step 2. 회원가입 구현하기 로직
-        Debug.Log("회원가입을 요청합니다.");
+        // Step 2. 회원가입 구현하기 로직        
 
         var responceOfBackEnd = Backend.BMember.CustomSignUp(id, pw);
 
         if (responceOfBackEnd.IsSuccess())
         {
-            console.text = $"회원가입에 성공했습니다.";
+            console.text = $"회원가입에 성공했습니다. \n닉네임 : {id}님";
         }
         else
         {
@@ -41,26 +48,59 @@ public class Registaration : MonoBehaviour
         }
     }
 
-    public void Login(string id, string pw)
+    public void Login(string id, string pw, TextMeshProUGUI console, Type type, string text)
     {
         // Step 3. 로그인 구현하기 로직
         Debug.Log("로그인을 요청합니다.");
 
         var responceOfBackEnd = Backend.BMember.CustomLogin(id, pw);
+        //Debug.Log(responceOfBackEnd);
 
         if (responceOfBackEnd.IsSuccess())
         {
-            console.text = $"로그인이 성공했습니다. 게임에 접속합니다.";
-            SceneManager.LoadScene(1);
+            if (type == Type.logIn)
+            {
+                SceneManager.LoadScene(1);
+                console.text = $"로그인이 성공했습니다. 게임에 접속합니다.";
+                
+            }
+            else if (type == Type.newName)
+            {
+                newName = true;
+                // 아니라면 변경
+                Registaration.Instance.Nickname(text, console);
+                Debug.Log(responceOfBackEnd+ "d");
+            }
         }
         else
         {
             console.text = $"로그인이 실패했습니다. : {responceOfBackEnd}";
+            newName = false;
+
         }
     }
 
-    public void Nickname(string nickname)
+    public void Nickname(string nickname, TextMeshProUGUI console)
     {
         // Step 4. 닉네임 변경 구현하기 로직
+
+        Debug.Log("닉네임 변경을 요청합니다.");
+
+        var bro = Backend.BMember.UpdateNickname(nickname);
+
+        if (bro.IsSuccess() && newName)
+        {
+            console.text = "닉네임 변경 완료!";
+        }
+        else if (!newName)
+        {
+            console.text = ("아이디나 비번이 틀렸습니다.");
+        }
+        else
+        {
+            console.text = ("닉네임 변경에 실패했습니다 : " + bro);
+        }
+
+
     }
 }

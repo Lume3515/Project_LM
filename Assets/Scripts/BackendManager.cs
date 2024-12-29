@@ -25,7 +25,7 @@ public class BackendManager : MonoBehaviour
 
     private void Test()
     {
-        Registaration.Instance.SignUp("user1", "1234"); // [추가] 뒤끝 회원가입 함수
+        //Registaration.Instance.SignUp("user1", "1234"); // [추가] 뒤끝 회원가입 함수
         Debug.Log("테스트를 종료합니다.");
     }
 }

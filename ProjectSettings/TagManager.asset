@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Map
+  - Console
+  - Player_Head
+  - Player_Leg_L
+  - Player_Leg_R
+  - Player_Arm_L
+  - Player_Arm_R
   layers:
   - Default
   - TransparentFX
