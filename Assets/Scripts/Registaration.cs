@@ -12,7 +12,7 @@ public enum Type
     newName
 }
 
-public class Registaration : MonoBehaviour
+public class Registaration
 {
     private static Registaration instance = null;
 
@@ -35,16 +35,18 @@ public class Registaration : MonoBehaviour
     {
         // Step 2. 회원가입 구현하기 로직        
 
+        Debug.Log("회원가입을 요청합니다.");
+
         var responceOfBackEnd = Backend.BMember.CustomSignUp(id, pw);
 
         if (responceOfBackEnd.IsSuccess())
         {
-            console.text = $"회원가입에 성공했습니다. \n닉네임 : {id}님";
+            console.text = $"회원가입에 성공했습니다. \nID : {id}님";
         }
         else
         {
             console.text = $"회원가입에 실패했습니다. : {responceOfBackEnd}";
-
+            
         }
     }
 
@@ -74,7 +76,7 @@ public class Registaration : MonoBehaviour
         }
         else
         {
-            console.text = $"로그인이 실패했습니다. : {responceOfBackEnd}";
+            console.text = $"로그인이 실패했습니다. : {responceOfBackEnd}";         
             newName = false;
 
         }

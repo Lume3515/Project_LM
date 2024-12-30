@@ -50,7 +50,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Rotation()
     {
-        Debug.Log(transform.eulerAngles.x);
+        //Debug.Log(transform.eulerAngles.x);
 
         float angle = transform.eulerAngles.x;
 

@@ -60,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
     // true : 앉았다
     private bool sitDown;
 
-    private AnimationClip sitDownLoop;
-
     // 움직임
     private void Movement()
     {
@@ -100,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isRun", false);
             playerAnimator.SetBool("isSitDown", true);
 
-            moveSpeed = 2f;
+            moveSpeed = 0.8f;
         }
         else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
         {
@@ -112,11 +110,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if(playerRb.velocity.magnitude == 0)
             {
-
+                playerAnimator.SetFloat("SitDown_Multiplier", 0f);
             }
             else
             {
-
+                playerAnimator.SetFloat("SitDown_Multiplier", 1f);
             }
         }
 
