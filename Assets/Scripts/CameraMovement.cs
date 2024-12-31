@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
 
-    // 카메라 위치 // 0 : 왼쪽 1 : 오른쪽 2 : 보스
+    // 카메라 위치 // 0 : 왼쪽 1 : 오른쪽
     [SerializeField] Transform[] cameraPos;
     [SerializeField] int cameraIndex;
 
@@ -46,6 +46,19 @@ public class CameraMovement : MonoBehaviour
     private void CameraMove()
     {
         transform.position = Vector3.Lerp(transform.position, cameraPos[cameraIndex].position, 0.25f);
+
+        // 정의
+        RaycastHit hit;
+
+        // 발사 위치, 앞으로, 6번레이어
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 5 << 7))
+        {
+            // 좀비체력 감소 및 딜레이
+
+
+        }
+
+                
     }
 
     private void Rotation()
@@ -88,15 +101,13 @@ public class CameraMovement : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                transform.localRotation = Quaternion.Euler(0, 0, 0);                
                 mouseX = 0;
             }
 
             start = false;
         }
-        transform.Rotate(-mouseX * 5, 0, 0);
-
-
+        transform.Rotate(-mouseX * 5, 0, 0);  
     }
 
 }

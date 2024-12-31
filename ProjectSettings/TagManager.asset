@@ -11,6 +11,8 @@ TagManager:
   - Player_Leg_R
   - Player_Arm_L
   - Player_Arm_R
+  - Bullet
+  - Input Area
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Zombie
   - 
   - 
   - 

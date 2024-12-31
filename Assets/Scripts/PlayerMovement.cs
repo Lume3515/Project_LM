@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     // 마우스 민감도
     private float mouseSpeed;
 
-    private Animator playerAnimator;
+    private Animator playerAnimator;    
 
     private void Awake()
     {
@@ -32,13 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        Rotation();
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-
-        }
-
+        Rotation();     
     }
 
     #region// 플레이어 이동
@@ -77,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", true);
 
-            moveSpeed = 8f;
+            moveSpeed = 5f;
         }
         else if (!sitDown)
         {
@@ -85,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isRun", false);
             
 
-            moveSpeed = 3.8f;
+            moveSpeed = 2.8f;
         }
 
 
