@@ -9,22 +9,13 @@ public class CameraMovement : MonoBehaviour
 
     // 카메라 위치 // 0 : 왼쪽 1 : 오른쪽
     [SerializeField] Transform[] cameraPos;
-    [SerializeField] int cameraIndex;
-
-    // 플레이어 트랜스폼
-    private Transform playerTr;
+    [SerializeField] int cameraIndex;   
 
     // 마우스 X축
     private float mouseX;
 
     private bool start = true;
-
-
-    private void Start()
-    {
-        playerTr = GameObject.FindWithTag("Player").transform;
-    }
-
+  
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -45,22 +36,9 @@ public class CameraMovement : MonoBehaviour
 
     private void CameraMove()
     {
-        transform.position = Vector3.Lerp(transform.position, cameraPos[cameraIndex].position, 0.25f);
-
-        // 정의
-        RaycastHit hit;
-
-        // 발사 위치, 앞으로, 6번레이어
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 5 << 7))
-        {
-            // 좀비체력 감소 및 딜레이
-
-
-        }
-
-                
+        transform.position = Vector3.Lerp(transform.position, cameraPos[cameraIndex].position, 0.25f);                
     }
-
+    
     private void Rotation()
     {
         //Debug.Log(transform.eulerAngles.x);

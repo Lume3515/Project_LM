@@ -12,7 +12,6 @@ TagManager:
   - Player_Arm_L
   - Player_Arm_R
   - Bullet
-  - Input Area
   layers:
   - Default
   - TransparentFX

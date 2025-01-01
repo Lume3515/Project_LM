@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
-{
-    [SerializeField] ObjectPooling objectPooling;
-
+{  
     // true : 가능
     private bool shooting = true;
 
@@ -21,6 +20,9 @@ public class PlayerFire : MonoBehaviour
     // 플레이어 애니메이터
     [SerializeField] Animator animator;
 
+    // 카메라 트랜스폼
+    private Transform cameraTr;
+
     // 총 내리는 시간
     private float time;
     private float maxTime;
@@ -28,6 +30,8 @@ public class PlayerFire : MonoBehaviour
     private void Start()
     {
         shootingDelay = new WaitForSeconds(0.07f);
+
+        cameraTr = Camera.main.transform;
 
         maxTime = 0.7f;
 
@@ -61,13 +65,23 @@ public class PlayerFire : MonoBehaviour
 
     private IEnumerator Fire()
     {
+        // 레이로 감지
+
+        // 충돌체
+        RaycastHit hit;
+
+        // 발사위치, 방향, 추출(리턴 값), 최대 거리,레이어 6번만
+        if(Physics.Raycast(cameraTr.position, cameraTr.forward, out hit, float.MaxValue , 1 << 6))
+        {
+            // 데미지 입히기
+
+            // 이름 찍어보기
+            Debug.Log(hit.collider.name);
+        }
+
+
         // 발사 사운드
         shooting = false;
-
-      GameObject spawn =  objectPooling.OutPut();
-        //spawn.GetComponent<Bullet>().Setting(m4FirePos.transform.position, m4FirePos.transform);
-
-
 
         m4MuzzleFlash.Play();
 
@@ -78,4 +92,12 @@ public class PlayerFire : MonoBehaviour
         yield return shootingDelay;
         shooting = true;
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;     
+
+    //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward);
+    //}
+
 }
