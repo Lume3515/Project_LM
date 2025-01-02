@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 345212428522194551}
   - component: {fileID: 3703554605717817810}
   - component: {fileID: 1477563321816349976}
-  m_Layer: 0
+  - component: {fileID: 228569597}
+  - component: {fileID: 2749897262452687117}
+  m_Layer: 7
   m_Name: P_rsg_military_concret_block_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +85,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &228569597
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117350600303828173}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.76500005, y: 0.517, z: 0.305}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.517, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &2749897262452687117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117350600303828173}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5299428, y: 1.0342802, z: 0.6100002}
+  m_Center: {x: 0.000000029802322, y: 0.5171464, z: -0.0001938641}

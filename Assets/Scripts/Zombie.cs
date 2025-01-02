@@ -51,10 +51,8 @@ public class Zombie : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
 
-        playerTr = GameObject.FindWithTag("Player").transform;
-
-        moveSpeed = 2f;
-
+        playerTr = GameObject.FindWithTag("Player").transform;       
+      
     }
 
     private void OnEnable()
@@ -64,7 +62,9 @@ public class Zombie : MonoBehaviour
         spawnTime = 0;
         currHP = maxHP;
 
-        animator.SetBool("walk", true);
+        Setting(1.4f);
+
+
     }
 
     public void Setting(float speed)
@@ -72,7 +72,7 @@ public class Zombie : MonoBehaviour
         moveSpeed = speed;
     }
 
-    // 체력 감소
+    // 체력 감소 > 총알 스크립트에서 할당
     public void MinusHP(int damage)
     {
         currHP -= damage;
@@ -95,8 +95,10 @@ public class Zombie : MonoBehaviour
         if (spawnTime >= spawnMaxTime && !isAttack)
         {
             agent.isStopped = false;
+            animator.SetBool("walk", true);
             MoveMent();
         }
+
     }
 
     // 움직임
@@ -104,7 +106,7 @@ public class Zombie : MonoBehaviour
     {
         agent.destination = playerTr.position;
         agent.speed = moveSpeed;
-    }
+    }    
 
     // 현재 상태
     private IEnumerator Attack()
@@ -130,6 +132,6 @@ public class Zombie : MonoBehaviour
         {
             isAttack = true;
             StartCoroutine(Attack());
-        }
+        } 
     }
 }

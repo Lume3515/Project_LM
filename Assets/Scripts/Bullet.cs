@@ -4,53 +4,38 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // 발사속도
-    private float fireSpeed;
-
-    // 리지드 바디
     private Rigidbody bulletRb;
 
-    // 방향
-    private Vector3 direction;
+    private float fireSpeed;
 
-    private ObjectPooling objectPooling;
+    [SerializeField] Transform firePos;
+
+    private Vector3 fireDirection;
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            transform.position = firePos.position;
+            transform.rotation = firePos.rotation;            
+
+            fireDirection = firePos.forward;
+
+            bulletRb.velocity = Vector3.zero;
+
+            bulletRb.AddForce(fireDirection * fireSpeed, ForceMode.Impulse);
+        }
+    }
 
     private void Start()
     {
         bulletRb = GetComponent<Rigidbody>();
 
-        fireSpeed = 0;
-
+        fireSpeed = 10;
        
 
-        objectPooling = GetComponentInParent<ObjectPooling>();
-    }
-
-    public void Setting(Vector3 pos, Transform rot)
-    {
-        transform.position = pos;
-        transform.rotation = rot.rotation;
-    }
-
-    private void OnEnable()
-    {
-        direction = Vector3.left;
-    }
-
-    private void Update()
-    {
-        bulletRb.velocity = (direction) * fireSpeed;
     }
 
 
 
-    // 빠져 나갔을 때
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Input Area"))
-        {
-            Debug.Log("나감");
-            objectPooling.Input(gameObject);
-        }
-    }
 }

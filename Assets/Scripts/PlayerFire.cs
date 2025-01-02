@@ -67,17 +67,21 @@ public class PlayerFire : MonoBehaviour
     {
         // 레이로 감지
 
-        // 충돌체
-        RaycastHit hit;
 
-        // 발사위치, 방향, 추출(리턴 값), 최대 거리,레이어 6번만
-        if(Physics.Raycast(cameraTr.position, cameraTr.forward, out hit, float.MaxValue , 1 << 6))
-        {
-            // 데미지 입히기
 
-            // 이름 찍어보기
-            Debug.Log(hit.collider.name);
-        }
+        //// 충돌체
+        //RaycastHit hit;
+
+        //// 발사위치, 방향, 추출(리턴 값), 최대 거리,레이어 6번만
+        //if (Physics.Raycast(cameraTr.position, cameraTr.forward, out hit, 150, 1 << 6))
+        //{
+        //    // 데미지 입히기
+
+            
+
+        //    // 이름 찍어보기
+        //    Debug.Log(hit.collider.name);
+        //}
 
 
         // 발사 사운드
@@ -95,9 +99,9 @@ public class PlayerFire : MonoBehaviour
 
     //private void OnDrawGizmos()
     //{
-    //    Gizmos.color = Color.red;     
+    //    Gizmos.color = Color.red;
 
-    //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward);
+    //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward * 150);
     //}
 
 }

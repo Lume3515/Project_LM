@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 57
@@ -177,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -316,7 +324,7 @@ GameObject:
   - component: {fileID: 70788561}
   - component: {fileID: 70788560}
   - component: {fileID: 70788562}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (3)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -396,7 +404,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70788558}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
@@ -408,6 +416,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -457,6 +469,10 @@ PrefabInstance:
       value: P_rsg_military_barbed_wire_01 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -495,6 +511,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -544,6 +564,10 @@ PrefabInstance:
       value: P_rsg_military_barbed_wire_01 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -582,9 +606,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -719,6 +751,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -766,6 +802,10 @@ PrefabInstance:
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -854,9 +894,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_rsg_military_concret_block_01 (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -865,27 +905,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 345212428522194551, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
   m_PrefabInstance: {fileID: 228569594}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &228569596 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
-  m_PrefabInstance: {fileID: 228569594}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &228569597
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 228569596}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.76500005, y: 0.517, z: 0.305}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.517, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &248717100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -893,9 +912,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -980,13 +1007,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4224995513277155759, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_RootOrder
@@ -1039,27 +1066,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4224995513277155759, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
   m_PrefabInstance: {fileID: 281780537}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &281780539 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
-  m_PrefabInstance: {fileID: 281780537}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &281780540
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281780539}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.58900005, y: 0.648, z: 0.597}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.648, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &356965950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1067,6 +1073,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1115,10 +1125,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_rsg_military_barbed_wire_01
       objectReference: {fileID: 0}
-    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
 --- !u!4 &356965951 stripped
@@ -1126,27 +1132,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
   m_PrefabInstance: {fileID: 356965950}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &356965952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
-  m_PrefabInstance: {fileID: 356965950}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &356965953
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356965952}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.9060001, y: 0.42900002, z: 0.42900002}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.45400003, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &358897633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1234,6 +1219,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_Basic_Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 4372899387303440232, guid: 315464fd8b9f6a94a9dc8a403300ffda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 315464fd8b9f6a94a9dc8a403300ffda, type: 3}
 --- !u!1001 &397314089
@@ -1292,8 +1281,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -1379,8 +1376,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (18)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -2015,6 +2020,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 70
@@ -2062,6 +2071,10 @@ PrefabInstance:
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2204,8 +2217,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (17)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -2352,7 +2373,7 @@ GameObject:
   - component: {fileID: 496195926}
   - component: {fileID: 496195925}
   - component: {fileID: 496195927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (6)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -2432,7 +2453,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496195923}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2449,7 +2470,7 @@ GameObject:
   - component: {fileID: 509391229}
   - component: {fileID: 509391228}
   - component: {fileID: 509391230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (5)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -2529,7 +2550,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509391226}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2546,9 +2567,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2682,8 +2711,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (29)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -2720,9 +2757,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2859,6 +2904,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -2908,6 +2957,10 @@ PrefabInstance:
       value: P_rsg_military_antitank_hedgehog_01 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2946,9 +2999,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3038,7 +3099,7 @@ GameObject:
   - component: {fileID: 713931565}
   - component: {fileID: 713931564}
   - component: {fileID: 713931566}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (4)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -3118,7 +3179,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713931562}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -3130,9 +3191,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3217,9 +3286,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3353,8 +3430,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (12)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -3422,9 +3507,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3639,6 +3732,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -3688,6 +3785,10 @@ PrefabInstance:
       value: P_rsg_military_barbed_wire_01 (7)
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -3726,6 +3827,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -3773,6 +3878,10 @@ PrefabInstance:
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3964,8 +4073,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (26)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -4021,9 +4138,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4181,9 +4306,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4317,8 +4450,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -4528,6 +4669,10 @@ PrefabInstance:
       value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8cec6e2279be0304c81454e0c6dc6b79, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8cec6e2279be0304c81454e0c6dc6b79, type: 3}
       propertyPath: m_TagString
       value: Map
       objectReference: {fileID: 0}
@@ -4542,6 +4687,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8cec6e2279be0304c81454e0c6dc6b79, type: 3}
   m_PrefabInstance: {fileID: 1244808285}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1245883017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1245883022}
+  - component: {fileID: 1245883021}
+  - component: {fileID: 1245883020}
+  - component: {fileID: 1245883019}
+  - component: {fileID: 1245883018}
+  - component: {fileID: 1245883023}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!54 &1245883018
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245883017}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!135 &1245883019
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245883017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1245883020
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245883017}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1245883021
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245883017}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1245883022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245883017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.592, y: 1.12, z: 76.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245883023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245883017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c438c5bde486cc04e97dac8db1bdac5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePos: {fileID: 1620634722}
 --- !u!1001 &1272050549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4549,9 +4822,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4636,9 +4917,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4772,8 +5061,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (19)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -4815,7 +5112,7 @@ GameObject:
   - component: {fileID: 1318773573}
   - component: {fileID: 1318773572}
   - component: {fileID: 1318773574}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (7)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -4895,7 +5192,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318773570}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
@@ -4912,7 +5209,7 @@ GameObject:
   - component: {fileID: 1326481374}
   - component: {fileID: 1326481373}
   - component: {fileID: 1326481375}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (8)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -4992,7 +5289,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326481371}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5004,6 +5301,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 44
@@ -5053,6 +5354,10 @@ PrefabInstance:
       value: P_rsg_military_barbed_wire_01 (8)
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5084,6 +5389,37 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.45400003, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &1379335831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379335832}
+  m_Layer: 0
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379335832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379335831}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -2.71, y: 0.38, z: -0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528934711}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1405301345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5096,7 +5432,7 @@ GameObject:
   - component: {fileID: 1405301348}
   - component: {fileID: 1405301347}
   - component: {fileID: 1405301349}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (2)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -5176,7 +5512,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405301345}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
@@ -5237,8 +5573,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (21)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -5324,8 +5668,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (13)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -5386,7 +5738,7 @@ GameObject:
   - component: {fileID: 1505260939}
   - component: {fileID: 1505260938}
   - component: {fileID: 1505260940}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (1)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -5466,7 +5818,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505260935}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5478,9 +5830,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5614,8 +5974,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (24)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -5687,9 +6055,8 @@ GameObject:
   - component: {fileID: 1563903444}
   - component: {fileID: 1563903447}
   - component: {fileID: 1563903446}
-  - component: {fileID: 1563903445}
   - component: {fileID: 1563903448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -5711,20 +6078,6 @@ Transform:
   m_Father: {fileID: 1607646790}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1563903445
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563903443}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1563903446
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5783,7 +6136,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563903443}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
@@ -5795,6 +6148,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 41
@@ -5844,6 +6201,10 @@ PrefabInstance:
       value: P_rsg_military_barbed_wire_01 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -5882,9 +6243,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5975,7 +6344,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577593990}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 36.40015, y: 59.70015, z: 36.40015}
@@ -5987,6 +6356,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -6034,6 +6407,10 @@ PrefabInstance:
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_barbed_wire_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6176,6 +6553,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -6223,6 +6604,10 @@ PrefabInstance:
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_barbed_wire_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6312,8 +6697,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (22)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -6500,8 +6893,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (14)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -6587,8 +6988,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (27)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -6644,6 +7053,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 56
@@ -6691,6 +7104,10 @@ PrefabInstance:
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6780,8 +7197,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (23)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -6818,6 +7243,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -6865,6 +7294,10 @@ PrefabInstance:
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7006,8 +7439,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (25)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -7044,6 +7485,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -7093,6 +7538,10 @@ PrefabInstance:
       value: P_rsg_military_antitank_hedgehog_01 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -7131,6 +7580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 356965956, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5856519355644658872, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_RootOrder
       value: 39
@@ -7180,6 +7633,10 @@ PrefabInstance:
       value: P_rsg_military_barbed_wire_01 (5)
       objectReference: {fileID: 0}
     - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488941593080765954, guid: 908a66b948c67b14ca102e8f19566480, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -7218,6 +7675,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -7266,10 +7727,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_rsg_military_antitank_hedgehog_01 (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
 --- !u!4 &1853871056 stripped
@@ -7277,27 +7734,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
   m_PrefabInstance: {fileID: 1853871055}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1853871057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
-  m_PrefabInstance: {fileID: 1853871055}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &1853871058
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853871057}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.623, y: 0.537, z: 0.588}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.537, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1001 &1858195880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7305,9 +7741,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 1201464145417871382, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_Name
       value: P_rsg_military_sandbox_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3596656072291603221, guid: 44a8420b8dd393740aa3226ffdeaa7ac, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7441,8 +7885,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (28)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -7528,8 +7980,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (20)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -7683,8 +8143,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -7770,8 +8238,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -7858,6 +8334,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1607646790}
     m_Modifications:
+    - target: {fileID: 5710588604248346768, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7233003891075724015, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -7907,6 +8387,10 @@ PrefabInstance:
       value: P_rsg_military_antitank_hedgehog_01 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010525065880168533, guid: 922e76be85b6e024a9e02f734038fd29, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -7950,7 +8434,7 @@ GameObject:
   - component: {fileID: 2080561741}
   - component: {fileID: 2080561740}
   - component: {fileID: 2080561742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall (9)
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -8030,7 +8514,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080561738}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -8091,8 +8575,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -8178,8 +8670,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (16)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
@@ -8265,8 +8765,16 @@ PrefabInstance:
       value: P_rsg_military_concret_block_01 (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117350600303828173, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749897262452687117, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd4322f23b8e2b848977f31a93465a0e, type: 3}
