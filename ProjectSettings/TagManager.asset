@@ -12,6 +12,7 @@ TagManager:
   - Player_Arm_L
   - Player_Arm_R
   - Bullet
+  - Destroy Zone
   layers:
   - Default
   - TransparentFX
