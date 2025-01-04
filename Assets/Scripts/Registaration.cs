@@ -5,7 +5,7 @@ using BackEnd;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public enum Type
+public enum LogInType
 {
     logIn,
     signUp,
@@ -50,7 +50,7 @@ public class Registaration
         }
     }
 
-    public void Login(string id, string pw, TextMeshProUGUI console, Type type, string text)
+    public void Login(string id, string pw, TextMeshProUGUI console, LogInType type, string text)
     {
         // Step 3. 로그인 구현하기 로직
         Debug.Log("로그인을 요청합니다.");
@@ -60,13 +60,13 @@ public class Registaration
 
         if (responceOfBackEnd.IsSuccess())
         {
-            if (type == Type.logIn)
+            if (type == LogInType.logIn)
             {
                 SceneManager.LoadScene(1);
                 console.text = $"로그인이 성공했습니다. 게임에 접속합니다.";
                 
             }
-            else if (type == Type.newName)
+            else if (type == LogInType.newName)
             {
                 newName = true;
                 // 아니라면 변경

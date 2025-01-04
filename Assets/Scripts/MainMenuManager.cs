@@ -5,6 +5,7 @@ using System.Net.Mime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
@@ -54,17 +55,17 @@ public class MainMenuManager : MonoBehaviour
                 console.text = "8자 까지 작성 가능합니다.";
                 isRegistaration = false;
             }
-            // 비번 확인이 맞지 않을 때
-            else if ((logInAndSignUPAndCheck_InputField[1].text != logInAndSignUPAndCheck_InputField[2].text) && !newNickName && signUp)
-            {
-                console.text = "비번확인이 알 맞지 않습니다.";
-                isRegistaration = false;
-            }
-            // 비번 확인이 맞지 않을 때
+            // 비번 확인이 맞을 때
             else if (logInAndSignUPAndCheck_InputField[1].text == logInAndSignUPAndCheck_InputField[2].text && !clickCreate)
             {
                 console.text = "비번이 맞습니다.";
                 isRegistaration = true;
+            }
+            // 비번 확인이 맞지 않을 때
+            else if ((logInAndSignUPAndCheck_InputField[1].text != logInAndSignUPAndCheck_InputField[2].text) && !newNickName && signUp)
+            {
+                console.text = "비번확인이 알 맞지 않습니다.";                
+                isRegistaration = false;
             }
             else
             {
@@ -237,6 +238,9 @@ public class MainMenuManager : MonoBehaviour
 
     #region// 로그인 & 비번
 
+    // 정규식 > 영어만 작성 가능하고 뛰어쓰기 안됨
+    string pattern = @"^[a-zA-Z]+$";
+
     // 콘솔 게임오브젝트
     private GameObject console_GameObject;
 
@@ -282,16 +286,51 @@ public class MainMenuManager : MonoBehaviour
 
         if (createOrLogIn_TMP.text == "계정 생성")
         {
-            Registaration.Instance.SignUp(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console);
+            // 정규식 검사 > true > 톨과
+            if (!Pattern(logInAndSignUPAndCheck_InputField[1].text))
+            {
+                console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
+
+                return;
+            }        
+                Registaration.Instance.SignUp(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console);
+            
         }
         else if (createOrLogIn_TMP.text == "로그인")
         {
-            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, Type.logIn, "null");
+            // 정규식 검사 > true > 톨과
+            if (!Pattern(logInAndSignUPAndCheck_InputField[1].text))
+            {
+                console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
+
+                return;
+            }
+
+            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.logIn, "null");
         }
         else if (createOrLogIn_TMP.text == "닉네임 변경")
         {
-            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, Type.newName, logInAndSignUPAndCheck_InputField[2].text);
+            // 정규식 검사 > true > 톨과
+            if (!Pattern(logInAndSignUPAndCheck_InputField[1].text))
+            {
+                console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
+
+                return;
+            }
+
+            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.newName, logInAndSignUPAndCheck_InputField[2].text);
         }
+
+        clickCreate = false;
+    }
+
+    // 정규식
+    private bool Pattern(string text)
+    {
+        Debug.Log(Regex.IsMatch(text, pattern));
+
+        // 정규식 인지?
+         return Regex.IsMatch(text, pattern);        
     }
 
     #endregion

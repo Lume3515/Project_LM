@@ -7,12 +7,15 @@ TagManager:
   - Map
   - Console
   - Player_Head
-  - Player_Leg_L
-  - Player_Leg_R
-  - Player_Arm_L
-  - Player_Arm_R
   - Bullet
   - Destroy Zone
+  - Zombie_Head
+  - Player_Body
+  - Zombie_Body
+  - Zombie_Leg
+  - Zombie_Arm
+  - Player_Leg
+  - Player_Arm
   layers:
   - Default
   - TransparentFX

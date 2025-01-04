@@ -17,9 +17,6 @@ public class Zombie : MonoBehaviour
     // 현재 체력
     private int currHP;
 
-    // 최대 체력
-    private int maxHP;
-
     // 스폰 위치
     private Transform[] spawnPos;
 
@@ -28,7 +25,7 @@ public class Zombie : MonoBehaviour
 
     // 생성시간
     private float spawnTime;
-    private float spawnMaxTime;   
+    private float spawnMaxTime;
 
     // 공격 가능?
     private bool isAttack;
@@ -37,22 +34,23 @@ public class Zombie : MonoBehaviour
     private WaitForSeconds attackDelay;
 
     // 오브젝트 풀링
-    [SerializeField] ObjectPooling objectPooling;      
+    private ObjectPooling objectPooling;
 
-    private void Start()
-    {     
+    private void Awake()
+    {
         animator = GetComponent<Animator>();
 
         attackDelay = new WaitForSeconds(2.13f);
-
-        maxHP = 100;
 
         spawnMaxTime = 4.05f;
 
         agent = GetComponent<NavMeshAgent>();
 
-        playerTr = GameObject.FindWithTag("Player").transform;       
-      
+        playerTr = GameObject.FindWithTag("Player").transform;
+
+        currHP = 100;
+
+        objectPooling = GetComponentInParent<ObjectPooling>();
     }
 
     private void OnEnable()
@@ -60,25 +58,44 @@ public class Zombie : MonoBehaviour
         //transform.position = spawnPos[Random.Range(0, 2)].position;
 
         spawnTime = 0;
-        currHP = maxHP;
 
-        Setting(1.4f);
-
-
+        Setting(1.4f, 100);
     }
 
-    public void Setting(float speed)
+    public void Setting(float speed, int hp)
     {
         moveSpeed = speed;
+        currHP = hp;
     }
 
     // 체력 감소 > 총알 스크립트에서 할당
-    public void MinusHP(int damage)
+    public void MinusHP(int damage, DamageType type)
     {
         currHP -= damage;
 
         if (currHP <= 0)
         {
+            switch (type)
+            {
+                case DamageType.HeadSHot:
+                    PlayerScore.currHeadShot++;
+                    break;
+
+                case DamageType.BodyShot:
+                    PlayerScore.currBodyShot++;
+                    break;
+
+                case DamageType.armShot:
+                    PlayerScore.currArmShot++;
+                    break;
+
+                case DamageType.legShot:
+                    PlayerScore.currLegShot++;
+                    break;
+
+
+            }
+
             objectPooling.Input(gameObject);
             animator.SetTrigger("die");
             StopCoroutine(Attack());
@@ -106,7 +123,7 @@ public class Zombie : MonoBehaviour
     {
         agent.destination = playerTr.position;
         agent.speed = moveSpeed;
-    }    
+    }
 
     // 현재 상태
     private IEnumerator Attack()
@@ -114,7 +131,7 @@ public class Zombie : MonoBehaviour
         // 이동 멈추기
         agent.isStopped = true;
 
-        animator.SetTrigger("hit");
+        animator.SetTrigger("attack");
         animator.SetBool("walk", false);
 
         yield return attackDelay;
@@ -132,6 +149,6 @@ public class Zombie : MonoBehaviour
         {
             isAttack = true;
             StartCoroutine(Attack());
-        } 
+        }
     }
 }

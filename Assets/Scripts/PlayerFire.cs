@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+public enum DamageType
+{
+    HeadSHot,
+    BodyShot,
+    armShot,
+    legShot,
+}
+
+
 public class PlayerFire : MonoBehaviour
 {  
     // true : °¡´É

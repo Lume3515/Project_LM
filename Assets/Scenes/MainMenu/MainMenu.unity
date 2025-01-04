@@ -449,7 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202549321}
   - component: {fileID: 202549320}
-  - component: {fileID: 202549323}
+  - component: {fileID: 202549322}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -500,7 +500,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &202549323
+--- !u!114 &202549322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB2C9\uB124\uC784 \uBCC0\uACBD \uBC0F \uC124\uC815\n"
+  m_text: "\uB2C9\uB124\uC784 \uC124\uC815\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 542c92fc803c8744d8e238912208f72b, type: 2}
   m_sharedMaterial: {fileID: 4716208525731659435, guid: 542c92fc803c8744d8e238912208f72b, type: 2}
