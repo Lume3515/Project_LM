@@ -91,7 +91,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] Button[] titleButton_2;
 
 
-    // 버튼들 0 : 게임시작, 1 : 게임 튜토리얼
+    // 버튼들 0 : 게임시작, 1 : 게임 튜토리얼, 2 : 게임 랭크
     public void TitleButton_1BT(int index)
     {
         //Debug.Log("1");
@@ -125,6 +125,19 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 1:
+                mainUIParent.SetActive(true);
+
+                for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
+                {
+                    logInAndSignUPAndCheck[i].SetActive(false);
+                }
+
+                console_GameObject.SetActive(false);
+
+                createOrLogIn_GameObject.SetActive(false);
+                break;
+
+            case 2:
                 mainUIParent.SetActive(true);
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
