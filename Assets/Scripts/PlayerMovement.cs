@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     // 마우스 민감도
     private float mouseSpeed;
 
-    private Animator playerAnimator;    
+    private Animator playerAnimator;
+
+    private PlayerFire playerFire;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerRb = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        playerFire = GetComponent<PlayerFire>();
     }
 
     private void Start()
@@ -32,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        Rotation();     
+        Rotation();
     }
 
     #region// 플레이어 이동
@@ -63,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerRb.velocity.magnitude == 0 && !sitDown)
         {
+            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Stand;
+
+            //Debug.Log($"1번째 :{playerFire.ShootingType != ShootingType.Aim} / 2번쨰 : {playerFire.ShootingType != ShootingType.Shoulder} 타입 : {playerFire.ShootingType}");
+
+            //Debug.Log($"호출됨 {playerFire.ShootingType}");
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", false);
         }
@@ -71,13 +79,16 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", true);
 
+            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Run;
+
             moveSpeed = 5f;
         }
         else if (!sitDown)
         {
             playerAnimator.SetBool("isWalk", true);
             playerAnimator.SetBool("isRun", false);
-            
+
+            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Walk;
 
             moveSpeed = 2.8f;
         }
@@ -88,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
         {
             sitDown = true;
 
+            playerFire.ShootingType = ShootingType.Sit;
+
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", false);
             playerAnimator.SetBool("isSitDown", true);
@@ -97,23 +110,31 @@ public class PlayerMovement : MonoBehaviour
         else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
         {
             sitDown = false;
+            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Stand;
 
             playerAnimator.SetBool("isSitDown", false);
         }
         else if (sitDown)
         {
-            if(playerRb.velocity.magnitude == 0)
+            if (playerRb.velocity.magnitude == 0)
             {
                 playerAnimator.SetFloat("SitDown_Multiplier", 0f);
+
+                if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Sit;
+
             }
             else
             {
                 playerAnimator.SetFloat("SitDown_Multiplier", 1f);
+                {
+                    playerFire.ShootingType = ShootingType.SitWalk; 
+                }
             }
         }
 
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
         moveDirection = transform.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0);
+
 
         playerRb.velocity = moveDirection;
     }

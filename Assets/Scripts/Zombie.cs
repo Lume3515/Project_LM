@@ -72,6 +72,7 @@ public class Zombie : MonoBehaviour
     public void MinusHP(int damage, DamageType type)
     {
         currHP -= damage;
+        Debug.Log(currHP);
 
         if (currHP <= 0)
         {

@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody bulletRb;
 
-    private float fireSpeed;  
+    private float fireSpeed;
 
     // 발사할 대상의 트랜스 폼
     private Transform firePos;
@@ -35,29 +35,73 @@ public class Bullet : MonoBehaviour
     private int arm_Damage;
     // 다리
     private int Leg_Damage;
-    public void Setting(float speed)
+
+    // ShootingType변수
+    private ShootingType shootingType;
+
+    // 탄퍼짐
+    private Vector3 carbonSpread;
+
+    // 탄퍼짐 정도
+    public void Setting(float speed, ShootingType type)
     {
         fireSpeed = speed;
         //Debug.Log(speed);
 
         gameObject.SetActive(true);
 
+        shootingType = type;
+
         Fire();
     }
 
     private void Fire()
-    {
+    {      
+        switch (shootingType)
+        {
+            case ShootingType.Aim:
+                carbonSpread = new Vector3(0, 0, 0);
+                break;
+
+            case ShootingType.Shoulder:
+                carbonSpread = new Vector3(Random.Range(-0.006f, 0.006f), Random.Range(-0.006f, 0.006f), Random.Range(-0.006f, 0.006f));
+                break;
+
+            case ShootingType.Run:
+                carbonSpread = new Vector3(Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f));
+
+                break;
+
+            case ShootingType.Walk:
+                carbonSpread = new Vector3(Random.Range(-0.03f ,0.03f), Random.Range(-0.03f, 0.03f), Random.Range(-0.03f, 0.03f));
+                break;
+
+            case ShootingType.Sit:
+                carbonSpread = new Vector3(Random.Range(-0.008f, 0.008f), Random.Range(-0.008f, 0.008f), Random.Range(-0.008f, 0.008f));
+                break;
+
+            case ShootingType.SitWalk:
+                carbonSpread = new Vector3(Random.Range(-0.03f, 0.3f), Random.Range(-0.03f, 0.03f), Random.Range(-0.03f, 0.03f));
+                break;
+
+            default: // 서있기 및 엄폐
+                carbonSpread = new Vector3(Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f));
+                break;
+
+
+        }
+
 
         transform.position = firePos.position;
         transform.rotation = firePos.rotation;
 
-        fireDirection = firePos.forward;
+        fireDirection = firePos.forward + carbonSpread;
 
         bulletRb.velocity = Vector3.zero;
 
         bulletRb.AddForce(fireDirection * fireSpeed, ForceMode.Impulse);
     }
-    
+
 
     private void Awake()
     {
@@ -78,8 +122,8 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {          
-            impact_Info = collision.GetContact(0);
+    {
+        impact_Info = collision.GetContact(0);
 
         if (collision.collider.CompareTag("Map"))
         {
@@ -102,11 +146,11 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Zombie_Arm"))
         {
-            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(arm_Damage, DamageType.armShot);  
+            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(arm_Damage, DamageType.armShot);
         }
         else if (collision.collider.CompareTag("Zombie_Leg"))
         {
-            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(Leg_Damage, DamageType.legShot);       
+            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(Leg_Damage, DamageType.legShot);
         }
         else if (collision.collider.CompareTag("Zombie_Body"))
         {
@@ -116,13 +160,13 @@ public class Bullet : MonoBehaviour
         // 장애물 프립팹을생성, 플레이어 정보 위치에 생성, 총알의 각도에 따라 방향이 달라짐
         Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(impact_Info.normal));
         objectPooling.Input(gameObject);
-    }     
-        
-    
+    }
+
+
     private void OnTriggerExit(Collider other)
     {
-        
-    
+
+
         if (other.CompareTag("Destroy Zone"))
         {
             objectPooling.Input(gameObject);

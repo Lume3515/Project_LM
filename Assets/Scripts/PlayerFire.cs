@@ -11,9 +11,24 @@ public enum DamageType
     legShot,
 }
 
+// ¹ß»ç Å¸ÀÔ
+public enum ShootingType
+{
+    Aim, // Á¶ÁØ
+    Shoulder, // °ßÂø  
+    Run, // ¶Ù±â
+    Walk, // °È±â
+    Sit, // ¾É±â
+    Stand, // ¼­ÀÖ±â
+    Obscuration, // ¾öÆó
+    SitWalk    // ¾É¾Æ¼­ °È±â
+}
 
 public class PlayerFire : MonoBehaviour
-{  
+{
+    // Ä«¸Þ¶ó
+    private Camera mainCamera;
+
     // true : °¡´É
     private bool shooting = true;
 
@@ -37,23 +52,55 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] ObjectPooling objectPooling;
 
     // ÃÑ¾Ë °´Ã¼
-    private GameObject bulletObj;     
+    private GameObject bulletObj;
 
+    // Å¸ÀÔ
+    private ShootingType shootingType;
+    public ShootingType ShootingType { get { return shootingType; } set { shootingType = value; } }
+
+    // Á¶ÁØÁßÀÌ³ª, °ßÂøÁß
+    private bool shoulderAndAim;
+
+    public bool ShoulderAndAim { get { return shoulderAndAim; } set { shoulderAndAim = value; } }
     private void Start()
     {
-        shootingDelay = new WaitForSeconds(0.1f);  
+        shootingDelay = new WaitForSeconds(0.1f);
 
-        maxTime = 0.7f;       
+        maxTime = 0.7f;
+
+        mainCamera = Camera.main;
 
         fireSpeed = 50;
+
+        mainCamera.fieldOfView = 60;
     }
 
     private void Update()
     {
+        Debug.Log(shootingType);
+        //Debug.Log(shootingType);
+
         // ÁÂÅ¬¸¯ ½Ã
         if (Input.GetMouseButton(0) && shooting)
         {
             StartCoroutine(Fire());
+        }
+
+        // ¿ìÅ¬¸¯ ½Ã > Åä±Û
+        if (Input.GetMouseButton(1))
+        {
+            shootingType = ShootingType.Shoulder;
+            //Debug.Log(shootingType);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, 0.02f);
+            ShoulderAndAim = true;
+            //Debug.Log("1");
+        }
+        else
+        {
+            ShoulderAndAim = false;
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, 0.02f);      
+            shootingType = ShootingType.Stand;
+            //Debug.Log("2");
         }
 
         // ÃÑ ³»¸®±â
@@ -88,12 +135,13 @@ public class PlayerFire : MonoBehaviour
 
         //    // ÀÌ¸§ Âï¾îº¸±â
         //    Debug.Log(hit.collider.name);
-        //}
+        //}      
+
 
 
         // ÃÑ¾Ë »ý¼º
         bulletObj = objectPooling.OutPut();
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed);
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, shootingType);
 
         // ÃÑ¾Ë µô·¹ÀÌ ¿ë
         shooting = false;
