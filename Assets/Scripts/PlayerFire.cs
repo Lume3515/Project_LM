@@ -77,7 +77,7 @@ public class PlayerFire : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(shootingType);
+        //Debug.Log(shootingType);
         //Debug.Log(shootingType);
 
         // ÁÂÅ¬¸¯ ½Ã

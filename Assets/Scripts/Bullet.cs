@@ -130,10 +130,10 @@ public class Bullet : MonoBehaviour
             //Debug.Log(impact_Info.normal);
 
             // 장애물 프립팹을생성, 플레이어 정보 위치에 생성, 총알의 각도에 따라 방향이 달라짐
-            Instantiate(impact_Obstacle, impact_Info.point, Quaternion.LookRotation(impact_Info.normal));
+            Instantiate(impact_Obstacle, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
             objectPooling.Input(gameObject);
 
-            Debug.Log("장애물 충돌");
+            //Debug.Log("장애물 충돌");
 
             return;
 
@@ -170,7 +170,7 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Destroy Zone"))
         {
             objectPooling.Input(gameObject);
-            Debug.Log("게임에서 나감");
+            //Debug.Log("게임에서 나감");
         }
     }
 }
