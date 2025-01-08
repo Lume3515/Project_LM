@@ -91,14 +91,14 @@ public class PlayerFire : MonoBehaviour
         {
             shootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, 0.02f);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, 0.1f);
             ShoulderAndAim = true;
             //Debug.Log("1");
         }
         else
         {
             ShoulderAndAim = false;
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, 0.02f);      
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, 0.1f);      
             shootingType = ShootingType.Stand;
             //Debug.Log("2");
         }
@@ -151,7 +151,7 @@ public class PlayerFire : MonoBehaviour
 
         // æ÷¥œ∏ﬁ¿Ãº«
         animator.SetBool("isShoot", true);
-        animator.SetBool("isShoot", true);
+        animator.SetBool("isShoot", true);       
 
         // √— µÙ∑π¿Ã
         yield return shootingDelay;
