@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -127,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimator.SetFloat("SitDown_Multiplier", 1f);
                 {
-                    playerFire.ShootingType = ShootingType.SitWalk; 
+                    playerFire.ShootingType = ShootingType.SitWalk;
                 }
             }
         }
@@ -144,7 +145,10 @@ public class PlayerMovement : MonoBehaviour
         mouseY = Input.GetAxisRaw("Mouse X");
 
         transform.Rotate(0, mouseY * mouseSpeed, 0);
+
+
     }
     #endregion
+
 
 }

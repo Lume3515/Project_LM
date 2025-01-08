@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
 
     // 카메라 위치 // 0 : 왼쪽 1 : 오른쪽
     [SerializeField] Transform[] cameraPos;
-    [SerializeField] int cameraIndex;
+    private int cameraIndex;
 
     // 마우스 X축
     private float mouseX;
@@ -29,12 +29,12 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {      
         // 오른쪽으로 움직일 떄
-        if (cameraMoveDirection > 1.5f)
+        if (cameraMoveDirection > 2f)
         {
             cameraIndex = 1;
         }
         // 왼쪽으로 움직일 때
-        else if (cameraMoveDirection < -1.5f)
+        else if (cameraMoveDirection < -2f)
         {
             cameraIndex = 0;
         }
@@ -50,7 +50,7 @@ public class CameraMovement : MonoBehaviour
 
     private void CameraMove()
     {
-        transform.position = Vector3.Lerp(transform.position, cameraPos[cameraIndex].position, 0.18f);
+        transform.position = Vector3.Lerp(transform.position, cameraPos[cameraIndex].position, 0.15f);
     }
 
     private void Rotation()
