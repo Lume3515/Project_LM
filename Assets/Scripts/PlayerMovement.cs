@@ -37,9 +37,15 @@ public class PlayerMovement : MonoBehaviour
         forward = cameraTr.transform.forward;
     }
 
-    private void FixedUpdate()
+    // 입력
+    private void Update()
     {
         Movement();
+    }
+
+    // 연산
+    private void FixedUpdate()
+    {
         Rotation();
     }
 

@@ -56,8 +56,6 @@ public class PlayerFire : MonoBehaviour
 
     [SerializeField] Transform firePos;
 
-
-
     // 타입
     private ShootingType shootingType;
     public ShootingType ShootingType { get { return shootingType; } set { shootingType = value; } }
@@ -66,6 +64,9 @@ public class PlayerFire : MonoBehaviour
     private bool shoulderAndAim;
 
     public bool ShoulderAndAim { get { return shoulderAndAim; } set { shoulderAndAim = value; } }
+
+
+    private Vector3 targetPosition;
     private void Start()
     {
         shootingDelay = new WaitForSeconds(0.1f);
@@ -77,6 +78,8 @@ public class PlayerFire : MonoBehaviour
         fireSpeed = 50;
 
         mainCamera.fieldOfView = 60;
+
+      
     }
 
     private void Update()
@@ -84,17 +87,14 @@ public class PlayerFire : MonoBehaviour
         //Debug.Log(shootingType);
         //Debug.Log(shootingType);
 
+        //firePos.rotation = mainCamera.transform.rotation * Quaternion.Euler(addPos);
+
         // 좌클릭 시
         if (Input.GetMouseButton(0) && shooting)
         {
-            Vector3 endPos = mainCamera.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 10));
 
-            //float atan = Mathf.Atan2(endPos.y, endPos.x) * Mathf.Rad2Deg;
-            
-
-            firePos.rotation = Quaternion.LookRotation(endPos);
-            
-
+            // 애니메이션
+            animator.SetBool("isShoot", true);
 
             StartCoroutine(Fire());
         }
@@ -124,7 +124,7 @@ public class PlayerFire : MonoBehaviour
             if (time > maxTime)
             {
                 time = 0;
-
+    
                 animator.SetBool("isShoot", false);
 
                 shooting = true;
@@ -134,21 +134,31 @@ public class PlayerFire : MonoBehaviour
 
     private IEnumerator Fire()
     {
-        // 레이로 감지
 
-        //// 충돌체
-        //RaycastHit hit;
+        targetPosition = Vector3.zero;
 
-        //// 발사위치, 방향, 추출(리턴 값), 최대 거리,레이어 6번만
-        //if (Physics.Raycast(cameraTr.position, cameraTr.forward, out hit, 150, 1 << 6))
-        //{
-        //    // 데미지 입히기
+        RaycastHit hit;
+
+        // 스크린 중앙에서 Ray를 발사 (UI의 중앙에서 발사)
+        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 10f));
 
 
+        // Raycast로 충돌 지점 확인
+        if (Physics.Raycast(ray, out hit, 300))
+        {
+            targetPosition = hit.point; 
+        }
+        else
+        {
+            // 만약 충돌하지 않으면 레이의 끝 지점을 목표로 설정
+            targetPosition = ray.GetPoint(300);  
+        }
 
-        //    // 이름 찍어보기
-        //    Debug.Log(hit.collider.name);
-        //}              
+        // 목표 위치를 향한 방향 벡터 계산
+        Vector3 direction = (targetPosition - firePos.position).normalized;
+
+        // firePos를 목표 방향으로 회전
+        firePos.rotation = Quaternion.LookRotation(direction);
 
         // 총알 생성
         bulletObj = objectPooling.OutPut();
@@ -157,12 +167,9 @@ public class PlayerFire : MonoBehaviour
         // 총알 딜레이 용
         shooting = false;
 
-        // 발사 사운드
+        // 발사 총구 화염 생성
         m4MuzzleFlash.Play();
 
-        // 애니메이션
-        animator.SetBool("isShoot", true);
-        animator.SetBool("isShoot", true);
 
         // 총 딜레이
         yield return shootingDelay;
@@ -172,10 +179,14 @@ public class PlayerFire : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.black;
+        Gizmos.DrawRay(firePos.position, firePos.forward * 170);
 
-        Gizmos.color = Color.red;
+        //Gizmos.color = Color.red;
 
-        Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+        //Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+
+        //Gizmos.DrawCube(screenPos, new Vector3(1, 1, 1));
 
         //    Gizmos.color = Color.red;
 

@@ -189,6 +189,37 @@ Transform:
   m_Father: {fileID: 3445367852840918917}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -51.26695, y: -92.83991, z: 120.23557}
+--- !u!1 &781533263603509961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7677126535613280326}
+  m_Layer: 0
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7677126535613280326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781533263603509961}
+  m_LocalRotation: {x: -0.4200801, y: -0.51791227, z: 0.42448282, w: 0.6124655}
+  m_LocalPosition: {x: 0.48938587, y: -0.083918385, z: 0.16077855}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6081690359726790651}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1165665017609604584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1836,6 +1867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0896defeaa97b9143ab4e339afe03cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTr: {fileID: 0}
 --- !u!195 &6047270341645598388
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1873,6 +1905,8 @@ MonoBehaviour:
   m4MuzzleFlash: {fileID: 107379097252819165}
   animator: {fileID: 182024133507096597}
   objectPooling: {fileID: 0}
+  firePos: {fileID: 0}
+  addPos: {x: 0, y: 0, z: 0}
 --- !u!1 &6981327432971817029
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,12 +45,13 @@ public class Bullet : MonoBehaviour
     // 탄퍼짐 정도
     public void Setting(float speed, ShootingType type, Transform pos)
     {
+        gameObject.SetActive(true);
+
         fireSpeed = speed;
         //Debug.Log(speed);
 
         firePos = pos;
 
-        gameObject.SetActive(true);
 
         shootingType = type;
 
@@ -58,7 +59,7 @@ public class Bullet : MonoBehaviour
     }
 
     private void Fire()
-    {      
+    {
 
         // 반동
         switch (shootingType)
@@ -77,7 +78,7 @@ public class Bullet : MonoBehaviour
                 break;
 
             case ShootingType.Walk:
-                carbonSpread = new Vector3(Random.Range(-0.06f ,0.06f), Random.Range(-0.06f, 0.06f), Random.Range(-0.06f, 0.06f));
+                carbonSpread = new Vector3(Random.Range(-0.06f, 0.06f), Random.Range(-0.06f, 0.06f), Random.Range(-0.06f, 0.06f));
                 break;
 
             case ShootingType.Sit:
@@ -99,7 +100,7 @@ public class Bullet : MonoBehaviour
         transform.position = firePos.position;
         transform.rotation = firePos.rotation;
 
-        fireDirection = firePos.forward * -1 + carbonSpread;
+        fireDirection = (firePos.forward + firePos.right * carbonSpread.x + firePos.up * carbonSpread.y).normalized;
 
         bulletRb.velocity = Vector3.zero;
 
@@ -125,6 +126,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        
+
         impact_Info = collision.GetContact(0);
 
         if (collision.collider.CompareTag("Map"))
@@ -135,33 +138,44 @@ public class Bullet : MonoBehaviour
             Instantiate(impact_Obstacle, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
             objectPooling.Input(gameObject);
 
-            //Debug.Log("장애물 충돌");
-
-            return;
+            //Debug.Log("장애물 충돌");         
 
         }
-
         // 부위에 따른 체력감소
-        if (collision.collider.CompareTag("Zombie_Head"))
+        else if (collision.collider.CompareTag("Zombie_Head"))
         {
             collision.gameObject.GetComponentInParent<Zombie>().MinusHP(head_Damage, DamageType.HeadSHot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
         }
         else if (collision.collider.CompareTag("Zombie_Arm"))
         {
             collision.gameObject.GetComponentInParent<Zombie>().MinusHP(arm_Damage, DamageType.armShot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
         }
         else if (collision.collider.CompareTag("Zombie_Leg"))
         {
             collision.gameObject.GetComponentInParent<Zombie>().MinusHP(Leg_Damage, DamageType.legShot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
         }
         else if (collision.collider.CompareTag("Zombie_Body"))
         {
             collision.gameObject.GetComponentInParent<Zombie>().MinusHP(body_Damage, DamageType.BodyShot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
         }
 
-        // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
-        Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
-        objectPooling.Input(gameObject);
+
     }
 
 
