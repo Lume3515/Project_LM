@@ -54,6 +54,10 @@ public class PlayerFire : MonoBehaviour
     // ÃÑ¾Ë °´Ã¼
     private GameObject bulletObj;
 
+    [SerializeField] Transform firePos;
+
+
+
     // Å¸ÀÔ
     private ShootingType shootingType;
     public ShootingType ShootingType { get { return shootingType; } set { shootingType = value; } }
@@ -83,6 +87,15 @@ public class PlayerFire : MonoBehaviour
         // ÁÂÅ¬¸¯ ½Ã
         if (Input.GetMouseButton(0) && shooting)
         {
+            Vector3 endPos = mainCamera.ScreenToWorldPoint(new Vector3(0.5f, 0.5f, 10));
+
+            //float atan = Mathf.Atan2(endPos.y, endPos.x) * Mathf.Rad2Deg;
+            
+
+            firePos.rotation = Quaternion.LookRotation(endPos);
+            
+
+
             StartCoroutine(Fire());
         }
 
@@ -91,14 +104,14 @@ public class PlayerFire : MonoBehaviour
         {
             shootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, 0.2f);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 10);
             ShoulderAndAim = true;
             //Debug.Log("1");
         }
         else
         {
             ShoulderAndAim = false;
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, 0.2f);      
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 10);
             shootingType = ShootingType.Stand;
             //Debug.Log("2");
         }
@@ -135,13 +148,11 @@ public class PlayerFire : MonoBehaviour
 
         //    // ÀÌ¸§ Âï¾îº¸±â
         //    Debug.Log(hit.collider.name);
-        //}      
-
-
+        //}              
 
         // ÃÑ¾Ë »ý¼º
         bulletObj = objectPooling.OutPut();
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, shootingType);
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, shootingType, firePos);
 
         // ÃÑ¾Ë µô·¹ÀÌ ¿ë
         shooting = false;
@@ -151,7 +162,7 @@ public class PlayerFire : MonoBehaviour
 
         // ¾Ö´Ï¸ÞÀÌ¼Ç
         animator.SetBool("isShoot", true);
-        animator.SetBool("isShoot", true);       
+        animator.SetBool("isShoot", true);
 
         // ÃÑ µô·¹ÀÌ
         yield return shootingDelay;
@@ -159,11 +170,16 @@ public class PlayerFire : MonoBehaviour
         shooting = true;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
+    private void OnDrawGizmos()
+    {
 
-    //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward * 150);
-    //}
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+
+        //    Gizmos.color = Color.red;
+
+        //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward * 150);
+    }
 
 }

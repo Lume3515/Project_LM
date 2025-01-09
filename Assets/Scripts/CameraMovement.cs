@@ -6,51 +6,36 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-
-    // 카메라 위치 // 0 : 왼쪽 1 : 오른쪽
-    [SerializeField] Transform[] cameraPos;
-    private int cameraIndex;
+    [SerializeField] Transform parent;
 
     // 마우스 X축
     private float mouseX;
 
-    private bool start = true;
-
-    private Rigidbody playerRb;
-
-    // 회전
-    float cameraMoveDirection;
+    // 플레이어 트랜스폼
+    private Transform playerTr;
 
     private void Start()
     {
-        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
-    }
+        playerTr = GameObject.FindWithTag("Player").transform;
 
-    private void Update()
-    {      
-        // 오른쪽으로 움직일 떄
-        if (cameraMoveDirection > 2f)
+
+        for (int i = 0; i < 4; i++)
         {
-            cameraIndex = 1;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            mouseX = 0;
         }
-        // 왼쪽으로 움직일 때
-        else if (cameraMoveDirection < -2f)
-        {
-            cameraIndex = 0;
-        }
-    }   
+
+    }
 
     private void FixedUpdate()
     {
-        cameraMoveDirection = transform.TransformDirection(playerRb.velocity).x;
-
         CameraMove();
         Rotation();
     }
 
     private void CameraMove()
     {
-        transform.position = Vector3.Lerp(transform.position, cameraPos[cameraIndex].position, 0.15f);
+
     }
 
     private void Rotation()
@@ -89,17 +74,11 @@ public class CameraMovement : MonoBehaviour
             mouseX = Input.GetAxisRaw("Mouse Y");
         }
         #endregion
-        if (start)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
-                mouseX = 0;
-            }
-
-            start = false;
-        }
         transform.Rotate(-mouseX * 5, 0, 0);
+
+        float moveY = Input.GetAxisRaw("Mouse X");
+
+        parent.Rotate(0, moveY * 5, 0);
     }
 
 }

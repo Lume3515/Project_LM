@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerFire playerFire;
 
+
     private void Awake()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -31,15 +32,19 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = 3.8f;
 
         mouseSpeed = 5f;
+
+        right = cameraTr.transform.right;
+        forward = cameraTr.transform.forward;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
         Rotation();
     }
 
     #region// 플레이어 이동
+
     // 움직임 속도
     private float moveSpeed;
 
@@ -52,11 +57,18 @@ public class PlayerMovement : MonoBehaviour
     // 움직임 방향
     private Vector3 moveDirection;
 
-    // 마우스 키 값(축 기준)
-    private float mouseY;
-
     // true : 앉았다
     private bool sitDown;
+
+    // 카메라 트랜스 폼
+    [SerializeField] Transform cameraTr;
+
+    // 회전 정의(?) 어느 방향인지
+    private Vector3 right;
+    private Vector3 forward;
+
+    // 최종 방향
+    private Quaternion lastRot;
 
     // 움직임
     private void Movement()
@@ -65,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
         moveZ = Input.GetAxis("Vertical");
 
+        // 안 움직일 떄
         if (playerRb.velocity.magnitude == 0 && !sitDown)
         {
             if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Stand;
@@ -75,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", false);
         }
+        // 달리기 구현
         else if (Input.GetKey(KeyCode.LeftShift) && !sitDown)
         {
             playerAnimator.SetBool("isWalk", false);
@@ -95,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-
+        // 앉기 구현
         if (Input.GetKeyDown(KeyCode.C) && !sitDown)
         {
             sitDown = true;
@@ -106,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isRun", false);
             playerAnimator.SetBool("isSitDown", true);
 
-            moveSpeed = 0.8f;
+            moveSpeed = 1.5f;
         }
         else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
         {
@@ -115,8 +129,9 @@ public class PlayerMovement : MonoBehaviour
 
             playerAnimator.SetBool("isSitDown", false);
         }
-        else if (sitDown)
+        if (sitDown)
         {
+            // 앉았는데 안 움직일 떄
             if (playerRb.velocity.magnitude == 0)
             {
                 playerAnimator.SetFloat("SitDown_Multiplier", 0f);
@@ -134,17 +149,45 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
-        moveDirection = transform.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0);
-
+        moveDirection = cameraTr.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0); // 로컬 기준
 
         playerRb.velocity = moveDirection;
     }
 
     private void Rotation()
     {
-        mouseY = Input.GetAxisRaw("Mouse X");
+        if (playerFire.ShootingType == ShootingType.Run)
+        {
 
-        transform.Rotate(0, mouseY * mouseSpeed, 0);
+            // 앞
+            if (Input.GetKey(KeyCode.W))
+            {
+
+                moveDirection += forward;
+            }
+            // 뒤
+            if (Input.GetKey(KeyCode.S))
+            {
+                moveDirection -= forward;
+            }
+            // 왼쪽
+            if (Input.GetKey(KeyCode.A))
+            {
+                moveDirection -= right;
+            }
+            // 오른쪽
+            if (Input.GetKey(KeyCode.D))
+            {
+                moveDirection += right;
+            }
+
+            transform.rotation = Quaternion.LookRotation(moveDirection);
+
+        }
+        else
+        {
+            transform.rotation = cameraTr.rotation;
+        }
 
 
     }
