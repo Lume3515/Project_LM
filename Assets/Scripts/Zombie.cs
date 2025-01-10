@@ -17,9 +17,6 @@ public class Zombie : MonoBehaviour
     // 현재 체력
     private int currHP;
 
-    // 스폰 위치
-    private Transform[] spawnPos;
-
     // 애니메이터
     private Animator animator;
 
@@ -48,9 +45,9 @@ public class Zombie : MonoBehaviour
 
         playerTr = GameObject.FindWithTag("Player").transform;
 
-        currHP = 100;
-
         objectPooling = GetComponentInParent<ObjectPooling>();
+
+        dieDelay = new WaitForSeconds(2.5f);
     }
 
     private void OnEnable()
@@ -58,14 +55,16 @@ public class Zombie : MonoBehaviour
         //transform.position = spawnPos[Random.Range(0, 2)].position;
 
         spawnTime = 0;
-
-        Setting(1.4f, 100);
     }
 
-    public void Setting(float speed, int hp)
+    public void Setting(Transform pos, float speed, int hp)
     {
+        gameObject.SetActive(true);
+
+        transform.position = pos.position;
         moveSpeed = speed;
         currHP = hp;
+        Debug.Log(agent.isOnNavMesh);
     }
 
     // 체력 감소 > 총알 스크립트에서 할당
@@ -73,7 +72,6 @@ public class Zombie : MonoBehaviour
     {
         currHP -= damage;
         Debug.Log(currHP);
-
         if (currHP <= 0)
         {
             switch (type)
@@ -97,10 +95,22 @@ public class Zombie : MonoBehaviour
 
             }
 
-            objectPooling.Input(gameObject);
-            animator.SetTrigger("die");
             StopCoroutine(Attack());
+            StartCoroutine(Die());
         }
+    }
+
+    // 죽는 시간 딜레이
+    private WaitForSeconds dieDelay;
+
+    private IEnumerator Die()
+    {
+        animator.SetTrigger("die");
+
+        yield return dieDelay;
+
+        Gamemanager.Instance.CurrNumber.Remove(gameObject);
+        objectPooling.Input(gameObject);
     }
 
 
@@ -112,6 +122,7 @@ public class Zombie : MonoBehaviour
 
         if (spawnTime >= spawnMaxTime && !isAttack)
         {
+
             agent.isStopped = false;
             animator.SetBool("walk", true);
             MoveMent();

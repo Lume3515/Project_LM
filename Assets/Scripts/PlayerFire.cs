@@ -66,7 +66,7 @@ public class PlayerFire : MonoBehaviour
     public bool ShoulderAndAim { get { return shoulderAndAim; } set { shoulderAndAim = value; } }
 
 
-    private Vector3 targetPosition;
+    private Vector3 screen_RayPos;
     private void Start()
     {
         shootingDelay = new WaitForSeconds(0.1f);
@@ -79,7 +79,7 @@ public class PlayerFire : MonoBehaviour
 
         mainCamera.fieldOfView = 60;
 
-      
+
     }
 
     private void Update()
@@ -124,7 +124,7 @@ public class PlayerFire : MonoBehaviour
             if (time > maxTime)
             {
                 time = 0;
-    
+
                 animator.SetBool("isShoot", false);
 
                 shooting = true;
@@ -134,31 +134,33 @@ public class PlayerFire : MonoBehaviour
 
     private IEnumerator Fire()
     {
+        // Ray의 위치? 화면 조준점의 위치
+        screen_RayPos = Vector3.zero;
 
-        targetPosition = Vector3.zero;
-
+        // 충돌 지점
         RaycastHit hit;
 
-        // 스크린 중앙에서 Ray를 발사 (UI의 중앙에서 발사)
-        Ray ray = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 10f));
+        // 1920 X 1080을 각각 나누기 2 하면 960 X 540이 나오는데 이는 화면의 가운데를 나타낸다. 또한 ScreenPointToRay는 스크린을 월드의 Ray로 바꿔주는 함수이다.
+        Ray screen_Aim = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 10));
 
-
-        // Raycast로 충돌 지점 확인
-        if (Physics.Raycast(ray, out hit, 300))
+        // 레이를 쏘고 맞으면 hit에 값을 넣어줌 사정거리는 150이다.
+        if (Physics.Raycast(screen_Aim, out hit, 150))
         {
-            targetPosition = hit.point; 
+            // 맞을 시 hit의 정보를 가져옴
+            screen_RayPos = hit.point;
         }
         else
         {
-            // 만약 충돌하지 않으면 레이의 끝 지점을 목표로 설정
-            targetPosition = ray.GetPoint(300);  
+            // 안 맞을 시 Ray의 150사정거리 정보를 가져옴
+            screen_RayPos = screen_Aim.GetPoint(150);
         }
 
-        // 목표 위치를 향한 방향 벡터 계산
-        Vector3 direction = (targetPosition - firePos.position).normalized;
+        // 방향구하는 식 이다. screen_RayPos - firePos.position(normalized은 정규화를 위해서 이다 1로 만들기 위해)
+        Vector3 direction = (screen_RayPos - firePos.position).normalized;
 
-        // firePos를 목표 방향으로 회전
+        // 바라보게 한다 Euler를 쓰면 위치부터가 다르기 때문에 글렀다. 그러므로 LookRotation을 쓴다.
         firePos.rotation = Quaternion.LookRotation(direction);
+
 
         // 총알 생성
         bulletObj = objectPooling.OutPut();
@@ -180,7 +182,7 @@ public class PlayerFire : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawRay(firePos.position, firePos.forward * 170);
+        Gizmos.DrawRay(firePos.position, firePos.forward * 150);
 
         //Gizmos.color = Color.red;
 
