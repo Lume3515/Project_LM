@@ -62,8 +62,9 @@ public class Registaration
         {
             if (type == LogInType.logIn)
             {
-                SceneManager.LoadScene(1);
-                console.text = $"로그인이 성공했습니다. 게임에 접속합니다.";
+                LoadingManager.name = "InGame";
+
+                SceneManager.LoadScene(2);
                 
             }
             else if (type == LogInType.newName)

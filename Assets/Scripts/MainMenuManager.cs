@@ -252,7 +252,7 @@ public class MainMenuManager : MonoBehaviour
     #region// 로그인 & 비번
 
     // 정규식 > 영어만 작성 가능하고 뛰어쓰기 안됨
-    string pattern = @"^[a-zA-Z]+$";
+    string pattern = @"^[a-zA-Z0-9]+$";
 
     // 콘솔 게임오브젝트
     private GameObject console_GameObject;
@@ -332,9 +332,7 @@ public class MainMenuManager : MonoBehaviour
             }
 
             Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.newName, logInAndSignUPAndCheck_InputField[2].text);
-        }
-
-        clickCreate = false;
+        }        
     }
 
     // 정규식
