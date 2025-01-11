@@ -61,10 +61,10 @@ public class Zombie : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        transform.position = pos.position;
+        agent.Warp(pos.position);
         moveSpeed = speed;
         currHP = hp;
-        Debug.Log(agent.isOnNavMesh);
+        //Debug.Log(agent.isOnNavMesh);
     }
 
     // 체력 감소 > 총알 스크립트에서 할당
@@ -94,6 +94,8 @@ public class Zombie : MonoBehaviour
 
 
             }
+
+            agent.isStopped = true;
 
             StopCoroutine(Attack());
             StartCoroutine(Die());

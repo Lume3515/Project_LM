@@ -141,7 +141,7 @@ public class PlayerFire : MonoBehaviour
         RaycastHit hit;
 
         // 1920 X 1080을 각각 나누기 2 하면 960 X 540이 나오는데 이는 화면의 가운데를 나타낸다. 또한 ScreenPointToRay는 스크린을 월드의 Ray로 바꿔주는 함수이다.
-        Ray screen_Aim = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 10));
+        Ray screen_Aim = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 5));
 
         // 레이를 쏘고 맞으면 hit에 값을 넣어줌 사정거리는 150이다.
         if (Physics.Raycast(screen_Aim, out hit, 150))

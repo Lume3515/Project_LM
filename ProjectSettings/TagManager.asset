@@ -18,11 +18,11 @@ TagManager:
   - Player_Arm
   - GameManager
   - Object Pooling
-  - SpawnPos
   - Canvas
   - EventSystem
   - Camera parent
   - Directional Light
+  - SpawnPos
   layers:
   - Default
   - TransparentFX

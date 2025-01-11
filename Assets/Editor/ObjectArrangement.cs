@@ -38,6 +38,7 @@ public class ObjectArrangement : MonoBehaviour
             mainObj.Add(GameObject.FindWithTag("Canvas"));
             mainObj.Add(GameObject.FindWithTag("Camera parent"));
             mainObj.Add(GameObject.FindWithTag("Directional Light"));
+            mainObj.Add(GameObject.FindWithTag("SpawnPos"));
 
             // °ª ³Ö±â
             foreach (GameObject item in obj)
