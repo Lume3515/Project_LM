@@ -7,9 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
-{
-    // 마우스 민감도
-    private float mouseSpeed;
+{  
 
     private Animator playerAnimator;
 
@@ -28,10 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-
-        moveSpeed = 3.8f;
-
-        mouseSpeed = 5f;
+        moveSpeed = 3.8f;     
 
         right = cameraTr.transform.right;
         forward = cameraTr.transform.forward;

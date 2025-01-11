@@ -11,8 +11,16 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
 
+    private static MainMenuManager instance;
+    public static MainMenuManager Instance => instance;
+
     private void Start()
     {
+        if (instance == null) instance = this;
+        else if (instance != this) Destroy(this.gameObject);
+
+        console_Room_TMP = console_Room.GetComponent<TextMeshProUGUI>();
+
         #region// 로그인 & 비번 & 체크
 
         for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
@@ -43,7 +51,7 @@ public class MainMenuManager : MonoBehaviour
             //Debug.Log("1");
 
             // 회원 가입이나 로그인 중일 때 공백이라면 
-            if (logInAndSignUPAndCheck_InputField[0].text == string.Empty || logInAndSignUPAndCheck_InputField[1].text == string.Empty || logInAndSignUPAndCheck_InputField[2].text == string.Empty &&  signUp)
+            if (logInAndSignUPAndCheck_InputField[0].text == string.Empty || logInAndSignUPAndCheck_InputField[1].text == string.Empty || logInAndSignUPAndCheck_InputField[2].text == string.Empty && signUp)
             {
                 console.text = "아이디나 비번을 입력해주세요.";
                 isRegistaration = false;
@@ -64,7 +72,7 @@ public class MainMenuManager : MonoBehaviour
             // 비번 확인이 맞지 않을 때
             else if ((logInAndSignUPAndCheck_InputField[1].text != logInAndSignUPAndCheck_InputField[2].text) && !newNickName && signUp)
             {
-                console.text = "비번확인이 알 맞지 않습니다.";                
+                console.text = "비번확인이 알 맞지 않습니다.";
                 isRegistaration = false;
             }
             else
@@ -91,7 +99,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] Button[] titleButton_2;
 
 
-    // 버튼들 0 : 게임시작, 1 : 게임 튜토리얼, 2 : 게임 랭크
+    // 버튼들 0 : 게임시작, 1 : PVP, 2 : 게임 튜토리얼 , 3 : 게임 랭크
     public void TitleButton_1BT(int index)
     {
         //Debug.Log("1");
@@ -120,24 +128,36 @@ public class MainMenuManager : MonoBehaviour
                 mainUIParent.SetActive(true);
                 logInAndSignUPAndCheck[2].SetActive(false);
                 createOrLogIn_GameObject.SetActive(true);
-
+                pvp.SetActive(false);
                 console_GameObject.SetActive(true);
                 break;
 
             case 1:
-                mainUIParent.SetActive(true);
+
+                logInAndSignUPAndCheck_InputField[2].contentType = TMP_InputField.ContentType.Password;
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
                 {
-                    logInAndSignUPAndCheck[i].SetActive(false);
+                    logInAndSignUPAndCheck[i].SetActive(true);
                 }
 
-                console_GameObject.SetActive(false);
+                pvp.SetActive(false);
+                newNickName = false;
+                clickCreate = false;
+                signUp = false;
+                isMainMenu = true;
+                createOrLogIn_TMP.text = "PVP 입장";
+                mainUI_LoginAndSignUpAndNewNickName = true;
+                mainUIParent.SetActive(true);
+                logInAndSignUPAndCheck[2].SetActive(false);
+                createOrLogIn_GameObject.SetActive(true);
+                console_GameObject.SetActive(true);
 
-                createOrLogIn_GameObject.SetActive(false);
+
                 break;
 
             case 2:
+
                 mainUIParent.SetActive(true);
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
@@ -146,7 +166,21 @@ public class MainMenuManager : MonoBehaviour
                 }
 
                 console_GameObject.SetActive(false);
+                pvp.SetActive(false);
+                createOrLogIn_GameObject.SetActive(false);
+                break;
 
+            case 3:
+
+                mainUIParent.SetActive(true);
+
+                for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
+                {
+                    logInAndSignUPAndCheck[i].SetActive(false);
+                }
+
+                console_GameObject.SetActive(false);
+                pvp.SetActive(false);
                 createOrLogIn_GameObject.SetActive(false);
                 break;
         }
@@ -170,7 +204,7 @@ public class MainMenuManager : MonoBehaviour
                 console_GameObject.SetActive(false);
 
                 createOrLogIn_GameObject.SetActive(false);
-
+                pvp.SetActive(false);
                 break;
 
             case 1:
@@ -187,6 +221,7 @@ public class MainMenuManager : MonoBehaviour
 
                 signUp = false;
 
+                pvp.SetActive(false);
                 logInAndSignUPAndCheck_InputField[2].placeholder.GetComponent<TextMeshProUGUI>().text = "변경할 닉네임";
                 mainUI_LoginAndSignUpAndNewNickName = true;
                 isMainMenu = true;
@@ -208,6 +243,7 @@ public class MainMenuManager : MonoBehaviour
                     logInAndSignUPAndCheck[i].SetActive(true);
                 }
 
+                pvp.SetActive(false);
                 signUp = true;
                 isMainMenu = true;
                 createOrLogIn_TMP.text = "계정 생성";
@@ -236,6 +272,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ExitMainUIBT()
     {
+        pvp.SetActive(false);
         mainUIParent.SetActive(false);
         isMainMenu = false;
         mainUI_LoginAndSignUpAndNewNickName = false;
@@ -305,9 +342,9 @@ public class MainMenuManager : MonoBehaviour
                 console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
 
                 return;
-            }        
-                Registaration.Instance.SignUp(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console);
-            
+            }
+            Registaration.Instance.SignUp(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console);
+
         }
         else if (createOrLogIn_TMP.text == "로그인")
         {
@@ -332,7 +369,20 @@ public class MainMenuManager : MonoBehaviour
             }
 
             Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.newName, logInAndSignUPAndCheck_InputField[2].text);
-        }        
+        }
+        else if (createOrLogIn_TMP.text == "PVP 입장")
+        {
+            // 정규식 검사 > true > 톨과
+            if (!Pattern(logInAndSignUPAndCheck_InputField[1].text))
+            {
+                console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
+
+                return;
+            }
+
+            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.PVP, logInAndSignUPAndCheck_InputField[2].text);
+
+        }
     }
 
     // 정규식
@@ -341,8 +391,60 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log(Regex.IsMatch(text, pattern));
 
         // 정규식 인지?
-         return Regex.IsMatch(text, pattern);        
+        return Regex.IsMatch(text, pattern);
     }
 
     #endregion
+
+    #region// PVP
+
+    [SerializeField] GameObject pvp;
+
+
+    [SerializeField] TMP_InputField input_PVP;
+
+    [SerializeField] GameObject console_Room;
+
+    private TextMeshProUGUI console_Room_TMP;
+    public TextMeshProUGUI Console_Room_TMP { get { return console_Room_TMP; } set { console = value; } }
+
+    public void PVPSetting()
+    {
+
+        for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
+        {
+            logInAndSignUPAndCheck[i].SetActive(false);
+        }
+
+        console_GameObject.SetActive(false);
+
+        pvp.SetActive(true);
+        createOrLogIn_GameObject.SetActive(false);
+
+    }
+
+    // 0 : 방 생성, 1 : 입장하기
+    public void PVPButton()
+    {
+        // 8자 초과라면
+        if (input_PVP.text.Length > 8)
+        {
+            console_Room_TMP.text = "8자 까지 작성 가능합니다.";
+            isRegistaration = false;
+        }
+        else
+        {
+
+            PhotonManager.Instance.RoomName = input_PVP.text;
+            PhotonManager.Instance.ConnectTOPhoton();
+
+
+
+
+
+        }
+    }
+    #endregion
 }
+
+

@@ -4,6 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+
+public enum Loading
+{
+    InGame,
+    MultiPlay
+}
+
 
 public class LoadingManager : MonoBehaviour
 {
@@ -19,12 +27,21 @@ public class LoadingManager : MonoBehaviour
     private static LoadingManager instance;
     public static LoadingManager Instance => instance;
 
-    public static string name;
+    public static string name_Scene;
+    
 
     private bool nextScene;
 
     private AsyncOperation op;
 
+    public static Loading loading;
+    
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;       
+        
+    }
 
     private void Start()
     {
@@ -34,7 +51,7 @@ public class LoadingManager : MonoBehaviour
 
     private void Update()
     {
-        image.Rotate(0, 0.26f, 0 );
+        image.Rotate(0, 1f, 0);
 
         if (nextScene)
         {
@@ -42,7 +59,16 @@ public class LoadingManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                op.allowSceneActivation = true;
+                if (loading == Loading.InGame)
+                {
+                    op.allowSceneActivation = true;
+                }
+                else if (loading == Loading.MultiPlay)
+                {
+                    PhotonNetwork.LoadLevel("MultiPlay");
+                    //op.allowSceneActivation = true;
+                }
+
             }
         }
     }
@@ -50,7 +76,7 @@ public class LoadingManager : MonoBehaviour
     public IEnumerator LoadSceneProgress()
     {
         // 비동기(LoadSceneAsync)
-        op = SceneManager.LoadSceneAsync(name);
+        op = SceneManager.LoadSceneAsync(name_Scene);
 
         // allowSceneActivation : 씬을 비동기로 불러들일 떄 씬의 로딩이 끝나면 자동을 불러온 씬으로 이동할 것인지? ㄴㄴ
         op.allowSceneActivation = false;
