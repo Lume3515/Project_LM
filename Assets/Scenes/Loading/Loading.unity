@@ -943,7 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   console: {fileID: 1941156025}
   message: {fileID: 72060432}
-  image: {fileID: 0}
+  image: {fileID: 252186582}
 --- !u!4 &1514334707
 Transform:
   m_ObjectHideFlags: 0

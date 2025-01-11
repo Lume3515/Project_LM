@@ -16,6 +16,13 @@ TagManager:
   - Zombie_Arm
   - Player_Leg
   - Player_Arm
+  - GameManager
+  - Object Pooling
+  - SpawnPos
+  - Canvas
+  - EventSystem
+  - Camera parent
+  - Directional Light
   layers:
   - Default
   - TransparentFX

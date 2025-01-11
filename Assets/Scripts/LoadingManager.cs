@@ -14,7 +14,7 @@ public class LoadingManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI message;
 
     // 이미지
-    [SerializeField] RawImage image;
+    [SerializeField] Transform image;
 
     private static LoadingManager instance;
     public static LoadingManager Instance => instance;
@@ -34,6 +34,8 @@ public class LoadingManager : MonoBehaviour
 
     private void Update()
     {
+        image.Rotate(0, 0.26f, 0 );
+
         if (nextScene)
         {
             console.text = "시작하려면 [Space]를 클릭하세요";
