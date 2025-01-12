@@ -3,6 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum DamageType
+{
+    HeadSHot,
+    BodyShot,
+    armShot,
+    legShot,
+}
+
+// 발사 타입
+public enum ShootingType
+{
+    Aim, // 조준
+    Shoulder, // 견착  
+    Run, // 뛰기
+    Walk, // 걷기
+    Sit, // 앉기
+    Stand, // 서있기
+    Obscuration, // 엄폐
+    SitWalk    // 앉아서 걷기
+}
+
 public class Gamemanager : MonoBehaviour
 {
     // 싱글톤 패턴
@@ -14,6 +35,10 @@ public class Gamemanager : MonoBehaviour
     // 몇 명 살아 있는지?
     private List<GameObject> currNumber = new List<GameObject>();
     public List<GameObject> CurrNumber { get { return currNumber; } set { currNumber = value; } } // 프로퍼티
+
+    // 타입
+    private ShootingType shootingType;
+    public ShootingType ShootingType { get { return shootingType; } set { shootingType = value; } }
 
     // 대기시간
     private float waitTimer;
@@ -30,10 +55,17 @@ public class Gamemanager : MonoBehaviour
     // 현재 스테이지
     private int currstage;
 
+    private bool multiPlay;
+
     private void Awake()
     {
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
+
+        if(GetComponent<SpawnManager>() == null)
+        {
+            multiPlay = true;
+        }
 
     }
 
@@ -51,7 +83,7 @@ public class Gamemanager : MonoBehaviour
         // 좀비가 다 죽었다면
         if (currNumber.Count <= 0 && !firstColl)
         {
-            StartCoroutine(WaitTime());
+            if(!multiPlay)StartCoroutine(WaitTime());
             currstage++;
             firstColl = true;
 
@@ -69,7 +101,7 @@ public class Gamemanager : MonoBehaviour
         waitTimer = 15;
 
         // while은 조건이 true일 떄 작동함;; 까먹었음ㅜㅜ
-        while (waitTimer >= 0)
+        while (waitTimer >= 0 && !multiPlay)
         {
             waitTimer -= Time.deltaTime;
 

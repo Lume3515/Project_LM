@@ -2,27 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
-public enum DamageType
-{
-    HeadSHot,
-    BodyShot,
-    armShot,
-    legShot,
-}
-
-// ¹ß»ç Å¸ÀÔ
-public enum ShootingType
-{
-    Aim, // Á¶ÁØ
-    Shoulder, // °ßÂø  
-    Run, // ¶Ù±â
-    Walk, // °È±â
-    Sit, // ¾É±â
-    Stand, // ¼­ÀÖ±â
-    Obscuration, // ¾öÆó
-    SitWalk    // ¾É¾Æ¼­ °È±â
-}
+using Photon.Pun;
 
 public class PlayerFire : MonoBehaviour
 {
@@ -54,16 +34,13 @@ public class PlayerFire : MonoBehaviour
     // ÃÑ¾Ë °´Ã¼
     private GameObject bulletObj;
 
-    [SerializeField] Transform firePos;
-
-    // Å¸ÀÔ
-    private ShootingType shootingType;
-    public ShootingType ShootingType { get { return shootingType; } set { shootingType = value; } }
+    [SerializeField] Transform firePos;      
 
     // Á¶ÁØÁßÀÌ³ª, °ßÂøÁß
     private bool shoulderAndAim;
 
     public bool ShoulderAndAim { get { return shoulderAndAim; } set { shoulderAndAim = value; } }
+
 
 
     private Vector3 screen_RayPos;
@@ -78,8 +55,6 @@ public class PlayerFire : MonoBehaviour
         fireSpeed = 50;
 
         mainCamera.fieldOfView = 60;
-
-
     }
 
     private void Update()
@@ -102,7 +77,7 @@ public class PlayerFire : MonoBehaviour
         // ¿ìÅ¬¸¯ ½Ã > Åä±Û
         if (Input.GetMouseButton(1))
         {
-            shootingType = ShootingType.Shoulder;
+            Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 10);
             ShoulderAndAim = true;
@@ -112,7 +87,7 @@ public class PlayerFire : MonoBehaviour
         {
             ShoulderAndAim = false;
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 10);
-            shootingType = ShootingType.Stand;
+            Gamemanager.Instance.ShootingType = ShootingType.Stand;
             //Debug.Log("2");
         }
 
@@ -164,7 +139,7 @@ public class PlayerFire : MonoBehaviour
 
         // ÃÑ¾Ë »ý¼º
         bulletObj = objectPooling.OutPut();
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, shootingType, firePos);
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, null);
 
         // ÃÑ¾Ë µô·¹ÀÌ ¿ë
         shooting = false;

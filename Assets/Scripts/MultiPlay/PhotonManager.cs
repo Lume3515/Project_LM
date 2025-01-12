@@ -10,7 +10,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 {
     // 유일한 객체 선언 => 어디에서나 매니저에 접근할 수 있도록 싱글톤 패턴 사용
     private static PhotonManager instance = null;
-    public static PhotonManager Instance => instance;  
+    public static PhotonManager Instance => instance;
 
     private void Start()
     {
@@ -45,9 +45,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             Debug.Log($"포톤 서버와의 초당 데이터 전송 : {PhotonNetwork.SendRate}");
 
         } // 메인 멀티플레이 씬이라면
-        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
         {
-
+            StartCoroutine(Load.Instance.Create());
         }
     }
 
@@ -124,7 +124,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             LoadingManager.name_Scene = "MultiPlay";
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(2);           
         }
         else
         {
@@ -142,5 +142,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         MainMenuManager.Instance.Console_Room_TMP.text = message;
     }
+       
+    
 
 }

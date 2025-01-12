@@ -23,6 +23,8 @@ TagManager:
   - Camera parent
   - Directional Light
   - SpawnPos
+  - firePos
+  - ObjectPooling Bullet
   layers:
   - Default
   - TransparentFX

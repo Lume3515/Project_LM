@@ -28,19 +28,18 @@ public class LoadingManager : MonoBehaviour
     public static LoadingManager Instance => instance;
 
     public static string name_Scene;
-    
+
 
     private bool nextScene;
 
     private AsyncOperation op;
 
     public static Loading loading;
-    
 
     private void Awake()
     {
-        if (instance == null) instance = this;       
-        
+        if (instance == null) instance = this;
+
     }
 
     private void Start()
@@ -51,7 +50,7 @@ public class LoadingManager : MonoBehaviour
 
     private void Update()
     {
-        image.Rotate(0, 1f, 0);
+        image.Rotate(0, 0.5f, 0);
 
         if (nextScene)
         {
@@ -65,18 +64,29 @@ public class LoadingManager : MonoBehaviour
                 }
                 else if (loading == Loading.MultiPlay)
                 {
-                    PhotonNetwork.LoadLevel("MultiPlay");
+                    op.allowSceneActivation = true;
                     //op.allowSceneActivation = true;
                 }
 
             }
         }
     }
-
+    //LevelLoadingProgress
     public IEnumerator LoadSceneProgress()
     {
         // 비동기(LoadSceneAsync)
-        op = SceneManager.LoadSceneAsync(name_Scene);
+
+        if (loading == Loading.InGame)
+        {
+            op = SceneManager.LoadSceneAsync(name_Scene);
+        }
+        else if (loading == Loading.MultiPlay)
+        {
+            PhotonNetwork.LoadLevel(name_Scene);
+            //op.allowSceneActivation = true;
+
+
+        }
 
         // allowSceneActivation : 씬을 비동기로 불러들일 떄 씬의 로딩이 끝나면 자동을 불러온 씬으로 이동할 것인지? ㄴㄴ
         op.allowSceneActivation = false;
@@ -86,31 +96,56 @@ public class LoadingManager : MonoBehaviour
 
         while (!op.isDone)
         {
-
-            // 90%도 안 됐을 떄
-            if (op.progress < 0.9f)
+            if (loading == Loading.InGame)
             {
-                console.text = $"{op.progress.ToString()}%";
-            }
-            // 90%까지 완료 됐을 때
-            else
-            {
-
-                timer += Time.unscaledDeltaTime;
-                progress = Mathf.Lerp(0.9f, 1, timer);
-
-                console.text = $"{progress:##}%";
-
-                if (progress >= 1)
+                // 90%도 안 됐을 떄
+                if (op.progress < 0.9f)
                 {
-                    nextScene = true;
-                    yield break;
+                    console.text = $"{op.progress.ToString()}%";
                 }
+                // 90%까지 완료 됐을 때
+                else
+                {
+
+                    timer += Time.unscaledDeltaTime;
+                    progress = Mathf.Lerp(0.9f, 1, timer);
+
+                    console.text = $"{progress:##}%";
+
+                    if (progress >= 1)
+                    {
+                        nextScene = true;
+                        yield break;
+                    }
+                }
+              
             }
+            else if(loading == Loading.MultiPlay)
+            {
+                // 90%도 안 됐을 떄
+                if (PhotonNetwork.LevelLoadingProgress < 0.9f)
+                {
+                    console.text = $"{PhotonNetwork.LevelLoadingProgress.ToString()}%";
+                }
+                // 90%까지 완료 됐을 때
+                else
+                {
 
-            yield return null;
+                    timer += Time.unscaledDeltaTime;
+                    progress = Mathf.Lerp(0.9f, 1, timer);
+
+                    console.text = $"{progress:##}%";
+
+                    if (progress >= 1)
+                    {
+                        nextScene = true;
+                        yield break;
+                    }
+                }
+
+                yield return null;
+            }
         }
-
     }
 
 }

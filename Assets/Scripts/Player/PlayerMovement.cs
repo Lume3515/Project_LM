@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         // 안 움직일 떄
         if (playerRb.velocity.magnitude == 0 && !sitDown)
         {
-            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Stand;
+            if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Stand;
 
             //Debug.Log($"1번째 :{playerFire.ShootingType != ShootingType.Aim} / 2번쨰 : {playerFire.ShootingType != ShootingType.Shoulder} 타입 : {playerFire.ShootingType}");
 
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", true);
 
-            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Run;
+            if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Run;
 
             moveSpeed = 5f;
         }
@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isWalk", true);
             playerAnimator.SetBool("isRun", false);
 
-            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Walk;
+            if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Walk;
 
             moveSpeed = 2.8f;
         }
@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             sitDown = true;
 
-            playerFire.ShootingType = ShootingType.Sit;
+            Gamemanager.Instance.ShootingType = ShootingType.Sit;
 
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", false);
@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
         {
             sitDown = false;
-            if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Stand;
+            if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Stand;
 
             playerAnimator.SetBool("isSitDown", false);
         }
@@ -137,14 +137,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerAnimator.SetFloat("SitDown_Multiplier", 0f);
 
-                if (!playerFire.ShoulderAndAim) playerFire.ShootingType = ShootingType.Sit;
+                if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Sit;
 
             }
             else
             {
                 playerAnimator.SetFloat("SitDown_Multiplier", 1f);
                 {
-                    playerFire.ShootingType = ShootingType.SitWalk;
+                    Gamemanager.Instance.ShootingType = ShootingType.SitWalk;
                 }
             }
         }
@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Rotation()
     {
-        if (playerFire.ShootingType == ShootingType.Run)
+        if (Gamemanager.Instance.ShootingType == ShootingType.Run)
         {
 
             // 앞

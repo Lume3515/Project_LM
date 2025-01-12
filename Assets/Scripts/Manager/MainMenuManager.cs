@@ -437,11 +437,6 @@ public class MainMenuManager : MonoBehaviour
 
             PhotonManager.Instance.RoomName = input_PVP.text;
             PhotonManager.Instance.ConnectTOPhoton();
-
-
-
-
-
         }
     }
     #endregion
