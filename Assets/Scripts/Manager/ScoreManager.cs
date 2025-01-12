@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-    }  
+    }    
 
     // 데이터 저장
     public void GameDataInsert()
@@ -45,11 +45,16 @@ public class ScoreManager : MonoBehaviour
         Param param = new Param();
 
         // 클 때만 값 변경
-      /*  if (PlayerScore.currHeadShot > PlayerScore.headShot) */param.Add("headShot", PlayerScore.currHeadShot);
-        /*if (PlayerScore.currBodyShot > PlayerScore.bodyShot)*/ param.Add("bodyShot", PlayerScore.currBodyShot);
-        /*if (PlayerScore.currArmShot > PlayerScore.armShot) */param.Add("armShot", PlayerScore.currArmShot);
-        /*if (PlayerScore.currLegShot > PlayerScore.legShot)*/ param.Add("legShot", PlayerScore.currLegShot);
-        /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/ param.Add("bestScore", PlayerScore.currBestScore);
+        /*  if (PlayerScore.currHeadShot > PlayerScore.headShot) */
+        param.Add("headShot", PlayerScore.currHeadShot);
+        /*if (PlayerScore.currBodyShot > PlayerScore.bodyShot)*/
+        param.Add("bodyShot", PlayerScore.currBodyShot);
+        /*if (PlayerScore.currArmShot > PlayerScore.armShot) */
+        param.Add("armShot", PlayerScore.currArmShot);
+        /*if (PlayerScore.currLegShot > PlayerScore.legShot)*/
+        param.Add("legShot", PlayerScore.currLegShot);
+        /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/
+        param.Add("bestScore", PlayerScore.currBestScore);
 
         //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
         var bro = Backend.GameData.Insert("UserData_Kill", param);
@@ -85,7 +90,7 @@ public class ScoreManager : MonoBehaviour
 
             // 받아온 데이터의 갯수가 0이라면 데이터가 존재하지 않는 것입니다.  
             if (gameDataJson.Count <= 0)
-            {          
+            {
 
                 Debug.LogWarning("데이터가 존재하지 않습니다.");
             }
@@ -97,7 +102,7 @@ public class ScoreManager : MonoBehaviour
                 PlayerScore.bodyShot = int.Parse(gameDataJson[0]["bodyShot"].ToString());
                 PlayerScore.armShot = int.Parse(gameDataJson[0]["armShot"].ToString());
                 PlayerScore.legShot = int.Parse(gameDataJson[0]["legShot"].ToString());
-                PlayerScore.bestScore = int.Parse(gameDataJson[0]["bestScore"].ToString());                           
+                PlayerScore.bestScore = int.Parse(gameDataJson[0]["bestScore"].ToString());
 
                 Debug.Log("데이터의 갯수가 있습니다");
             }

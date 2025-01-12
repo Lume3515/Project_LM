@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
+using Photon.Pun;
+using BackEnd;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -435,8 +437,8 @@ public class MainMenuManager : MonoBehaviour
         else
         {
 
-            PhotonManager.Instance.RoomName = input_PVP.text;
-            PhotonManager.Instance.ConnectTOPhoton();
+           
+            //PhotonNetwork.NickName = Backend.UserNickName;
         }
     }
     #endregion

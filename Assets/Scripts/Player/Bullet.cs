@@ -133,10 +133,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (photonView != null)
-        {
-            if (photonView.IsMine) return;
-        }
+        
 
 
         impact_Info = collision.GetContact(0);

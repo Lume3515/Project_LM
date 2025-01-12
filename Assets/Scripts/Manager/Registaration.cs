@@ -31,6 +31,8 @@ public class Registaration
         }
     }
 
+
+
     public void SignUp(string id, string pw, TextMeshProUGUI console)
     {
         // Step 2. 회원가입 구현하기 로직        
