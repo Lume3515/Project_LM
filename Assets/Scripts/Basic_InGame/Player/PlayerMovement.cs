@@ -68,9 +68,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 right;
     private Vector3 forward;
 
-    // 최종 방향
-    private Quaternion lastRot;
-
     // 움직임
     private void Movement()
     {

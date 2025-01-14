@@ -14,6 +14,8 @@ public class CameraMovement : MonoBehaviour
     // 플레이어 트랜스폼
     private Transform playerTr;
 
+    private float mouseY;
+
     private void Start()
     {
         playerTr = GameObject.FindWithTag("Player").transform;
@@ -29,15 +31,19 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CameraMove();
         Rotation();
+
+        // 반동을 포함한 카메라 회전 계산
+        float finalX = transform.eulerAngles.x + PlayerFire.Instance.RecoliAmount - mouseX;
+        
+
+        // 카메라 회전 적용
+        transform.rotation = Quaternion.Euler(finalX, transform.eulerAngles.y, 0);       
     }
+      
+    
 
-    private void CameraMove()
-    {
-
-    }
-
+   
     private void Rotation()
     {
         //Debug.Log(transform.eulerAngles.x);
@@ -74,11 +80,11 @@ public class CameraMovement : MonoBehaviour
             mouseX = Input.GetAxisRaw("Mouse Y");
         }
         #endregion
-        transform.Rotate(-mouseX * 5, 0, 0);
+        //transform.Rotate(-mouseX * 5, 0, 0);
 
-        float moveY = Input.GetAxisRaw("Mouse X");
+        mouseY = Input.GetAxisRaw("Mouse X");
 
-        parent.Rotate(0, moveY * 5, 0);
+        parent.Rotate(0, mouseY * 5, 0);
     }
 
 }

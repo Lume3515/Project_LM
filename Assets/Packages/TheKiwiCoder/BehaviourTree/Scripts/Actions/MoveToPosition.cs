@@ -17,6 +17,7 @@ public class MoveToPosition : ActionNode
         context.agent.destination = blackboard.moveToPosition;
         context.agent.updateRotation = updateRotation;
         context.agent.acceleration = acceleration;
+        context.agent.SetDestination(context.transform.position);
     }
 
     protected override void OnStop() {

@@ -33,6 +33,9 @@ public class Zombie : MonoBehaviour
     // 오브젝트 풀링
     private ObjectPooling objectPooling;
 
+    //사망
+    private bool die;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -60,7 +63,7 @@ public class Zombie : MonoBehaviour
     public void Setting(Transform pos, float speed, int hp)
     {
         gameObject.SetActive(true);
-
+        die = false;
         agent.Warp(pos.position);
         moveSpeed = speed;
         currHP = hp;
@@ -70,6 +73,8 @@ public class Zombie : MonoBehaviour
     // 체력 감소 > 총알 스크립트에서 할당
     public void MinusHP(int damage, DamageType type)
     {
+        if (die) return;
+
         currHP -= damage;
         Debug.Log(currHP);
         if (currHP <= 0)
@@ -95,8 +100,10 @@ public class Zombie : MonoBehaviour
 
             }
 
+            // 이동 멈추기
+            die = true;
             agent.isStopped = true;
-
+            animator.SetTrigger("die");
             StopCoroutine(Attack());
             StartCoroutine(Die());
         }
@@ -107,7 +114,6 @@ public class Zombie : MonoBehaviour
 
     private IEnumerator Die()
     {
-        animator.SetTrigger("die");
 
         yield return dieDelay;
 
@@ -122,7 +128,7 @@ public class Zombie : MonoBehaviour
 
         //Debug.Log(spawnTime);
 
-        if (spawnTime >= spawnMaxTime && !isAttack)
+        if (spawnTime >= spawnMaxTime && !isAttack && !die)
         {
 
             agent.isStopped = false;
@@ -135,11 +141,7 @@ public class Zombie : MonoBehaviour
     // 움직임
     private void MoveMent()
     {
-        if (agent.isPathStale)
-        {
-            agent.ResetPath();
-            agent.SetDestination(playerTr.position);
-        }
+        agent.updateRotation = true;
         agent.destination = playerTr.position;
         agent.speed = moveSpeed;
     }
@@ -147,8 +149,6 @@ public class Zombie : MonoBehaviour
     // 현재 상태
     private IEnumerator Attack()
     {
-        // 이동 멈추기
-        agent.isStopped = true;
 
         animator.SetTrigger("attack");
         animator.SetBool("walk", false);

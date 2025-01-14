@@ -79,7 +79,7 @@ public class Gamemanager : MonoBehaviour
 
     private void Update()
     {
-
+        //Debug.Log(currNumber.Count);
         // 좀비가 다 죽었다면
         if (currNumber.Count <= 0 && !firstColl)
         {

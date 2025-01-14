@@ -34,25 +34,35 @@ public class PlayerFire : MonoBehaviour
     // 총알 객체
     private GameObject bulletObj;
 
-    [SerializeField] Transform firePos;      
+    [SerializeField] Transform firePos;
 
     // 조준중이나, 견착중
     private bool shoulderAndAim;
 
     public bool ShoulderAndAim { get { return shoulderAndAim; } set { shoulderAndAim = value; } }
 
+    private static PlayerFire instance;
+    public static PlayerFire Instance => instance;
+
+    private Transform cameraTr;
+
 
 
     private Vector3 screen_RayPos;
     private void Start()
     {
+
+        if (instance == null) instance = this;
+
         shootingDelay = new WaitForSeconds(0.1f);
 
         maxTime = 0.7f;
 
         mainCamera = Camera.main;
 
-        fireSpeed = 50;
+        cameraTr = mainCamera.transform;
+
+        fireSpeed = 500;
 
         mainCamera.fieldOfView = 60;
     }
@@ -65,7 +75,7 @@ public class PlayerFire : MonoBehaviour
         //firePos.rotation = mainCamera.transform.rotation * Quaternion.Euler(addPos);
 
         // 좌클릭 시
-        if (Input.GetMouseButton(0) && shooting)
+        if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run)
         {
 
             // 애니메이션
@@ -146,7 +156,8 @@ public class PlayerFire : MonoBehaviour
 
         // 발사 총구 화염 생성
         m4MuzzleFlash.Play();
-
+        StopCoroutine(Rebound());
+        StartCoroutine(Rebound());
 
         // 총 딜레이
         yield return shootingDelay;
@@ -154,20 +165,65 @@ public class PlayerFire : MonoBehaviour
         shooting = true;
     }
 
-    private void OnDrawGizmos()
+    private float recoilAmount = 0f; // 반동 값 저장
+    public float RecoliAmount => recoilAmount;
+    private float recoilSpeed = 0.1f; // 반동 진행 속도
+    private float recoilDecaySpeed = 1f; // 반동 복구 속도
+    private float maxRecoil = -0.356f; // 최대 반동 각도  
+
+    public IEnumerator Rebound()
     {
-        Gizmos.color = Color.black;
-        Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+        float targetRecoil = recoilAmount + maxRecoil; // 목표 반동 각도
+        float elapsedTime = 0f;
 
-        //Gizmos.color = Color.red;
+        // 반동 증가
+        while (elapsedTime < recoilSpeed)
+        {
+            elapsedTime += Time.deltaTime;
+            recoilAmount = Mathf.Lerp(recoilAmount, targetRecoil, elapsedTime / recoilSpeed);
+            yield return null;
+        }
 
-        //Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+        // 반동 복구
+        elapsedTime = 0f;
+        while (elapsedTime < recoilSpeed)
+        {
+            elapsedTime += Time.deltaTime;
+            recoilAmount = Mathf.Lerp(recoilAmount, 0f, elapsedTime / recoilDecaySpeed);
+            yield return null;
+        }
 
-        //Gizmos.DrawCube(screenPos, new Vector3(1, 1, 1));
+        recoilAmount = 0f; // 반동 값 초기화
 
-        //    Gizmos.color = Color.red;
+        // 추가 반동 올리기: 반동이 완전히 복구된 후 1/2만큼 더 올려줌
+        recoilAmount = maxRecoil / 2f;
+        yield return new WaitForSeconds(0.1f); // 약간의 딜레이를 두고
 
-        //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward * 150);
+        // 복구된 반동을 다시 원위치로 돌아가게 설정
+        while (elapsedTime < recoilSpeed)
+        {
+            elapsedTime += Time.deltaTime;
+            recoilAmount = Mathf.Lerp(recoilAmount, 0f, elapsedTime / recoilDecaySpeed);
+            yield return null;
+        }
+
+        recoilAmount = 0f; // 최종적으로 반동 값 초기화
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.black;
+    //    Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+
+    //    //Gizmos.color = Color.red;
+
+    //    //Gizmos.DrawRay(firePos.position, firePos.forward * 150);
+
+    //    //Gizmos.DrawCube(screenPos, new Vector3(1, 1, 1));
+
+    //    //    Gizmos.color = Color.red;
+
+    //    //    Gizmos.DrawRay(cameraTr.position, cameraTr.forward * 150);
+    //}
 
 }

@@ -33,7 +33,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        spawnDelay = new WaitForSeconds(1f);
+        spawnDelay = new WaitForSeconds(0.5f);
     }
 
     private void Update()
@@ -130,7 +130,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn_Zombie = objectPooling_zombie.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0,6)], 2.4f, 100);
+                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0,6)], 0.5f, 100);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -140,7 +140,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn_Zombie = objectPooling_zombie.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 2.4f, 100);
+                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -150,7 +150,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn_Zombie = objectPooling_zombie.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 2.4f, 100);
+                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -160,7 +160,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn_Zombie = objectPooling_zombie.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 2.4f, 100);
+                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 

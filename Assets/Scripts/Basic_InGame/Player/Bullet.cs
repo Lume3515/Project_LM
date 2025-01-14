@@ -132,9 +132,7 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        
-
+    {      
 
         impact_Info = collision.GetContact(0);
 
