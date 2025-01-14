@@ -7,7 +7,7 @@ using Photon.Pun;
 public class PlayerFire : MonoBehaviour
 {
     // 카메라
-    private Camera mainCamera;
+    private Camera mainCamera;    
 
     // true : 가능
     private bool shooting = true;
@@ -85,18 +85,24 @@ public class PlayerFire : MonoBehaviour
         }
 
         // 우클릭 시 > 토글
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && Gamemanager.Instance.ShootingType != ShootingType.Run)
         {
             Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 10);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 13);
             ShoulderAndAim = true;
             //Debug.Log("1");
+        }
+        else if (Gamemanager.Instance.ShootingType == ShootingType.Run)
+        {
+            ShoulderAndAim = false;
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
+            Gamemanager.Instance.ShootingType = ShootingType.Stand;
         }
         else
         {
             ShoulderAndAim = false;
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 10);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
             Gamemanager.Instance.ShootingType = ShootingType.Stand;
             //Debug.Log("2");
         }
@@ -156,6 +162,7 @@ public class PlayerFire : MonoBehaviour
 
         // 발사 총구 화염 생성
         m4MuzzleFlash.Play();
+        SoundManager.Instance.Sound(SoundType.Shooting);
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 
@@ -167,9 +174,9 @@ public class PlayerFire : MonoBehaviour
 
     private float recoilAmount = 0f; // 반동 값 저장
     public float RecoliAmount => recoilAmount;
-    private float recoilSpeed = 0.1f; // 반동 진행 속도
-    private float recoilDecaySpeed = 1f; // 반동 복구 속도
-    private float maxRecoil = -0.356f; // 최대 반동 각도  
+    private float recoilSpeed = 0.0002f; // 반동 진행 속도
+    private float recoilDecaySpeed = 0.0001f; // 반동 복구 속도
+    private float maxRecoil = -0.2f; // 최대 반동 각도  
 
     public IEnumerator Rebound()
     {

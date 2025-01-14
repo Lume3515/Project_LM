@@ -43,6 +43,7 @@ public class SpawnManager : MonoBehaviour
 
     public IEnumerator zombieSpawn(int stage)
     {
+        this.stage = 0;
 
         #region// ≥≠¿Ãµµ
         switch (stage)

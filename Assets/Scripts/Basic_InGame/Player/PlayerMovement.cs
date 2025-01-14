@@ -90,8 +90,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftShift) && !sitDown)
         {
             playerAnimator.SetBool("isWalk", false);
-            playerAnimator.SetBool("isRun", true);
-
+            playerAnimator.SetBool("isRun", true);           
             if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Run;
 
             moveSpeed = 5f;
