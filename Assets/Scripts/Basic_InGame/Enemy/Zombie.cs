@@ -135,6 +135,11 @@ public class Zombie : MonoBehaviour
     // ¿òÁ÷ÀÓ
     private void MoveMent()
     {
+        if (agent.isPathStale)
+        {
+            agent.ResetPath();
+            agent.SetDestination(playerTr.position);
+        }
         agent.destination = playerTr.position;
         agent.speed = moveSpeed;
     }
