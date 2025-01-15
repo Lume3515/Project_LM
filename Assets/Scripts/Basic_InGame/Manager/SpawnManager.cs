@@ -15,7 +15,9 @@ public class SpawnManager : MonoBehaviour
     // 생성 위치
     [SerializeField] Transform[] spawnPos;
 
-    [SerializeField] ObjectPooling objectPooling_zombie;
+    [SerializeField] ObjectPooling objectPooling_Zombie_Basic;
+
+    [SerializeField] ObjectPooling objectPooling_Zombie_Tanker;
 
     private ZombieType zombieType;
 
@@ -129,7 +131,7 @@ public class SpawnManager : MonoBehaviour
         {
             case ZombieType.basic:
 
-                spawn_Zombie = objectPooling_zombie.OutPut();
+                spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
 
                 spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0,6)], 0.5f, 100);
 
@@ -139,7 +141,7 @@ public class SpawnManager : MonoBehaviour
 
             case ZombieType.speed:
 
-                spawn_Zombie = objectPooling_zombie.OutPut();
+                spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
 
                 spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
 
@@ -149,9 +151,8 @@ public class SpawnManager : MonoBehaviour
 
             case ZombieType.tanker:
 
-                spawn_Zombie = objectPooling_zombie.OutPut();
-
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
+                spawn_Zombie = objectPooling_Zombie_Tanker.OutPut();
+                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 300);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -159,7 +160,7 @@ public class SpawnManager : MonoBehaviour
 
             case ZombieType.shild:
 
-                spawn_Zombie = objectPooling_zombie.OutPut();
+                spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
 
                 spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
 

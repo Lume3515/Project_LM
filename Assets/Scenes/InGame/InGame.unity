@@ -1500,7 +1500,7 @@ GameObject:
   - component: {fileID: 438671948}
   - component: {fileID: 438671949}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: Zombie_Basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1535,8 +1535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4372899387303440232, guid: 315464fd8b9f6a94a9dc8a403300ffda, type: 3}
   poolParent: {fileID: 438671948}
-  defaultValue: 30
-  maxValue: 60
+  defaultValue: 5
+  maxValue: 20
 --- !u!1 &466211575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,6 +1879,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509437501}
   m_Mesh: {fileID: 6109697318922542472, guid: 768a775db7b573d4b8ae49eb53d7c45d, type: 3}
+--- !u!1 &544248287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 544248288}
+  - component: {fileID: 544248289}
+  m_Layer: 0
+  m_Name: Zombie_Tanker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &544248288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544248287}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176771000}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544248289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544248287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6e4951d4207124ca7039c74fdf093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1335500218136280, guid: e10e470cb8ac58346ab2adcf73cc6e93, type: 3}
+  poolParent: {fileID: 544248288}
+  defaultValue: 5
+  maxValue: 30
 --- !u!1 &560232194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,7 +3128,8 @@ MonoBehaviour:
   - {fileID: 3146660938374241254}
   - {fileID: 4303209413037744498}
   - {fileID: 3899331366271501910}
-  objectPooling_zombie: {fileID: 438671949}
+  objectPooling_Zombie_Basic: {fileID: 438671949}
+  objectPooling_Zombie_Tanker: {fileID: 544248289}
 --- !u!1 &829205719
 GameObject:
   m_ObjectHideFlags: 0
@@ -4435,6 +4484,7 @@ Transform:
   m_Children:
   - {fileID: 438671948}
   - {fileID: 1817458348}
+  - {fileID: 544248288}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
