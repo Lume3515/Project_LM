@@ -162,7 +162,7 @@ public class PlayerFire : MonoBehaviour
 
         // ¹ß»ç ÃÑ±¸ È­¿° »ý¼º
         m4MuzzleFlash.Play();
-        SoundManager.Instance.Sound(SoundType.Shooting);
+        //SoundManager.Instance.Sound(SoundType.Shooting);
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 

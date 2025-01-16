@@ -55,17 +55,16 @@ public class Gamemanager : MonoBehaviour
     // 현재 스테이지
     private int currstage;
 
-    private bool multiPlay;
+    // 게임오버 인지?
+    private bool gameOver;
+    public bool GameOver { get { return gameOver; }  set { gameOver = value; } }
+    
+
 
     private void Awake()
     {
         if (instance == null) instance = this;
-        else if (instance != this) Destroy(this.gameObject);
-
-        if(GetComponent<SpawnManager>() == null)
-        {
-            multiPlay = true;
-        }
+        else if (instance != this) Destroy(this.gameObject);       
 
     }
 
@@ -82,8 +81,7 @@ public class Gamemanager : MonoBehaviour
         //Debug.Log(currNumber.Count);
         // 좀비가 다 죽었다면
         if (currNumber.Count <= 0 && !firstColl)
-        {
-            if(!multiPlay)StartCoroutine(WaitTime());
+        {           
             currstage++;
             firstColl = true;
 
@@ -91,6 +89,8 @@ public class Gamemanager : MonoBehaviour
 
             // 활성화 > 보이게
             console.enabled = true;
+
+            StartCoroutine(WaitTime());
         }
 
     }
@@ -101,7 +101,7 @@ public class Gamemanager : MonoBehaviour
         waitTimer = 15;
 
         // while은 조건이 true일 떄 작동함;; 까먹었음ㅜㅜ
-        while (waitTimer >= 0 && !multiPlay)
+        while (waitTimer >= 0)
         {
             waitTimer -= Time.deltaTime;
 
@@ -134,6 +134,12 @@ public class Gamemanager : MonoBehaviour
         console.enabled = false;
 
         firstColl = false;
+    }
+
+    public void GamoOver()
+    {
+        gameOver = true;
+        StopAllCoroutines();
     }
 
 }

@@ -3360,7 +3360,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4022741551580116}
   - component: {fileID: 95450259988899018}
-  - component: {fileID: -8599988123088842942}
   - component: {fileID: 7746728013798683119}
   m_Layer: 0
   m_Name: Zombie_Cyborg
@@ -3409,18 +3408,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-8599988123088842942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335500218136280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebccabbce7c972e4d9d8e0ad88a80908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &7746728013798683119
 NavMeshAgent:
   m_ObjectHideFlags: 0

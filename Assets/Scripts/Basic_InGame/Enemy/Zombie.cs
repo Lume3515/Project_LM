@@ -25,7 +25,8 @@ public class Zombie : MonoBehaviour
     private float spawnMaxTime;
 
     // 공격 가능?
-    private bool isAttack;
+    private bool isAttack;   
+    public bool IsAttack => isAttack;
 
     // 공격 애니메이션 딜레이
     private WaitForSeconds attackDelay;
@@ -36,6 +37,7 @@ public class Zombie : MonoBehaviour
     //사망
     private bool die;
 
+    private PlayerHP playerHp;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -76,7 +78,7 @@ public class Zombie : MonoBehaviour
         if (die) return;
 
         currHP -= damage;
-        Debug.Log(currHP);
+        //Debug.Log(currHP);
         if (currHP <= 0)
         {
             switch (type)
@@ -124,6 +126,8 @@ public class Zombie : MonoBehaviour
 
     private void Update()
     {
+        if (Gamemanager.Instance.GameOver) return;
+
         if (spawnTime <= spawnMaxTime) spawnTime += Time.deltaTime;
 
         //Debug.Log(spawnTime);
@@ -146,28 +150,30 @@ public class Zombie : MonoBehaviour
         agent.speed = moveSpeed;
     }
 
-    // 현재 상태
     private IEnumerator Attack()
     {
+        isAttack = true; // 공격 중 상태 설정
 
-        animator.SetTrigger("attack");
+        animator.SetTrigger("attack");          
+
         animator.SetBool("walk", false);
 
-        yield return attackDelay;
+        yield return attackDelay; // 공격 딜레이 동안 대기
 
         animator.SetBool("walk", true);
-        isAttack = false;
-
-        yield break;
+        isAttack = false; // 공격 종료 상태 설정
     }
+
+    private PlayerInteraction playerInteraction;
 
     private void OnTriggerStay(Collider other)
     {
-        // 걸을 때만 가능
+        // 걸을 때만 공격 가능
         if (other.CompareTag("Player") && !isAttack)
         {
-            isAttack = true;
-            StartCoroutine(Attack());
+            if (playerInteraction == null) playerInteraction = other.GetComponent<PlayerInteraction>();
+
+            StartCoroutine(Attack()); // 코루틴 실행
         }
     }
 }

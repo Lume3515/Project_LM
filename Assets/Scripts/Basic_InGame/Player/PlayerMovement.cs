@@ -35,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
     // ют╥б
     private void Update()
     {
+        if (Gamemanager.Instance.GameOver)
+        {
+            playerRb.velocity = Vector3.zero;
+            return;
+        }
         Movement();
     }
 

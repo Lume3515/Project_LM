@@ -1383,6 +1383,8 @@ GameObject:
   - component: {fileID: 5238646793743811444}
   - component: {fileID: 5238646793743811445}
   - component: {fileID: 5238646793743811435}
+  - component: {fileID: 2091172175}
+  - component: {fileID: 2091172176}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1452,7 +1454,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4932004890213621012}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -1509,6 +1511,31 @@ MonoBehaviour:
   animator: {fileID: 1862797174058884564}
   objectPooling: {fileID: 0}
   firePos: {fileID: 8202726443535879559}
+--- !u!114 &2091172175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932004890213621012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c653c82776d174f87c033025b6ae4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHpBar: {fileID: 0}
+--- !u!114 &2091172176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932004890213621012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf3e3ef7504d9b4791caeac09d16b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5020559893703100796
 GameObject:
   m_ObjectHideFlags: 0
