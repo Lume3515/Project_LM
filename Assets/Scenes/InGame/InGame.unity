@@ -4782,6 +4782,7 @@ Transform:
   - {fileID: 438671948}
   - {fileID: 1817458348}
   - {fileID: 544248288}
+  - {fileID: 1727638253}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7392,6 +7393,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704084536}
   m_Mesh: {fileID: 8433812023586060242, guid: 091d22d9bb082e242b4fcb0d8d6b39da, type: 3}
+--- !u!1 &1727638252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1727638253}
+  - component: {fileID: 1727638254}
+  m_Layer: 0
+  m_Name: BulletUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1727638253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727638252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176771000}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1727638254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727638252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6e4951d4207124ca7039c74fdf093f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1303132222812110179, guid: b20e915deae135846a57e8f2ae5fa61b, type: 3}
+  poolParent: {fileID: 1793022755}
+  defaultValue: 50
+  maxValue: 150
 --- !u!1 &1740098468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7677,11 +7726,11 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 0.01
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -9827,6 +9876,14 @@ PrefabInstance:
       propertyPath: objectPooling
       value: 
       objectReference: {fileID: 1817458349}
+    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: ammoNumberParentTr
+      value: 
+      objectReference: {fileID: 1793022755}
+    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: bulletUI_ObjectPooling
+      value: 
+      objectReference: {fileID: 1727638254}
     - target: {fileID: 5238646793743811444, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: cameraTr
       value: 
@@ -9875,7 +9932,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2091172176, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
 --- !u!4 &6813764235840717997
 Transform:

@@ -53,6 +53,8 @@ public class Zombie : MonoBehaviour
         objectPooling = GetComponentInParent<ObjectPooling>();
 
         dieDelay = new WaitForSeconds(2.5f);
+
+        minousHPDelay = new WaitForSeconds(1.3f);
     }
 
     private void OnEnable()
@@ -150,30 +152,51 @@ public class Zombie : MonoBehaviour
         agent.speed = moveSpeed;
     }
 
+    // 공격하는 함수
     private IEnumerator Attack()
     {
         isAttack = true; // 공격 중 상태 설정
-
-        animator.SetTrigger("attack");          
-
+        stopAttack = false;
+        animator.SetTrigger("attack");
         animator.SetBool("walk", false);
 
-        yield return attackDelay; // 공격 딜레이 동안 대기
+        StartCoroutine(MinousHP_Player());
 
+        yield return attackDelay; // 공격 딜레이 동안 대기
+        
         animator.SetBool("walk", true);
         isAttack = false; // 공격 종료 상태 설정
     }
 
-    private PlayerInteraction playerInteraction;
+    private WaitForSeconds minousHPDelay;
+
+    // 플레이어 체력 감소
+    private IEnumerator MinousHP_Player()
+    {
+        yield return  minousHPDelay;
+
+        if (!stopAttack) StartCoroutine(playerHp.MinousHP(5));
+    }
+    
+
+    private bool stopAttack;
 
     private void OnTriggerStay(Collider other)
     {
         // 걸을 때만 공격 가능
         if (other.CompareTag("Player") && !isAttack)
         {
-            if (playerInteraction == null) playerInteraction = other.GetComponent<PlayerInteraction>();
+            if (playerHp == null) playerHp = other.GetComponent<PlayerHP>();
 
             StartCoroutine(Attack()); // 코루틴 실행
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            stopAttack = true;
         }
     }
 }

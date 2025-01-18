@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class PlayerFire : MonoBehaviour
 {
     // 카메라
-    private Camera mainCamera;    
+    private Camera mainCamera;
 
     // true : 가능
     private bool shooting = true;
@@ -44,11 +45,29 @@ public class PlayerFire : MonoBehaviour
     private static PlayerFire instance;
     public static PlayerFire Instance => instance;
 
-    private Transform cameraTr;
+    // 최대 탄창
+    private int maxAmmo;
+    // 현재 탄창
+    private int currAmmo;
 
+    // 장전중 이거나 장전이 필요
+    private bool isReload;
 
+    public bool IsReload => isReload;
 
     private Vector3 screen_RayPos;
+
+    [SerializeField] ObjectPooling bulletUI_ObjectPooling;
+
+    // 총알수 보여주는 UI 최상위 부모
+    [SerializeField] Transform ammoNumberParentTr;
+
+    private HorizontalLayoutGroup horizontalLayout_ammoNumberParent;
+
+    private int index;
+
+    // 쏠수 업음
+    private bool notShoot;
     private void Start()
     {
 
@@ -60,11 +79,15 @@ public class PlayerFire : MonoBehaviour
 
         mainCamera = Camera.main;
 
-        cameraTr = mainCamera.transform;
-
         fireSpeed = 500;
 
         mainCamera.fieldOfView = 60;
+
+        maxAmmo = 30;
+
+        horizontalLayout_ammoNumberParent = ammoNumberParentTr.GetComponent<HorizontalLayoutGroup>();
+
+        StartCoroutine(Reload());
     }
 
     private void Update()
@@ -74,8 +97,23 @@ public class PlayerFire : MonoBehaviour
 
         //firePos.rotation = mainCamera.transform.rotation * Quaternion.Euler(addPos);
 
+        // 총알이 없거나 최대총알 수보다 낮을 때만
+        if (currAmmo < maxAmmo && shooting)
+        {
+            if (currAmmo <= 0) notShoot = true;
+            else notShoot = false;
+
+            if (Input.GetKeyDown(KeyCode.R) && !isReload)
+            {
+                StartCoroutine(Reload());
+                animator.SetTrigger("reload");
+            }
+
+        }
+        
+
         // 좌클릭 시
-        if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run)
+        if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
         {
 
             // 애니메이션
@@ -85,7 +123,7 @@ public class PlayerFire : MonoBehaviour
         }
 
         // 우클릭 시 > 토글
-        if (Input.GetMouseButton(1) && Gamemanager.Instance.ShootingType != ShootingType.Run)
+        if (Input.GetMouseButton(1) && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
         {
             Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
@@ -93,12 +131,7 @@ public class PlayerFire : MonoBehaviour
             ShoulderAndAim = true;
             //Debug.Log("1");
         }
-        else if (Gamemanager.Instance.ShootingType == ShootingType.Run)
-        {
-            ShoulderAndAim = false;
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
-            Gamemanager.Instance.ShootingType = ShootingType.Stand;
-        }
+        // 달리기 중 이나 토글을 해제 시 원 상태로        
         else
         {
             ShoulderAndAim = false;
@@ -121,6 +154,28 @@ public class PlayerFire : MonoBehaviour
                 shooting = true;
             }
         }
+    }
+
+    // 재장전
+    private IEnumerator Reload()
+    {
+        isReload = true;
+
+        SoundManager.Instance.Sound(SoundType.Reload);
+        yield return new WaitForSeconds(2.5f);
+
+        while (currAmmo < maxAmmo)
+        {
+            currAmmo++;
+
+            bulletUI_ObjectPooling.OutPut();
+
+            yield return new WaitForSeconds(Time.deltaTime * 0.000001f);
+        }
+
+        isReload = false;
+        notShoot = false;
+        yield break;
     }
 
     private IEnumerator Fire()
@@ -162,7 +217,15 @@ public class PlayerFire : MonoBehaviour
 
         // 발사 총구 화염 생성
         m4MuzzleFlash.Play();
-        //SoundManager.Instance.Sound(SoundType.Shooting);
+
+        if (index >= ammoNumberParentTr.childCount) index = 0;
+
+        Transform child = ammoNumberParentTr.GetChild(index);
+        bulletUI_ObjectPooling.Input(child.gameObject);
+        index++;
+        currAmmo--;
+
+        SoundManager.Instance.Sound(SoundType.Shooting);
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 

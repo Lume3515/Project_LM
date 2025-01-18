@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
-{  
+{
 
     private Animator playerAnimator;
 
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        moveSpeed = 3.8f;     
+        moveSpeed = 3.8f;
 
         right = cameraTr.transform.right;
         forward = cameraTr.transform.forward;
@@ -35,12 +35,16 @@ public class PlayerMovement : MonoBehaviour
     // 입력
     private void Update()
     {
-        if (Gamemanager.Instance.GameOver)
+        if (Gamemanager.Instance.GameOver || PlayerFire.Instance.IsReload)
         {
             playerRb.velocity = Vector3.zero;
             return;
         }
+        else
+        {
+
         Movement();
+        }
     }
 
     // 연산
@@ -75,10 +79,13 @@ public class PlayerMovement : MonoBehaviour
 
     // 움직임
     private void Movement()
-    {
+    {      
         // 즉각적인 반응 필요
-        moveX = Input.GetAxis("Horizontal");
-        moveZ = Input.GetAxis("Vertical");
+       
+            moveX = Input.GetAxis("Horizontal");
+            moveZ = Input.GetAxis("Vertical");
+        
+        
 
         // 안 움직일 떄
         if (playerRb.velocity.magnitude == 0 && !sitDown)
@@ -95,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftShift) && !sitDown)
         {
             playerAnimator.SetBool("isWalk", false);
-            playerAnimator.SetBool("isRun", true);           
+            playerAnimator.SetBool("isRun", true);
             if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Run;
 
             moveSpeed = 5f;

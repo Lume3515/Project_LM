@@ -10,6 +10,7 @@ public class ObjectPooling : MonoBehaviour
     [SerializeField] Transform poolParent;
 
     private ObjectPool<GameObject> objectPooling;
+    public ObjectPool<GameObject> ObjectPooling_pool => objectPooling;
 
     [SerializeField] int defaultValue;
 

@@ -18,7 +18,7 @@ public class PlayerUI : MonoBehaviour
 
     private void FixedUpdate()
     {        
-        transform.position = Vector3.Lerp(transform.position, followPos.position, Time.deltaTime * 50);
+        transform.position = Vector3.Lerp(transform.position, followPos.position, Time.deltaTime * 40);
 
         transform.LookAt(cameraTr);
 

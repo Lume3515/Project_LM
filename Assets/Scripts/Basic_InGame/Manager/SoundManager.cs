@@ -5,6 +5,7 @@ using UnityEngine;
 public enum SoundType
 {
     Shooting,
+    Reload
 
 }
 
@@ -12,10 +13,11 @@ public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
     public static SoundManager Instance => instance;
-
+        
     [SerializeField] AudioSource[] audioSources;
 
-    private int index;
+    // 0 : 장전, 1 : 발사
+    [SerializeField] AudioClip[] shootingAndReload;   
 
     private void Awake()
     {
@@ -30,9 +32,16 @@ public class SoundManager : MonoBehaviour
 
         switch (type)
         {
-            case SoundType.Shooting:
+            case SoundType.Reload:
+                audioSources[0].clip = shootingAndReload[0];
                 audioSources[0].Play();
                 break;
+
+            case SoundType.Shooting:
+                audioSources[0].clip = shootingAndReload[1];
+                audioSources[0].Play();
+                break;
+
         }
 
 
