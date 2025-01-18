@@ -150,7 +150,7 @@ public class Bullet : MonoBehaviour
         // 부위에 따른 체력감소
         else if (collision.collider.CompareTag("Zombie_Head"))
         {
-            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(head_Damage, DamageType.HeadSHot);
+            collision.gameObject.GetComponentInParent<Zombie_BasicAndTankerAndSpeed>().MinusHP(head_Damage, DamageType.HeadSHot);
 
             // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
             Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
@@ -158,7 +158,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Zombie_Arm"))
         {
-            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(arm_Damage, DamageType.armShot);
+            collision.gameObject.GetComponentInParent<Zombie_BasicAndTankerAndSpeed>().MinusHP(arm_Damage, DamageType.armShot);
 
             // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
             Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
@@ -166,7 +166,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Zombie_Leg"))
         {
-            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(Leg_Damage, DamageType.legShot);
+            collision.gameObject.GetComponentInParent<Zombie_BasicAndTankerAndSpeed>().MinusHP(Leg_Damage, DamageType.legShot);
 
             // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
             Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
@@ -174,7 +174,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Zombie_Body"))
         {
-            collision.gameObject.GetComponentInParent<Zombie>().MinusHP(body_Damage, DamageType.BodyShot);
+            collision.gameObject.GetComponentInParent<Zombie_BasicAndTankerAndSpeed>().MinusHP(body_Damage, DamageType.BodyShot);
 
             // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
             Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));

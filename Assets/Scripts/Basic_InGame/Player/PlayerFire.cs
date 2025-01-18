@@ -87,6 +87,9 @@ public class PlayerFire : MonoBehaviour
 
         horizontalLayout_ammoNumberParent = ammoNumberParentTr.GetComponent<HorizontalLayoutGroup>();
 
+        // 애니메이션
+        animator.SetTrigger("reload");
+
         StartCoroutine(Reload());
     }
 
@@ -115,7 +118,6 @@ public class PlayerFire : MonoBehaviour
         // 좌클릭 시
         if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
         {
-
             // 애니메이션
             animator.SetBool("isShoot", true);
 

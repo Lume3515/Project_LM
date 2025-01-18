@@ -19,6 +19,8 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] ObjectPooling objectPooling_Zombie_Tanker;
 
+    [SerializeField] ObjectPooling objectPooling_Zombie_Speed;
+
     private ZombieType zombieType;
 
     private WaitForSeconds spawnDelay;
@@ -52,6 +54,7 @@ public class SpawnManager : MonoBehaviour
         {
             case 1:
                 basic = true;
+                speed = true;
                 break;
 
             case 3:
@@ -133,7 +136,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0,6)], 0.5f, 100);
+                spawn_Zombie.GetComponent<Zombie_BasicAndTankerAndSpeed>().Setting(spawnPos[Random.Range(0,6)], 0.5f, 100);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -141,9 +144,9 @@ public class SpawnManager : MonoBehaviour
 
             case ZombieType.speed:
 
-                spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
+                spawn_Zombie = objectPooling_Zombie_Speed.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
+                spawn_Zombie.GetComponent<Zombie_BasicAndTankerAndSpeed>().Setting(spawnPos[Random.Range(0, 6)], 7f, 50);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -152,7 +155,7 @@ public class SpawnManager : MonoBehaviour
             case ZombieType.tanker:
 
                 spawn_Zombie = objectPooling_Zombie_Tanker.OutPut();
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 300);
+                spawn_Zombie.GetComponent<Zombie_BasicAndTankerAndSpeed>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 300);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
@@ -162,7 +165,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
+                spawn_Zombie.GetComponent<Zombie_BasicAndTankerAndSpeed>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
