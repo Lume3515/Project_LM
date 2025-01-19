@@ -2106,7 +2106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6e4951d4207124ca7039c74fdf093f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 793145406264821875, guid: a0aaf7979b6f31d49a33ebac61d061ff, type: 3}
+  prefab: {fileID: 7280829764914334755, guid: 072393afa6a716343a8ddd98efe87137, type: 3}
   poolParent: {fileID: 544248288}
   defaultValue: 5
   maxValue: 20
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 37848611852db274cbf0f4a0f3e56523, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4478,6 +4478,7 @@ RectTransform:
   m_Children:
   - {fileID: 1212201487}
   - {fileID: 146808986}
+  - {fileID: 1448183895}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6302,6 +6303,82 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443209086}
   m_Mesh: {fileID: 1064396212289078651, guid: 468b77c5e898ca34fb583bcc9364c6e3, type: 3}
+--- !u!1 &1448183894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1448183895}
+  - component: {fileID: 1448183897}
+  - component: {fileID: 1448183896}
+  m_Layer: 5
+  m_Name: HorrorEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1448183895
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448183894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1079170048}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1448183896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448183894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.48584908, b: 0.48584908, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1448183897
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448183894}
+  m_CullTransparentMesh: 1
 --- !u!1 &1460344722
 GameObject:
   m_ObjectHideFlags: 0
@@ -9985,6 +10062,24 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2091172176, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+--- !u!1 &5238646793979385531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4932004890213621012, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+  m_PrefabInstance: {fileID: 5238646793979385530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5238646793979385532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238646793979385531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a78e08745f02b45a8fa2c1d2cb2b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horrorEffect: {fileID: 1448183896}
 --- !u!4 &6813764235840717997
 Transform:
   m_ObjectHideFlags: 0

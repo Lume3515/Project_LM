@@ -25,14 +25,19 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     private float spawnMaxTime;
 
     // 공격 가능?
-    private bool isAttack;   
+    private bool isAttack;
     public bool IsAttack => isAttack;
 
     // 공격 애니메이션 딜레이
     private WaitForSeconds attackDelay;
 
+    private float attackDelayfloat;
+
     // 오브젝트 풀링
     private ObjectPooling objectPooling;
+
+    // 데미지
+    private int damage;
 
     //사망
     private bool die;
@@ -42,7 +47,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        attackDelay = new WaitForSeconds(2.13f);
+        attackDelay = new WaitForSeconds(attackDelayfloat);
 
         spawnMaxTime = 4.05f;
 
@@ -64,9 +69,11 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
         spawnTime = 0;
     }
 
-    public void Setting(Transform pos, float speed, int hp)
+    public void Setting(Transform pos, float speed, int hp, float attackDelay, int attackDamage)
     {
         gameObject.SetActive(true);
+        attackDelayfloat = attackDelay;
+        damage = attackDamage;
         die = false;
         agent.Warp(pos.position);
         moveSpeed = speed;
@@ -163,32 +170,48 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
         StartCoroutine(MinousHP_Player());
 
         yield return attackDelay; // 공격 딜레이 동안 대기
-        
+
         animator.SetBool("walk", true);
         isAttack = false; // 공격 종료 상태 설정
     }
 
     private WaitForSeconds minousHPDelay;
 
+    private PlayerState playerState;
+
     // 플레이어 체력 감소
     private IEnumerator MinousHP_Player()
     {
-        yield return  minousHPDelay;
+        yield return minousHPDelay;
 
-        if (!stopAttack) StartCoroutine(playerHp.MinousHP(5));
+        if (!stopAttack)
+        {
+            if (damage == 0)
+            {
+                StartCoroutine(playerState.HorrorEffect());
+
+                yield break;
+            }
+
+            StartCoroutine(playerHp.MinousHP(damage));
+        }
     }
-    
+
 
     private bool stopAttack;
 
     private void OnTriggerStay(Collider other)
     {
         // 걸을 때만 공격 가능
-        if (other.CompareTag("Player") && !isAttack)
+        if (other.CompareTag("Player") && !isAttack && !stopAttack)
         {
             if (playerHp == null) playerHp = other.GetComponent<PlayerHP>();
+            if (playerState == null) playerState = other.GetComponent<PlayerState>();
 
-            StartCoroutine(Attack()); // 코루틴 실행
+            if (!isAttack) // 코루틴 중복 실행 방지
+            {
+                StartCoroutine(Attack()); // 코루틴 실행
+            }
         }
     }
 

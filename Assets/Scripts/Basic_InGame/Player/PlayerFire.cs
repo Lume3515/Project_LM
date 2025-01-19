@@ -129,7 +129,7 @@ public class PlayerFire : MonoBehaviour
         {
             Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 13);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 13);            
             ShoulderAndAim = true;
             //Debug.Log("1");
         }
