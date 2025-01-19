@@ -1384,8 +1384,8 @@ GameObject:
   - component: {fileID: 5238646793743811445}
   - component: {fileID: 5238646793743811435}
   - component: {fileID: 2091172175}
-  - component: {fileID: 2091172176}
-  m_Layer: 0
+  - component: {fileID: 5238646793979385532}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1511,6 +1511,8 @@ MonoBehaviour:
   animator: {fileID: 1862797174058884564}
   objectPooling: {fileID: 0}
   firePos: {fileID: 8202726443535879559}
+  bulletUI_ObjectPooling: {fileID: 0}
+  ammoNumberParentTr: {fileID: 0}
 --- !u!114 &2091172175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1524,7 +1526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHpBar: {fileID: 0}
---- !u!114 &2091172176
+--- !u!114 &5238646793979385532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1533,9 +1535,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4932004890213621012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf3e3ef7504d9b4791caeac09d16b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 55a78e08745f02b45a8fa2c1d2cb2b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horrorEffect_Image: {fileID: 0}
 --- !u!1 &5020559893703100796
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     private PlayerHP playerHp;
     private void Awake()
     {
-        animator = GetComponent<Animator>();                
+        animator = GetComponent<Animator>();
 
         spawnMaxTime = 4.05f;
 
@@ -69,7 +69,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        attackDelay = new WaitForSeconds(attackDelayFloat); 
+        attackDelay = new WaitForSeconds(attackDelayFloat);
 
         damage = attackDamage;
         die = false;
@@ -79,6 +79,8 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
         moveSpeed = speed;
         currHP = hp;
         //Debug.Log(agent.isOnNavMesh);
+
+        isAttack = false;
     }
 
     // 체력 감소 > 총알 스크립트에서 할당
@@ -167,6 +169,13 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
         animator.SetTrigger("attack");
         animator.SetBool("walk", false);
 
+        RaycastHit hit;
+        // 플레이어가 앞에 없을 때는 다시 찾아 쳐다보기 / 레이 위치 정해주고 앞으로 쏘고 플레이어 레이어만
+        if (!Physics.Raycast((transform.position + new Vector3(0, 1, 0)), transform.forward, out hit, 30, 1 << 3))      
+        {
+            transform.LookAt(playerTr.transform);
+        }
+
         StartCoroutine(MinousHP_Player());
 
         yield return attackDelay; // 공격 딜레이 동안 대기
@@ -225,4 +234,9 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
             stopAttack = true;
         }
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawRay((transform.position + new Vector3(0, 1, 0)), transform.forward);
+    //}
 }

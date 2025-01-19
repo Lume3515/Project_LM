@@ -10015,6 +10015,10 @@ PrefabInstance:
       propertyPath: cameraTr
       value: 
       objectReference: {fileID: 1429102005}
+    - target: {fileID: 5238646793979385532, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: horrorEffect_Image
+      value: 
+      objectReference: {fileID: 1448183896}
     - target: {fileID: 5708823790081558446, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10059,27 +10063,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2091172176, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
---- !u!1 &5238646793979385531 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4932004890213621012, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-  m_PrefabInstance: {fileID: 5238646793979385530}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5238646793979385532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5238646793979385531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a78e08745f02b45a8fa2c1d2cb2b59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horrorEffect_Image: {fileID: 1448183896}
 --- !u!4 &6813764235840717997
 Transform:
   m_ObjectHideFlags: 0

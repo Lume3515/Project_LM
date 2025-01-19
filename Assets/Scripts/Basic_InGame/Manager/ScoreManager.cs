@@ -27,53 +27,59 @@ public class ScoreManager : MonoBehaviour
     private static ScoreManager instance = null;
     public static ScoreManager Instance => instance;
 
-    private string gameDataRowInDate = string.Empty;
-
+    private string gameDataRowInDate = string.Empty;   
 
     private void Awake()
     {
         if (instance == null) instance = this;
+        else if (instance != this) Destroy(this.gameObject);
+
+        DontDestroyOnLoad(gameObject);
     }    
 
-    // 데이터 저장
-    public void GameDataInsert()
-    {
-        //Debug.Log(PlayerScore.headShot);
+    //// 데이터 저장
+    //public void GameDataInsert()
+    //{
+    //    //Debug.Log(PlayerScore.headShot);
 
-        //Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
+    //    //Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
 
-        Param param = new Param();
+    //    Param param = new Param();
 
-        // 클 때만 값 변경
-        /*  if (PlayerScore.currHeadShot > PlayerScore.headShot) */
-        param.Add("headShot", PlayerScore.currHeadShot);
-        /*if (PlayerScore.currBodyShot > PlayerScore.bodyShot)*/
-        param.Add("bodyShot", PlayerScore.currBodyShot);
-        /*if (PlayerScore.currArmShot > PlayerScore.armShot) */
-        param.Add("armShot", PlayerScore.currArmShot);
-        /*if (PlayerScore.currLegShot > PlayerScore.legShot)*/
-        param.Add("legShot", PlayerScore.currLegShot);
-        /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/
-        param.Add("bestScore", PlayerScore.currBestScore);
+    //    // 클 때만 값 변경
+    //    /*  if (PlayerScore.currHeadShot > PlayerScore.headShot) */
+    //    param.Add("headShot", 0);
+    //    /*if (PlayerScore.currBodyShot > PlayerScore.bodyShot)*/
+    //    param.Add("bodyShot", 0);
+    //    /*if (PlayerScore.currArmShot > PlayerScore.armShot) */
+    //    param.Add("armShot", 0);
+    //    /*if (PlayerScore.currLegShot > PlayerScore.legShot)*/
+    //    param.Add("legShot", 0);
+    //    /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/
+    //    param.Add("bestScore", 0);
 
-        //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
-        var bro = Backend.GameData.Insert("UserData_Kill", param);
+    //    //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
+    //    var bro = Backend.GameData.Insert("UserData_Kill", param);
+    //        GameDataGet();
 
-        if (bro.IsSuccess())
-        {
-            Debug.Log("게임 정보 데이터 삽입에 성공했습니다. : " + bro);
+    //    if (isReturn) return;
 
-            //삽입한 게임 정보의 고유값입니다.  
-            gameDataRowInDate = bro.GetInDate();
-        }
-        else
-        {
-            Debug.LogError("게임 정보 데이터 삽입에 실패했습니다. : " + bro);
-        }
-    }
+    //    if (bro.IsSuccess())
+    //    {
+
+    //        Debug.Log("게임 정보 데이터 삽입에 성공했습니다. : " + bro);
+
+    //        //삽입한 게임 정보의 고유값입니다.  
+    //        gameDataRowInDate = bro.GetInDate();
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("게임 정보 데이터 삽입에 실패했습니다. : " + bro); 
+    //    }
+    //}
 
     // 데이터 불러오기
-    public void GameDataGet()
+    public void GameDataGet_Kill()
     {
         Debug.Log("게임 정보 조회 함수를 호출합니다.");
 
@@ -90,12 +96,12 @@ public class ScoreManager : MonoBehaviour
 
             // 받아온 데이터의 갯수가 0이라면 데이터가 존재하지 않는 것입니다.  
             if (gameDataJson.Count <= 0)
-            {
-
+            {              
                 Debug.LogWarning("데이터가 존재하지 않습니다.");
             }
             else
-            {
+            {                             
+
                 gameDataRowInDate = gameDataJson[0]["headShot"].ToString(); //불러온 게임 정보의 고유값입니다.  
 
                 PlayerScore.headShot = int.Parse(gameDataJson[0]["headShot"].ToString());
@@ -114,7 +120,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     // 게임 정보 수정하기
-    public void GameDataUpdate()
+    public void GameDataUpdate_Kill()
     {
         //if (userData == null)
         //{
@@ -135,7 +141,7 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("내 제일 최신 게임 정보 데이터 수정을 요청합니다.");
 
-            bro = Backend.GameData.Update("USER_DATA", new Where(), param);
+            bro = Backend.GameData.Update("UserData_Kill", new Where(), param);
         }
         else
         {

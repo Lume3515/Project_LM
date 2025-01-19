@@ -54,6 +54,8 @@ public class PlayerHP : MonoBehaviour
 
     private void Die()
     {
+        ScoreManager.Instance.GameDataUpdate_Kill();
+
         Gamemanager.Instance.GamoOver();
     }
 }

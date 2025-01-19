@@ -81,6 +81,9 @@ public class Registaration
             {
                 MainMenuManager.Instance.PVPSetting();
             }
+
+            ScoreManager.Instance.GameDataGet_Kill();
+
         }
         else
         {

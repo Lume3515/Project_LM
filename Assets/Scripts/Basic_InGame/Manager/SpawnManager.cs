@@ -53,11 +53,11 @@ public class SpawnManager : MonoBehaviour
         switch (stage)
         {
             case 1:
-                tanker = true;
+                basic = true;               
                 break;
 
             case 3:
-                basic = true;               
+                tanker = true;
                 break;
 
             case 5:

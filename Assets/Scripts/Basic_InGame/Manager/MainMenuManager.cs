@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
-using Photon.Pun;
-using BackEnd;
+
+
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class MainMenuManager : MonoBehaviour
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
 
-        console_Room_TMP = console_Room.GetComponent<TextMeshProUGUI>();
+        console_Room_TMP = console_Room.GetComponent<TextMeshProUGUI>();       
 
         #region// 로그인 & 비번 & 체크
 
@@ -113,13 +113,15 @@ public class MainMenuManager : MonoBehaviour
         switch (index)
         {
             case 0:
-
+                rankObj.SetActive(false);
                 logInAndSignUPAndCheck_InputField[2].contentType = TMP_InputField.ContentType.Password;
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
                 {
                     logInAndSignUPAndCheck[i].SetActive(true);
                 }
+
+                rankView.enabled = false;
 
                 newNickName = false;
                 clickCreate = false;
@@ -135,7 +137,7 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 1:
-
+                rankObj.SetActive(false);
                 logInAndSignUPAndCheck_InputField[2].contentType = TMP_InputField.ContentType.Password;
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
@@ -143,6 +145,7 @@ public class MainMenuManager : MonoBehaviour
                     logInAndSignUPAndCheck[i].SetActive(true);
                 }
 
+                rankView.enabled = false;
                 pvp.SetActive(false);
                 newNickName = false;
                 clickCreate = false;
@@ -159,7 +162,8 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 2:
-
+                rankObj.SetActive(false);
+                rankView.enabled = false;
                 mainUIParent.SetActive(true);
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
@@ -173,7 +177,8 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 3:
-
+                rankObj.SetActive(true);
+                rankView.enabled = true;
                 mainUIParent.SetActive(true);
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
@@ -197,6 +202,8 @@ public class MainMenuManager : MonoBehaviour
         {
             case 0:
 
+                rankObj.SetActive(false);
+                rankView.enabled = false;
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
                 {
                     logInAndSignUPAndCheck[i].SetActive(false);
@@ -211,9 +218,10 @@ public class MainMenuManager : MonoBehaviour
 
             case 1:
 
+                rankObj.SetActive(false);
                 clickCreate = false;
                 newNickName = true;
-
+                rankView.enabled = false;
                 logInAndSignUPAndCheck_InputField[2].contentType = TMP_InputField.ContentType.Standard;
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
@@ -236,9 +244,11 @@ public class MainMenuManager : MonoBehaviour
 
             case 2:
 
+                rankView.enabled = false;
                 logInAndSignUPAndCheck_InputField[2].contentType = TMP_InputField.ContentType.Password;
                 newNickName = false;
                 clickCreate = false;
+                rankObj.SetActive(false);
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
                 {
@@ -265,7 +275,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-
+    
     #endregion
 
     #region// 메인 UI
@@ -274,6 +284,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void ExitMainUIBT()
     {
+        rankObj.SetActive(false);
+        rankView.enabled = false;
         pvp.SetActive(false);
         mainUIParent.SetActive(false);
         isMainMenu = false;
@@ -441,6 +453,14 @@ public class MainMenuManager : MonoBehaviour
             //PhotonNetwork.NickName = Backend.UserNickName;
         }
     }
+    #endregion
+
+    #region// 랭크
+
+    [SerializeField] GameObject rankObj;
+
+    [SerializeField] ScrollRect rankView;
+
     #endregion
 }
 
