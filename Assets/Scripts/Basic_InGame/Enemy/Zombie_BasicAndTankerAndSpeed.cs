@@ -31,8 +31,6 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     // 공격 애니메이션 딜레이
     private WaitForSeconds attackDelay;
 
-    private float attackDelayfloat;
-
     // 오브젝트 풀링
     private ObjectPooling objectPooling;
 
@@ -45,9 +43,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     private PlayerHP playerHp;
     private void Awake()
     {
-        animator = GetComponent<Animator>();
-
-        attackDelay = new WaitForSeconds(attackDelayfloat);
+        animator = GetComponent<Animator>();                
 
         spawnMaxTime = 4.05f;
 
@@ -69,13 +65,17 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
         spawnTime = 0;
     }
 
-    public void Setting(Transform pos, float speed, int hp, float attackDelay, int attackDamage)
+    public void Setting(Transform pos, float speed, int hp, float attackDelayFloat, int attackDamage)
     {
         gameObject.SetActive(true);
-        attackDelayfloat = attackDelay;
+
+        attackDelay = new WaitForSeconds(attackDelayFloat); 
+
         damage = attackDamage;
         die = false;
+
         agent.Warp(pos.position);
+
         moveSpeed = speed;
         currHP = hp;
         //Debug.Log(agent.isOnNavMesh);
@@ -186,8 +186,9 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
 
         if (!stopAttack)
         {
-            if (damage == 0)
+            if (damage == 0 && !playerState.HorrorEffect_bool)
             {
+                //Debug.Log("d");
                 StartCoroutine(playerState.HorrorEffect());
 
                 yield break;
@@ -195,6 +196,8 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
 
             StartCoroutine(playerHp.MinousHP(damage));
         }
+
+        yield break;
     }
 
 
@@ -203,7 +206,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // 걸을 때만 공격 가능
-        if (other.CompareTag("Player") && !isAttack && !stopAttack)
+        if (other.CompareTag("Player") && !isAttack)
         {
             if (playerHp == null) playerHp = other.GetComponent<PlayerHP>();
             if (playerState == null) playerState = other.GetComponent<PlayerState>();

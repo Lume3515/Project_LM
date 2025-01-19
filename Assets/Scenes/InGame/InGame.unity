@@ -6354,14 +6354,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.48584908, b: 0.48584908, a: 0}
+  m_Color: {r: 0.1792453, g: 0.16487186, b: 0.16879128, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 37848611852db274cbf0f4a0f3e56523, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10079,7 +10079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a78e08745f02b45a8fa2c1d2cb2b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horrorEffect: {fileID: 1448183896}
+  horrorEffect_Image: {fileID: 1448183896}
 --- !u!4 &6813764235840717997
 Transform:
   m_ObjectHideFlags: 0

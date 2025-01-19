@@ -154,7 +154,7 @@ public class SpawnManager : MonoBehaviour
             case ZombieType.tanker:
 
                 spawn_Zombie = objectPooling_Zombie_Tanker.OutPut();
-                spawn_Zombie.GetComponent<Zombie_BasicAndTankerAndSpeed>().Setting(spawnPos[Random.Range(0, 6)], 0.2f, 400, 2.13f, 0);
+                spawn_Zombie.GetComponent<Zombie_BasicAndTankerAndSpeed>(). Setting(spawnPos[Random.Range(0, 6)], 0.2f, 400, 3f, 0);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
 
