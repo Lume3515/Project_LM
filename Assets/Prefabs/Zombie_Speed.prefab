@@ -426,7 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8851690090481866762}
   - component: {fileID: 5101658898796173119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base HumanSpine2
   m_TagString: Zombie_Body
   m_Icon: {fileID: 0}
@@ -1288,7 +1288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6081302215568209963}
   - component: {fileID: 3004455205144764636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base HumanRCalf
   m_TagString: Zombie_Leg
   m_Icon: {fileID: 0}
@@ -2256,7 +2256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7437579383189312618}
   - component: {fileID: 7200155363979891616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base HumanRArmForearm
   m_TagString: Zombie_Arm
   m_Icon: {fileID: 0}
@@ -2430,7 +2430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5060624447638772862}
   - component: {fileID: 8800541230814073675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base HumanLArmForearm
   m_TagString: Zombie_Arm
   m_Icon: {fileID: 0}
@@ -2543,7 +2543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 61741197746539447}
   - component: {fileID: 6122313395538796231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base HumanHead
   m_TagString: Zombie_Head
   m_Icon: {fileID: 0}
@@ -3081,7 +3081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6670045264024503311}
   - component: {fileID: 1730262750355044271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base HumanLLegCalf
   m_TagString: Zombie_Leg
   m_Icon: {fileID: 0}

@@ -62,8 +62,6 @@ public class PlayerFire : MonoBehaviour
     // 총알수 보여주는 UI 최상위 부모
     [SerializeField] Transform ammoNumberParentTr;
 
-    private HorizontalLayoutGroup horizontalLayout_ammoNumberParent;
-
     private int index;
 
     // 쏠수 업음
@@ -83,9 +81,7 @@ public class PlayerFire : MonoBehaviour
 
         mainCamera.fieldOfView = 60;
 
-        maxAmmo = 30;
-
-        horizontalLayout_ammoNumberParent = ammoNumberParentTr.GetComponent<HorizontalLayoutGroup>();
+        maxAmmo = 30;            
 
         // 애니메이션
         animator.SetTrigger("reload");
@@ -113,7 +109,7 @@ public class PlayerFire : MonoBehaviour
             }
 
         }
-        
+
 
         // 좌클릭 시
         if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
@@ -129,7 +125,7 @@ public class PlayerFire : MonoBehaviour
         {
             Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 13);            
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 13);
             ShoulderAndAim = true;
             //Debug.Log("1");
         }
@@ -192,7 +188,7 @@ public class PlayerFire : MonoBehaviour
         Ray screen_Aim = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 5));
 
         // 레이를 쏘고 맞으면 hit에 값을 넣어줌 사정거리는 150이다.
-        if (Physics.Raycast(screen_Aim, out hit, 150))
+        if (Physics.Raycast(screen_Aim, out hit, 150, 1 << 6))
         {
             // 맞을 시 hit의 정보를 가져옴
             screen_RayPos = hit.point;
@@ -206,8 +202,19 @@ public class PlayerFire : MonoBehaviour
         // 방향구하는 식 이다. screen_RayPos - firePos.position(normalized은 정규화를 위해서 이다 1로 만들기 위해)
         Vector3 direction = (screen_RayPos - firePos.position).normalized;
 
+        //// 레이와 총구의 거리가 가깝다면  위치를 카메라로 변경
+        //if (Vector3.Distance(firePos.position, screen_RayPos) < 7.5f)
+        //{
+        //    firePos.position = mainCamera.transform.position;
+        //}
+        //else
+        //{
+        //    firePos.localPosition = originPos_firePos;
+        //}
+
         // 바라보게 한다 Euler를 쓰면 위치부터가 다르기 때문에 글렀다. 그러므로 LookRotation을 쓴다.
         firePos.rotation = Quaternion.LookRotation(direction);
+
 
 
         // 총알 생성

@@ -1052,7 +1052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7888596271882910227}
   - component: {fileID: 7643437571158128357}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftForeArm
   m_TagString: Zombie_Arm
   m_Icon: {fileID: 0}
@@ -1383,7 +1383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4760725148890864987}
   - component: {fileID: 5950803959456932634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:LeftLeg
   m_TagString: Zombie_Leg
   m_Icon: {fileID: 0}
@@ -1593,7 +1593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991704602545845433}
   - component: {fileID: 7490485693782124778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Head
   m_TagString: Zombie_Head
   m_Icon: {fileID: 0}
@@ -1809,7 +1809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5667815365651989991}
   - component: {fileID: 2335054330596670333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightForeArm
   m_TagString: Zombie_Arm
   m_Icon: {fileID: 0}
@@ -1888,7 +1888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388403278696891318}
   - component: {fileID: 9114801965983323966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:Spine1
   m_TagString: Zombie_Body
   m_Icon: {fileID: 0}
@@ -2128,7 +2128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572899909671700275}
   - component: {fileID: 5648672768595601478}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mixamorig:RightLeg
   m_TagString: Zombie_Leg
   m_Icon: {fileID: 0}
