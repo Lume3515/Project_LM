@@ -81,7 +81,7 @@ public class PlayerFire : MonoBehaviour
 
         mainCamera.fieldOfView = 60;
 
-        maxAmmo = 30;            
+        maxAmmo = 30;
 
         // 애니메이션
         animator.SetTrigger("reload");
@@ -102,10 +102,21 @@ public class PlayerFire : MonoBehaviour
             if (currAmmo <= 0) notShoot = true;
             else notShoot = false;
 
+            // 시간 동기화
+            if (isReload)
+            {
+                AnimatorStateInfo stateInfo_Reload = animator.GetCurrentAnimatorStateInfo(0);
+                float progress_Reload = stateInfo_Reload.normalizedTime % 1;
+
+                animator.SetFloat("StateProgress_Reload", progress_Reload);
+            }
+
             if (Input.GetKeyDown(KeyCode.R) && !isReload)
             {
+
+
                 StartCoroutine(Reload());
-                animator.SetTrigger("reload");
+                animator.SetBool("reload", true);
             }
 
         }
@@ -168,9 +179,10 @@ public class PlayerFire : MonoBehaviour
 
             bulletUI_ObjectPooling.OutPut();
 
-            yield return new WaitForSeconds(Time.deltaTime * 0.000001f);
+            yield return null;
         }
 
+        animator.SetBool("reload", false);
         isReload = false;
         notShoot = false;
         yield break;
