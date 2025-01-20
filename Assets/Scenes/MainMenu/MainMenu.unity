@@ -680,7 +680,9 @@ MonoBehaviour:
   input_PVP: {fileID: 1963356550}
   console_Room: {fileID: 43096225}
   rankObj: {fileID: 1412739606}
+  content: {fileID: 904198913}
   rankView: {fileID: 1805296156}
+  rankTMP: {fileID: 7242981472303207798, guid: 459e23b32f425bb4a8a495c1b4a6feb1, type: 3}
 --- !u!4 &202549321
 Transform:
   m_ObjectHideFlags: 0
@@ -2010,8 +2012,8 @@ RectTransform:
   m_Father: {fileID: 968189768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.38}
-  m_AnchorMax: {x: 1, y: 0.8666667}
+  m_AnchorMin: {x: 0, y: 0.5133333}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3177,7 +3179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 200}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 1500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &904198914
@@ -3193,12 +3195,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -3830,6 +3832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1074894625}
   - component: {fileID: 1074894624}
+  - component: {fileID: 1074894626}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -3864,6 +3867,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074894626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074894623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 513abca18336b434eae3a205db980c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1088861945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7927,7 +7942,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 552179314}
   m_HandleRect: {fileID: 552179313}
   m_Direction: 2
-  m_Value: 0.74025977
+  m_Value: 1
   m_Size: 0.48666668
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8006,8 +8021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 150}
+  m_AnchoredPosition: {x: -125, y: 0}
+  m_SizeDelta: {x: -350, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2135213141
 MonoBehaviour:
@@ -8029,9 +8044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB4F1\uC218 / \uC544\uC774\uB514 / \uB2C9\uB124\uC784 / \uD5E4\uB4DC\uC0F7
-    / \uBC14\uB514 \uC0F7 / \uC554 \uC0F7 / \uB808\uADF8 \uC0F7 / \uCD1D \uD0AC \uC218/
-    \uC810\uC218\n"
+  m_text: "\uB4F1\uC218 / \uB2C9\uB124\uC784 / \uCD5C\uB300 \uC810\uC218\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 542c92fc803c8744d8e238912208f72b, type: 2}
   m_sharedMaterial: {fileID: 4716208525731659435, guid: 542c92fc803c8744d8e238912208f72b, type: 2}
@@ -8058,14 +8071,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

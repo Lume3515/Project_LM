@@ -9,7 +9,8 @@ public enum LogInType
 {
     logIn,
     newName,
-    PVP
+    PVP,
+    Rank
 }
 
 public class Registaration
@@ -44,6 +45,8 @@ public class Registaration
         if (responceOfBackEnd.IsSuccess())
         {
             console.text = $"회원가입에 성공했습니다. \nID : {id}님";
+
+            Nickname(id, console);
         }
         else
         {
@@ -81,8 +84,12 @@ public class Registaration
             {
                 MainMenuManager.Instance.PVPSetting();
             }
+            else if (type == LogInType.Rank)
+            {
+                MainMenuManager.Instance.RankSetting();
+            }
 
-            ScoreManager.Instance.GameDataGet_Kill();
+
 
         }
         else

@@ -21,7 +21,7 @@ public class MainMenuManager : MonoBehaviour
         if (instance == null) instance = this;
         else if (instance != this) Destroy(this.gameObject);
 
-        console_Room_TMP = console_Room.GetComponent<TextMeshProUGUI>();       
+        console_Room_TMP = console_Room.GetComponent<TextMeshProUGUI>();
 
         #region// 로그인 & 비번 & 체크
 
@@ -177,18 +177,28 @@ public class MainMenuManager : MonoBehaviour
                 break;
 
             case 3:
-                rankObj.SetActive(true);
-                rankView.enabled = true;
-                mainUIParent.SetActive(true);
+
+                rankObj.SetActive(false);
+                logInAndSignUPAndCheck_InputField[2].contentType = TMP_InputField.ContentType.Password;
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
                 {
-                    logInAndSignUPAndCheck[i].SetActive(false);
+                    logInAndSignUPAndCheck[i].SetActive(true);
                 }
 
-                console_GameObject.SetActive(false);
+                rankView.enabled = false;
+
+                newNickName = false;
+                clickCreate = false;
+                signUp = false;
+                isMainMenu = true;
+                createOrLogIn_TMP.text = "랭크 보기";
+                mainUI_LoginAndSignUpAndNewNickName = true;
+                mainUIParent.SetActive(true);
+                logInAndSignUPAndCheck[2].SetActive(false);
+                createOrLogIn_GameObject.SetActive(true);
                 pvp.SetActive(false);
-                createOrLogIn_GameObject.SetActive(false);
+                console_GameObject.SetActive(true);
                 break;
         }
     }
@@ -275,7 +285,7 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    
+
     #endregion
 
     #region// 메인 UI
@@ -397,6 +407,18 @@ public class MainMenuManager : MonoBehaviour
             Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.PVP, logInAndSignUPAndCheck_InputField[2].text);
 
         }
+        else if (createOrLogIn_TMP.text == "랭크 보기")
+        {
+            // 정규식 검사 > true > 톨과
+            if (!Pattern(logInAndSignUPAndCheck_InputField[1].text))
+            {
+                console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
+
+                return;
+            }
+
+            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.Rank, logInAndSignUPAndCheck_InputField[2].text);
+        }
     }
 
     // 정규식
@@ -449,7 +471,7 @@ public class MainMenuManager : MonoBehaviour
         else
         {
 
-           
+
             //PhotonNetwork.NickName = Backend.UserNickName;
         }
     }
@@ -457,9 +479,38 @@ public class MainMenuManager : MonoBehaviour
 
     #region// 랭크
 
+    // 껐다 켰다하는 객체
     [SerializeField] GameObject rankObj;
 
+    // 랭크를 표시할 TMP를 생성할 부모
+    [SerializeField] Transform content;
+
+    // 랭크를 보여줄 스크롤 뷰
     [SerializeField] ScrollRect rankView;
+
+    // 랭크를 표시할 TMP
+    [SerializeField] GameObject rankTMP;
+
+    public void RankSetting()
+    {
+
+        rankObj.SetActive(true);
+        rankView.enabled = true;
+        mainUIParent.SetActive(true);
+
+        for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
+        {
+            logInAndSignUPAndCheck[i].SetActive(false);
+        }
+
+        console_GameObject.SetActive(false);
+        pvp.SetActive(false);
+        createOrLogIn_GameObject.SetActive(false);
+
+        BackendRankManager.Instance.RankGet_BestScore(rankTMP, content);
+    }
+
+
 
     #endregion
 }

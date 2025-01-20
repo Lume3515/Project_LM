@@ -110,8 +110,11 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
                     PlayerScore.currLegShot++;
                     break;
 
-
             }
+
+            if (this.damage == 0) PlayerScore.tankerZombie++;
+            else if (this.damage == 5) PlayerScore.basicZombie++;
+            else if (this.damage == 1) PlayerScore.speedZombie++;
 
             // 이동 멈추기
             die = true;
@@ -171,7 +174,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
 
         RaycastHit hit;
         // 플레이어가 앞에 없을 때는 다시 찾아 쳐다보기 / 레이 위치 정해주고 앞으로 쏘고 플레이어 레이어만
-        if (!Physics.Raycast((transform.position + new Vector3(0, 1, 0)), transform.forward, out hit, 30, 1 << 3))      
+        if (!Physics.Raycast((transform.position + new Vector3(0, 1, 0)), transform.forward, out hit, 30, 1 << 3))
         {
             transform.LookAt(playerTr.transform);
         }
@@ -191,6 +194,8 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
     // 플레이어 체력 감소
     private IEnumerator MinousHP_Player()
     {
+        if (Gamemanager.Instance.GameOver) yield break;
+
         yield return minousHPDelay;
 
         if (!stopAttack)
@@ -214,6 +219,8 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (Gamemanager.Instance.GameOver) return;
+
         // 걸을 때만 공격 가능
         if (other.CompareTag("Player") && !isAttack)
         {

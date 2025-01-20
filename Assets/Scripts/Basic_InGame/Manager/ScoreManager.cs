@@ -12,7 +12,7 @@ public static class PlayerScore
     public static int bodyShot; // 몸 샷
     public static int armShot; // 팔 샷
     public static int legShot; // 다리 샷
-    public static int bestScore; // 최고점수
+    public static int bestScore; // 최고점수  
 
     // 현재 점수
     public static int currHeadShot; // 머리 샷
@@ -20,6 +20,10 @@ public static class PlayerScore
     public static int currArmShot; // 팔 샷
     public static int currLegShot; // 다리 샷
     public static int currBestScore; // 최고점수
+    public static int basicZombie;// 일반좀비
+    public static int tankerZombie;// 탱커좀비
+    public static int speedZombie; // 속도 좀비   
+
 }
 
 public class ScoreManager : MonoBehaviour
@@ -35,48 +39,45 @@ public class ScoreManager : MonoBehaviour
         else if (instance != this) Destroy(this.gameObject);
 
         DontDestroyOnLoad(gameObject);
-    }    
+    }
 
     //// 데이터 저장
-    //public void GameDataInsert()
-    //{
-    //    //Debug.Log(PlayerScore.headShot);
+    public void GameDataInsert_kill()
+    {
+        //Debug.Log(PlayerScore.headShot);
 
-    //    //Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
+        //Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
 
-    //    Param param = new Param();
+        Param param = new Param();
 
-    //    // 클 때만 값 변경
-    //    /*  if (PlayerScore.currHeadShot > PlayerScore.headShot) */
-    //    param.Add("headShot", 0);
-    //    /*if (PlayerScore.currBodyShot > PlayerScore.bodyShot)*/
-    //    param.Add("bodyShot", 0);
-    //    /*if (PlayerScore.currArmShot > PlayerScore.armShot) */
-    //    param.Add("armShot", 0);
-    //    /*if (PlayerScore.currLegShot > PlayerScore.legShot)*/
-    //    param.Add("legShot", 0);
-    //    /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/
-    //    param.Add("bestScore", 0);
+        // 클 때만 값 변경
+        /*  if (PlayerScore.currHeadShot > PlayerScore.headShot) */
+        param.Add("headShot", PlayerScore.currHeadShot);
+        /*if (PlayerScore.currBodyShot > PlayerScore.bodyShot)*/
+        param.Add("bodyShot", PlayerScore.currBodyShot);
+        /*if (PlayerScore.currArmShot > PlayerScore.armShot) */
+        param.Add("armShot", PlayerScore.currArmShot);
+        /*if (PlayerScore.currLegShot > PlayerScore.legShot)*/
+        param.Add("legShot", PlayerScore.currLegShot);
+        /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/
+        param.Add("bestScore", PlayerScore.currBestScore);
 
-    //    //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
-    //    var bro = Backend.GameData.Insert("UserData_Kill", param);
-    //        GameDataGet();
+        //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
+        var bro = Backend.GameData.Insert("UserData_Kill", param);           
 
-    //    if (isReturn) return;
+        if (bro.IsSuccess())
+        {
 
-    //    if (bro.IsSuccess())
-    //    {
+            Debug.Log("게임 정보 데이터 삽입에 성공했습니다. : " + bro);
 
-    //        Debug.Log("게임 정보 데이터 삽입에 성공했습니다. : " + bro);
-
-    //        //삽입한 게임 정보의 고유값입니다.  
-    //        gameDataRowInDate = bro.GetInDate();
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("게임 정보 데이터 삽입에 실패했습니다. : " + bro); 
-    //    }
-    //}
+            //삽입한 게임 정보의 고유값입니다.  
+            gameDataRowInDate = bro.GetInDate();
+        }
+        else
+        {
+            Debug.LogError("게임 정보 데이터 삽입에 실패했습니다. : " + bro);
+        }
+    }
 
     // 데이터 불러오기
     public void GameDataGet_Kill()
@@ -98,11 +99,12 @@ public class ScoreManager : MonoBehaviour
             if (gameDataJson.Count <= 0)
             {              
                 Debug.LogWarning("데이터가 존재하지 않습니다.");
+                GameDataInsert_kill();
             }
             else
             {                             
 
-                gameDataRowInDate = gameDataJson[0]["headShot"].ToString(); //불러온 게임 정보의 고유값입니다.  
+                gameDataRowInDate = gameDataJson[0]["inDate"].ToString(); //불러온 게임 정보의 고유값입니다.  
 
                 PlayerScore.headShot = int.Parse(gameDataJson[0]["headShot"].ToString());
                 PlayerScore.bodyShot = int.Parse(gameDataJson[0]["bodyShot"].ToString());
@@ -111,6 +113,8 @@ public class ScoreManager : MonoBehaviour
                 PlayerScore.bestScore = int.Parse(gameDataJson[0]["bestScore"].ToString());
 
                 Debug.Log("데이터의 갯수가 있습니다");
+
+                GameDataUpdate_Kill();
             }
         }
         else
@@ -127,6 +131,9 @@ public class ScoreManager : MonoBehaviour
         //    Debug.LogError("서버에서 다운받거나 새로 삽입한 데이터가 존재하지 않습니다. Insert 혹은 Get을 통해 데이터를 생성해주세요.");
         //    return;
         //}
+
+        PlayerScore.currBestScore = (PlayerScore.currHeadShot * 10) + (PlayerScore.currBodyShot * 6) +
+             (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 7) + (PlayerScore.tankerZombie * 20);
 
         Param param = new Param();
         if (PlayerScore.currHeadShot > PlayerScore.headShot) param.Add("headShot", PlayerScore.currHeadShot);
@@ -147,12 +154,14 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log($"{gameDataRowInDate}의 게임 정보 데이터 수정을 요청합니다.");
 
-            bro = Backend.GameData.UpdateV2("USER_DATA", gameDataRowInDate, Backend.UserInDate, param);
+            bro = Backend.GameData.UpdateV2("UserData_Kill", gameDataRowInDate, Backend.UserInDate, param);
         }
 
         if (bro.IsSuccess())
         {
             Debug.Log("게임 정보 데이터 수정에 성공했습니다. : " + bro);
+
+            BackendRankManager.Instance.RankInsert_BestScore(PlayerScore.currBestScore);
         }
         else
         {

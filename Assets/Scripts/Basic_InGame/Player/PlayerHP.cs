@@ -29,6 +29,12 @@ public class PlayerHP : MonoBehaviour
     public IEnumerator MinousHP(int damage)
     {
         currHP -= damage;
+
+        if (currHP <= 0)
+        {
+            Die();
+        }
+
         while (playerHpBar.fillAmount != currHP)
         {          
 
@@ -38,10 +44,6 @@ public class PlayerHP : MonoBehaviour
         }
         //Debug.Log(currHP);
 
-        if (currHP <= 0)
-        {
-            Die();
-        }
 
         yield break;
     }
@@ -54,8 +56,9 @@ public class PlayerHP : MonoBehaviour
 
     private void Die()
     {
-        ScoreManager.Instance.GameDataUpdate_Kill();
-
         Gamemanager.Instance.GamoOver();
+
+        ScoreManager.Instance.GameDataGet_Kill();
+
     }
 }

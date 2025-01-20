@@ -13,7 +13,8 @@ public class BackendManager : MonoBehaviour
         // 뒤끝 초기화에 대한 응답값
         if (responceOfBackend.IsSuccess())
         {
-            Debug.Log("초기화 성공 : " + responceOfBackend); // 성공일 경우 statusCode 204 Success                   
+            Debug.Log("초기화 성공 : " + responceOfBackend); // 성공일 경우 statusCode 204 Success
+         
         }
         else
         {
@@ -24,7 +25,7 @@ public class BackendManager : MonoBehaviour
 
     private void Test()
     {
-        //Registaration.Instance.SignUp("user1", "1234"); // [추가] 뒤끝 회원가입 함수
+        //Registaration.Instance.SignUp("user1", "1234"); // [추가] 뒤끝 회원가입 함수        
 
         Debug.Log("테스트를 종료합니다.");
     }
