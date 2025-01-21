@@ -43,12 +43,9 @@ public class Bullet : MonoBehaviour
     // ÅºÆÛÁü
     private Vector3 carbonSpread;
 
-    private PhotonView photonView;
-
     // ÅºÆÛÁü Á¤µµ
-    public void Setting(float speed, ShootingType type, Transform pos, PhotonView photonview)
-    {
-        this.photonView = photonview;
+    public void Setting(float speed, ShootingType type, Transform pos)
+    { 
 
         gameObject.SetActive(true);
 
@@ -70,11 +67,7 @@ public class Bullet : MonoBehaviour
 
         // ¹Ýµ¿
         switch (shootingType)
-        {
-            case ShootingType.Aim:
-                carbonSpread = new Vector3(0, 0, 0);
-                break;
-
+        {          
             case ShootingType.Shoulder:
                 carbonSpread = new Vector3(Random.Range(-0.006f, 0.006f), Random.Range(-0.006f, 0.006f), Random.Range(-0.006f, 0.006f));
                 break;

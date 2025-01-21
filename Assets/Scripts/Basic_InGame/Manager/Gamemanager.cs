@@ -13,8 +13,7 @@ public enum DamageType
 
 // 발사 타입
 public enum ShootingType
-{
-    Aim, // 조준
+{   
     Shoulder, // 견착  
     Run, // 뛰기
     Walk, // 걷기

@@ -45,6 +45,13 @@ public class PlayerMovement : MonoBehaviour
 
             Movement();
         }
+
+        if (!roll && Input.GetKeyDown(KeyCode.Space) && rollCoolTIme)
+        {
+           if(firstClick_Bool) firstClick_Bool = true;
+            StartCoroutine(AddTime());
+        }
+
     }
 
     // 연산
@@ -82,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 즉각적인 반응 필요
 
-        if ((sitDown && PlayerFire.Instance.IsReload))
+        if ((sitDown && PlayerFire.Instance.IsReload) || roll)
         {
             moveX = 0;
             moveZ = 0;
@@ -107,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isRun", false);
         }
         // 달리기 구현
-        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown && !PlayerFire.Instance.IsReload)
+        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown && !PlayerFire.Instance.IsReload && Gamemanager.Instance.ShootingType != ShootingType.Shoulder)
         {
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", true);
@@ -127,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // 앉기 구현
-        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !PlayerFire.Instance.IsReload)
+        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !PlayerFire.Instance.IsReload && !roll)
         {
             sitDown = true;
 
@@ -168,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
         moveDirection = cameraTr.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0); // 로컬 기준
 
-        playerRb.velocity = moveDirection;
+        if(!roll) playerRb.velocity = moveDirection;
     }
 
     private void Rotation()
@@ -210,5 +217,63 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    #region// 구르기
+
+    // 구르는 중?
+    private bool roll;
+    private bool rollCoolTIme = true; // 쿨타임
+
+    // 입력 시간 재기
+    private float firstClick;
+    private bool firstClick_Bool = true;       
+
+    // 구르기
+    private IEnumerator Roll()
+    {
+        roll = true;
+        rollCoolTIme = false;
+
+        playerAnimator.SetTrigger("roll");
+
+        playerRb.velocity = transform.forward * 4.5f;
+
+        yield return new WaitForSeconds(2.2f);
+
+        roll = false;
+
+        firstClick = 0;
+        firstClick_Bool = true;
+        StopCoroutine(AddTime());
+
+        yield return new WaitForSeconds(5f);
+
+        rollCoolTIme = true;
+    }
+
+    // 시간 더하기
+    private IEnumerator AddTime()
+    {
+        if (firstClick_Bool)
+        {
+            firstClick_Bool = false;
+            while (firstClick < 1)
+            {
+                firstClick += Time.deltaTime;
+                
+                yield return null;
+            }
+
+            yield break;
+        }
+        else
+        {
+            if(firstClick > 1)
+            {
+                StartCoroutine(Roll());
+            }
+        }
+    }
+
+    #endregion
 
 }

@@ -123,7 +123,7 @@ public class PlayerFire : MonoBehaviour
             }
 
         }
-
+        //Debug.Log(Gamemanager.Instance.ShootingType);
 
         // ÁÂÅ¬¸¯ ½Ã
         if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
@@ -271,7 +271,7 @@ public class PlayerFire : MonoBehaviour
 
         // ÃÑ¾Ë »ý¼º
         bulletObj = objectPooling.OutPut();
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, null);
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos);
 
         // ÃÑ¾Ë µô·¹ÀÌ ¿ë
         shooting = false;
