@@ -66,6 +66,9 @@ public class PlayerFire : MonoBehaviour
 
     // 쏠수 업음
     private bool notShoot;
+
+    // 오왼위아래
+    [SerializeField] Transform[] aims;
     private void Start()
     {
 
@@ -137,14 +140,50 @@ public class PlayerFire : MonoBehaviour
             Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 32, Time.deltaTime * 13);
+
+            aims[0].localPosition = Vector3.Lerp(aims[0].localPosition, new Vector3(20, 0), Time.deltaTime * 10);
+            aims[1].localPosition = Vector3.Lerp(aims[1].localPosition, new Vector3(-20, 0), Time.deltaTime * 10);
+            aims[2].localPosition = Vector3.Lerp(aims[2].localPosition, new Vector3(0, 20), Time.deltaTime * 10);
+            aims[3].localPosition = Vector3.Lerp(aims[3].localPosition, new Vector3(0, -20), Time.deltaTime * 10);
+
             ShoulderAndAim = true;
             //Debug.Log("1");
         }
-        // 달리기 중 이나 토글을 해제 시 원 상태로        
+        // 달릴 때
+        else if (Gamemanager.Instance.ShootingType == ShootingType.Walk)
+        {            
+            Gamemanager.Instance.ShootingType = ShootingType.Walk;
+
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
+
+            aims[0].localPosition = Vector3.Lerp(aims[0].localPosition, new Vector3(80, 0), Time.deltaTime * 5);
+            aims[1].localPosition = Vector3.Lerp(aims[1].localPosition, new Vector3(-80, 0), Time.deltaTime * 5);
+            aims[2].localPosition = Vector3.Lerp(aims[2].localPosition, new Vector3(0, 80), Time.deltaTime * 5);
+            aims[3].localPosition = Vector3.Lerp(aims[3].localPosition, new Vector3(0, -80), Time.deltaTime * 5);
+        }
+        // 뛸 때
+        else if (Gamemanager.Instance.ShootingType == ShootingType.Run)
+        {
+            Gamemanager.Instance.ShootingType = ShootingType.Run;
+
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
+
+            aims[0].localPosition = Vector3.Lerp(aims[0].localPosition, new Vector3(120, 0), Time.deltaTime * 5);
+            aims[1].localPosition = Vector3.Lerp(aims[1].localPosition, new Vector3(-120, 0), Time.deltaTime * 5);
+            aims[2].localPosition = Vector3.Lerp(aims[2].localPosition, new Vector3(0, 120), Time.deltaTime * 5);
+            aims[3].localPosition = Vector3.Lerp(aims[3].localPosition, new Vector3(0, -120), Time.deltaTime * 5);
+        }
+        // 서있을 때
         else
         {
             ShoulderAndAim = false;
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
+
+            aims[0].localPosition = Vector3.Lerp(aims[0].localPosition, new Vector3(30, 0), Time.deltaTime * 5);
+            aims[1].localPosition = Vector3.Lerp(aims[1].localPosition, new Vector3(-30, 0), Time.deltaTime * 5);
+            aims[2].localPosition = Vector3.Lerp(aims[2].localPosition, new Vector3(0, 30), Time.deltaTime * 5);
+            aims[3].localPosition = Vector3.Lerp(aims[3].localPosition, new Vector3(0, -30), Time.deltaTime * 5);
+
             Gamemanager.Instance.ShootingType = ShootingType.Stand;
             //Debug.Log("2");
         }
@@ -199,8 +238,9 @@ public class PlayerFire : MonoBehaviour
         // 1920 X 1080을 각각 나누기 2 하면 960 X 540이 나오는데 이는 화면의 가운데를 나타낸다. 또한 ScreenPointToRay는 스크린을 월드의 Ray로 바꿔주는 함수이다.
         Ray screen_Aim = mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 5));
 
+
         // 레이를 쏘고 맞으면 hit에 값을 넣어줌 사정거리는 150이다.
-        if (Physics.Raycast(screen_Aim, out hit, 150, 1 << 6))
+        if (Physics.Raycast(screen_Aim, out hit, 150, 1 << 6 | 1 << 7))
         {
             // 맞을 시 hit의 정보를 가져옴
             screen_RayPos = hit.point;

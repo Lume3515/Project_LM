@@ -38,7 +38,7 @@ public class PlayerHP : MonoBehaviour
         while (playerHpBar.fillAmount != currHP)
         {          
 
-            playerHpBar.fillAmount = Mathf.Lerp(playerHpBar.fillAmount, currHP / 100f, Time.deltaTime * 10);
+            playerHpBar.fillAmount = Mathf.Lerp(playerHpBar.fillAmount, currHP / 100f, Time.deltaTime * 5);
 
             yield return null;
         }

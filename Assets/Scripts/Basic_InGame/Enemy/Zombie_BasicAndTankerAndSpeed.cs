@@ -200,7 +200,7 @@ public class Zombie_BasicAndTankerAndSpeed : MonoBehaviour
 
         if (!stopAttack)
         {
-            if (damage == 0 && !playerState.HorrorEffect_bool)
+            if (damage == 0 && !playerState.HorrorEffect_bool && !die)
             {
                 //Debug.Log("d");
                 StartCoroutine(playerState.HorrorEffect());

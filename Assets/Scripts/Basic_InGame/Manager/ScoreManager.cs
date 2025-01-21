@@ -75,6 +75,8 @@ public class ScoreManager : MonoBehaviour
 
             //삽입한 게임 정보의 고유값입니다.  
             gameDataRowInDate = bro.GetInDate();
+
+            BackendRankManager.Instance.RankInsert_BestScore(PlayerScore.currBestScore);
         }
         else
         {
@@ -164,7 +166,7 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log("게임 정보 데이터 수정에 성공했습니다. : " + bro);
 
-            BackendRankManager.Instance.RankInsert_BestScore(PlayerScore.currBestScore);
+            BackendRankManager.Instance.RankInsert_BestScore(PlayerScore.bestScore);
         }
         else
         {
