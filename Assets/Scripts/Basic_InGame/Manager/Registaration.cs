@@ -13,6 +13,7 @@ public enum LogInType
     Rank,   
     Null
 
+
 }
 
 public class Registaration
@@ -48,7 +49,7 @@ public class Registaration
         {
             console.text = $"È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. \nID : {id}ï¿½ï¿½";
 
-            Nickname(id, console, LogInType.Etc);
+            Nickname(id, console);
         }
         else
         {
@@ -77,7 +78,7 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
-                // ì•„ë‹ˆë¼ë©´ ë³€ê²½
+
                 Registaration.Instance.Nickname(text, console);
                 Debug.Log(responceOfBackEnd);
             }
@@ -95,13 +96,14 @@ public class Registaration
         }
         else
         {
-            console.text = $"ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. : {responceOfBackEnd}";
-           
+            console.text = $"ë¡œê·¸?¸ì´ ?¤íŒ¨?ˆìŠµ?ˆë‹¤. : {responceOfBackEnd}";
+
+            console.text = $"·Î±×ÀÎÀÌ ½ÇÆĞÇß½À´Ï´Ù. : {responceOfBackEnd}";
 
         }
     }
 
-    public void Nickname(string nickname, TextMeshProUGUI console, LogInType type)
+    public void Nickname(string nickname, TextMeshProUGUI console)
     {
         // Step 4. ï¿½Ğ³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
 
@@ -111,13 +113,23 @@ public class Registaration
 
         if (bro.IsSuccess())
         {
-            console.text = "ë‹‰ë„¤ì„ ë³€ê²½ ì™„ë£Œ!";
-        }        
+            console.text = "?‰ë„¤??ë³€ê²??„ë£Œ!";
+        }
         else
         {
-            console.text = ("ë‹‰ë„¤ì„ ë³€ê²½ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤ : " + bro);
-        }
+            console.text = ("?‰ë„¤??ë³€ê²½ì— ?¤íŒ¨?ˆìŠµ?ˆë‹¤ : " + bro);
+
+            if (bro.IsSuccess() && newName)
+            {
+                console.text = "´Ğ³×ÀÓ º¯°æ ¿Ï·á!";
+            }
+            else
+            {
+                console.text = ("´Ğ³×ÀÓ º¯°æ¿¡ ½ÇÆĞÇß½À´Ï´Ù : " + bro);
+
+            }
 
 
         }
     }
+}

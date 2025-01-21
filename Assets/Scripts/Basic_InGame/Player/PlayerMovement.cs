@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // 입력
     private void Update()
     {
-        if (Gamemanager.Instance.GameOver || PlayerFire.Instance.IsReload)
+        if (Gamemanager.Instance.GameOver)
         {
             playerRb.velocity = Vector3.zero;
             return;
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
 
-        Movement();
+            Movement();
         }
     }
 
@@ -79,13 +79,21 @@ public class PlayerMovement : MonoBehaviour
 
     // 움직임
     private void Movement()
-    {      
+    {
         // 즉각적인 반응 필요
-       
+
+        if ((sitDown && PlayerFire.Instance.IsReload))
+        {
+            moveX = 0;
+            moveZ = 0;
+        }
+        else
+        {
             moveX = Input.GetAxis("Horizontal");
             moveZ = Input.GetAxis("Vertical");
-        
-        
+        }
+
+
 
         // 안 움직일 떄
         if (playerRb.velocity.magnitude == 0 && !sitDown)
@@ -99,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isRun", false);
         }
         // 달리기 구현
-        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown)
+        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown && !PlayerFire.Instance.IsReload)
         {
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", true);
@@ -119,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // 앉기 구현
-        if (Input.GetKeyDown(KeyCode.C) && !sitDown)
+        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !PlayerFire.Instance.IsReload)
         {
             sitDown = true;
 
@@ -131,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
             moveSpeed = 1.5f;
         }
-        else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
+        else if ((Input.GetKeyDown(KeyCode.C) && sitDown && !PlayerFire.Instance.IsReload))
         {
             sitDown = false;
             if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Stand;
