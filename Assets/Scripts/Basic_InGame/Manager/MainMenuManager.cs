@@ -183,7 +183,7 @@ public class MainMenuManager : MonoBehaviour
 
                 for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
                 {
-                    logInAndSignUPAndCheck[i].SetActive(true);
+                    logInAndSignUPAndCheck[i].SetActive(false);
                 }
 
                 rankView.enabled = false;
@@ -193,12 +193,15 @@ public class MainMenuManager : MonoBehaviour
                 signUp = false;
                 isMainMenu = true;
                 createOrLogIn_TMP.text = "랭크 보기";
-                mainUI_LoginAndSignUpAndNewNickName = true;
+                mainUI_LoginAndSignUpAndNewNickName = false;
                 mainUIParent.SetActive(true);
                 logInAndSignUPAndCheck[2].SetActive(false);
-                createOrLogIn_GameObject.SetActive(true);
+                createOrLogIn_GameObject.SetActive(false);
                 pvp.SetActive(false);
-                console_GameObject.SetActive(true);
+                console_GameObject.SetActive(false);
+
+                // 자동 로그인
+                Registaration.Instance.Login("Test1", "1", console, LogInType.Rank, logInAndSignUPAndCheck_InputField[2].text);
                 break;
         }
     }
@@ -306,6 +309,19 @@ public class MainMenuManager : MonoBehaviour
         {
             logInAndSignUPAndCheck_InputField[i].text = string.Empty;
         }
+
+        int childCount = content.childCount;
+
+        // 콘텐트 자식 다 지우기
+        if (createOrLogIn_TMP.text == "랭크 보기")
+        {
+            // 자식 수 만큼 반복
+            while (childCount > 0)
+            {
+                Destroy(content.GetChild(0).gameObject);
+                childCount--;
+            }
+        }
     }
 
     #endregion
@@ -406,19 +422,7 @@ public class MainMenuManager : MonoBehaviour
 
             Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.PVP, logInAndSignUPAndCheck_InputField[2].text);
 
-        }
-        else if (createOrLogIn_TMP.text == "랭크 보기")
-        {
-            // 정규식 검사 > true > 톨과
-            if (!Pattern(logInAndSignUPAndCheck_InputField[1].text))
-            {
-                console.text = "비밀번호에 한글, 공백을 포함하지 마세요.";
-
-                return;
-            }
-
-            Registaration.Instance.Login(logInAndSignUPAndCheck_InputField[0].text, logInAndSignUPAndCheck_InputField[1].text, console, LogInType.Rank, logInAndSignUPAndCheck_InputField[2].text);
-        }
+        }        
     }
 
     // 정규식
@@ -496,17 +500,83 @@ public class MainMenuManager : MonoBehaviour
 
         rankObj.SetActive(true);
         rankView.enabled = true;
-        mainUIParent.SetActive(true);
+        mainUIParent.SetActive(true);       
 
-        for (int i = 0; i < logInAndSignUPAndCheck.Length; i++)
+        BackendRankManager.Instance.RankGet_BestScore(rankTMP, content);
+    }
+
+    public void BestScore_RankBT()
+    {
+        int childCount = content.childCount;
+
+        // 콘텐트 자식 다 지우기
+        if (createOrLogIn_TMP.text == "랭크 보기")
         {
-            logInAndSignUPAndCheck[i].SetActive(false);
+            // 자식 수 만큼 반복
+            while (childCount > 0)
+            {
+                Destroy(content.GetChild(0).gameObject);
+                childCount--;
+            }
         }
 
-        console_GameObject.SetActive(false);
-        pvp.SetActive(false);
-        createOrLogIn_GameObject.SetActive(false);
+        Registaration.Instance.Login("Test1", "1", console, LogInType.Null, logInAndSignUPAndCheck_InputField[2].text);
+        BackendRankManager.Instance.RankGet_BestScore(rankTMP, content);
+    }
 
+    //public void PVPBestKill_RankBT()
+    //{
+    //    int childCount = content.childCount;
+
+    //    // 콘텐트 자식 다 지우기
+    //    if (createOrLogIn_TMP.text == "랭크 보기")
+    //    {
+    //        // 자식 수 만큼 반복
+    //        while (childCount > 0)
+    //        {
+    //            Destroy(content.GetChild(0).gameObject);
+    //            childCount--;
+    //        }
+    //    }
+
+    //    BackendRankManager.Instance.RankGet_BestScore(rankTMP, content);
+    //}
+
+    public void BestStage_RankBT()
+    {
+        int childCount = content.childCount;
+
+        // 콘텐트 자식 다 지우기
+        if (createOrLogIn_TMP.text == "랭크 보기")
+        {
+            // 자식 수 만큼 반복
+            while (childCount > 0)
+            {
+                Destroy(content.GetChild(0).gameObject);
+                childCount--;
+            }
+        }
+
+        Registaration.Instance.Login("Test1", "1", console, LogInType.Null, logInAndSignUPAndCheck_InputField[2].text);
+        BackendRankManager.Instance.RankGet_BestScore(rankTMP, content);
+    }
+
+    public void BossTime_RankBT()
+    {
+        int childCount = content.childCount;
+
+        // 콘텐트 자식 다 지우기
+        if (createOrLogIn_TMP.text == "랭크 보기")
+        {
+            // 자식 수 만큼 반복
+            while (childCount > 0)
+            {
+                Destroy(content.GetChild(0).gameObject);
+                childCount--;
+            }
+        }
+
+        Registaration.Instance.Login("Test1", "1", console, LogInType.Null, logInAndSignUPAndCheck_InputField[2].text);
         BackendRankManager.Instance.RankGet_BestScore(rankTMP, content);
     }
 
