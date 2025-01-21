@@ -37,7 +37,7 @@ public class Registaration
 
     public void SignUp(string id, string pw, TextMeshProUGUI console)
     {
-        // Step 2. ȸ������ �����ϱ� ����        
+       
 
         Debug.Log("ȸ�������� ��û�մϴ�.");
 
@@ -58,7 +58,7 @@ public class Registaration
 
     public void Login(string id, string pw, TextMeshProUGUI console, LogInType type, string text)
     {
-        // Step 3. �α��� �����ϱ� ����
+      
         Debug.Log("�α����� ��û�մϴ�.");
 
         var responceOfBackEnd = Backend.BMember.CustomLogin(id, pw);

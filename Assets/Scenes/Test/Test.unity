@@ -4925,8 +4925,8 @@ MonoBehaviour:
     \uB20C\uB7EC \uC2A4\uD0B5 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uB2E4\uC74C
     \uC2A4\uD14C\uC774\uC9C0 : 00"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 542c92fc803c8744d8e238912208f72b, type: 2}
-  m_sharedMaterial: {fileID: 4716208525731659435, guid: 542c92fc803c8744d8e238912208f72b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2759106c9dd425d4d966fd2f4523801a, type: 2}
+  m_sharedMaterial: {fileID: -8351536682092407547, guid: 2759106c9dd425d4d966fd2f4523801a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5849,6 +5849,8 @@ MonoBehaviour:
   animator: {fileID: 147276454}
   objectPooling: {fileID: 1629918251}
   firePos: {fileID: 509824531}
+  bulletUI_ObjectPooling: {fileID: 0}
+  ammoNumberParentTr: {fileID: 0}
 --- !u!195 &147276450
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -29324,6 +29326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5c1d52db213dd40869d1a53da1d772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1084899805
 Transform:
   m_ObjectHideFlags: 0
@@ -53591,7 +53594,9 @@ MonoBehaviour:
   spawnPos:
   - {fileID: 0}
   - {fileID: 0}
-  objectPooling_zombie: {fileID: 1842081710}
+  objectPooling_Zombie_Basic: {fileID: 0}
+  objectPooling_Zombie_Tanker: {fileID: 0}
+  objectPooling_Zombie_Speed: {fileID: 0}
 --- !u!114 &2145746317
 MonoBehaviour:
   m_ObjectHideFlags: 0
