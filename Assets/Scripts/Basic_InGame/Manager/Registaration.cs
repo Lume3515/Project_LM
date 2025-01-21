@@ -10,14 +10,14 @@ public enum LogInType
     logIn,
     newName,
     PVP,
-    Rank,   
-    Null
-
+    Rank
 }
 
 public class Registaration
 {
-    private static Registaration instance = null; 
+    private static Registaration instance = null;
+
+    private bool newName;
 
     public static Registaration Instance
     {
@@ -75,6 +75,7 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
+                newName = true;
                 // 아니라면 변경
                 Registaration.Instance.Nickname(text, console);
                 Debug.Log(responceOfBackEnd);
@@ -86,12 +87,15 @@ public class Registaration
             else if (type == LogInType.Rank)
             {
                 MainMenuManager.Instance.RankSetting();
-            }         
+            }
+
+
+
         }
         else
         {
             console.text = $"로그인이 실패했습니다. : {responceOfBackEnd}";
-           
+            newName = false;
 
         }
     }
@@ -104,10 +108,14 @@ public class Registaration
 
         var bro = Backend.BMember.UpdateNickname(nickname);
 
-        if (bro.IsSuccess())
+        if (bro.IsSuccess() && newName)
         {
             console.text = "닉네임 변경 완료!";
-        }        
+        }
+        else if (!newName)
+        {
+            console.text = ("아이디나 비번이 틀렸습니다.");
+        }
         else
         {
             console.text = ("닉네임 변경에 실패했습니다 : " + bro);
