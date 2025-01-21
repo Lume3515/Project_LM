@@ -10,9 +10,8 @@ public enum LogInType
     logIn,
     newName,
     PVP,
-    Rank,   
-    Null
-
+    Rank,
+    Etc
 }
 
 public class Registaration
@@ -77,8 +76,10 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
-                // ì•„ë‹ˆë¼ë©´ ë³€ê²½
-                Registaration.Instance.Nickname(text, console);
+
+
+
+                Registaration.Instance.Nickname(text, console, LogInType.newName);
                 Debug.Log(responceOfBackEnd);
             }
             else if (type == LogInType.PVP)
@@ -95,8 +96,12 @@ public class Registaration
         }
         else
         {
-            console.text = $"ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. : {responceOfBackEnd}";
-           
+
+            console.text = $"ë¡œê·¸?¸ì´ ?¤íŒ¨?ˆìŠµ?ˆë‹¤. : {responceOfBackEnd}";
+
+
+            console.text = $"·Î±×ÀÎÀÌ ½ÇÆĞÇß½À´Ï´Ù. : {responceOfBackEnd}";
+
 
         }
     }
@@ -111,13 +116,16 @@ public class Registaration
 
         if (bro.IsSuccess())
         {
-            console.text = "ë‹‰ë„¤ì„ ë³€ê²½ ì™„ë£Œ!";
-        }        
+
+            console.text = "?‰ë„¤??ë³€ê²??„ë£Œ!";
+        }
         else
         {
-            console.text = ("ë‹‰ë„¤ì„ ë³€ê²½ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤ : " + bro);
-        }
 
-
+            console.text = "´Ğ³×ÀÓ º¯°æ ¿Ï·á!";
         }
+       
     }
+}
+
+
