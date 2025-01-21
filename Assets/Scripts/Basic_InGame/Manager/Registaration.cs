@@ -10,14 +10,14 @@ public enum LogInType
     logIn,
     newName,
     PVP,
-    Rank
+    Rank,
+    Etc
+
 }
 
 public class Registaration
 {
     private static Registaration instance = null;
-
-    private bool newName;
 
     public static Registaration Instance
     {
@@ -46,7 +46,7 @@ public class Registaration
         {
             console.text = $"회원가입에 성공했습니다. \nID : {id}님";
 
-            Nickname(id, console);
+            Nickname(id, console, LogInType.Etc);
         }
         else
         {
@@ -75,9 +75,9 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
-                newName = true;
+
                 // 아니라면 변경
-                Registaration.Instance.Nickname(text, console);
+                Registaration.Instance.Nickname(text, console, LogInType.newName);
                 Debug.Log(responceOfBackEnd);
             }
             else if (type == LogInType.PVP)
@@ -95,12 +95,12 @@ public class Registaration
         else
         {
             console.text = $"로그인이 실패했습니다. : {responceOfBackEnd}";
-            newName = false;
+
 
         }
     }
 
-    public void Nickname(string nickname, TextMeshProUGUI console)
+    public void Nickname(string nickname, TextMeshProUGUI console, LogInType type)
     {
         // Step 4. 닉네임 변경 구현하기 로직
 
@@ -108,17 +108,27 @@ public class Registaration
 
         var bro = Backend.BMember.UpdateNickname(nickname);
 
-        if (bro.IsSuccess() && newName)
+        if (type == LogInType.newName)
         {
-            console.text = "닉네임 변경 완료!";
-        }
-        else if (!newName)
-        {
-            console.text = ("아이디나 비번이 틀렸습니다.");
+            if (bro.IsSuccess())
+            {
+                console.text = "닉네임 변경 완료!";
+            }
+            else
+            {
+                console.text = ("닉네임 변경에 실패했습니다 : " + bro);
+            }
         }
         else
         {
-            console.text = ("닉네임 변경에 실패했습니다 : " + bro);
+            if (bro.IsSuccess())
+            {
+                Debug.Log("닉네임 변경 완료!");
+            }
+            else
+            {
+                Debug.Log("닉네임 변경에 실패했습니다 : " + bro);
+            }
         }
 
 
