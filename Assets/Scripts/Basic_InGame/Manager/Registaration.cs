@@ -10,14 +10,16 @@ public enum LogInType
     logIn,
     newName,
     PVP,
-    Rank,
-
+    Rank,   
+    Null
 
 }
 
 public class Registaration
 {
     private static Registaration instance = null;
+
+    private bool newName;
 
     public static Registaration Instance
     {
@@ -75,9 +77,8 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
-
-                // �ƴ϶�� ����
-                Registaration.Instance.Nickname(text, console, LogInType.newName);
+                // 아니라면 변경
+                Registaration.Instance.Nickname(text, console);
                 Debug.Log(responceOfBackEnd);
             }
             else if (type == LogInType.PVP)
@@ -94,8 +95,8 @@ public class Registaration
         }
         else
         {
-            console.text = $"�α����� �����߽��ϴ�. : {responceOfBackEnd}";
-
+            console.text = $"로그인이 실패했습니다. : {responceOfBackEnd}";
+           
 
         }
     }
@@ -108,33 +109,14 @@ public class Registaration
 
         var bro = Backend.BMember.UpdateNickname(nickname);
 
-
-        if (type == LogInType.newName)
+        if (bro.IsSuccess())
         {
-            if (bro.IsSuccess())
-            {
-                console.text = "�г��� ���� �Ϸ�!";
-            }
-            else
-            {
-                console.text = ("�г��� ���濡 �����߽��ϴ� : " + bro);
-            }
-
-            if (bro.IsSuccess())
-            {
-                console.text = "�г��� ���� �Ϸ�!";
-            }
-            else
-            {
-                if (bro.IsSuccess())
-                {
-                    Debug.Log("�г��� ���� �Ϸ�!");
-                }
-                else
-                {
-                    Debug.Log("�г��� ���濡 �����߽��ϴ� : " + bro);
-                }
-            }
+            console.text = "닉네임 변경 완료!";
+        }        
+        else
+        {
+            console.text = ("닉네임 변경에 실패했습니다 : " + bro);
+        }
 
 
         }
