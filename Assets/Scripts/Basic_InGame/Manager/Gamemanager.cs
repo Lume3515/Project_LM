@@ -83,7 +83,6 @@ public class Gamemanager : MonoBehaviour
         if (currNumber.Count <= 0 && !firstColl)
         {           
             currstage++;
-            PlayerScore.currBestStage++;
             firstColl = true;
 
             isSpawn = false;

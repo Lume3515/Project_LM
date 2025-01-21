@@ -13,8 +13,6 @@ public static class PlayerScore
     public static int armShot; // 팔 샷
     public static int legShot; // 다리 샷
     public static int bestScore; // 최고점수  
-    public static int bestStage; // 최고 스테이지
-    public static int bestBossTime; // 보스처치 시간
 
     // 현재 점수
     public static int currHeadShot; // 머리 샷
@@ -25,8 +23,7 @@ public static class PlayerScore
     public static int basicZombie;// 일반좀비
     public static int tankerZombie;// 탱커좀비
     public static int speedZombie; // 속도 좀비   
-    public static int currBestStage; // 현재 스테이지
-    public static int currBestBossTime; // 보스처치 시간
+
 }
 
 public class ScoreManager : MonoBehaviour
@@ -51,6 +48,9 @@ public class ScoreManager : MonoBehaviour
 
         //Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
 
+        PlayerScore.currBestScore = (PlayerScore.currHeadShot * 10) + (PlayerScore.currBodyShot * 6) +
+            (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 20) + (PlayerScore.tankerZombie * 10);
+
         Param param = new Param();
 
         // 클 때만 값 변경
@@ -64,8 +64,6 @@ public class ScoreManager : MonoBehaviour
         param.Add("legShot", PlayerScore.currLegShot);
         /*if (PlayerScore.currBestScore > PlayerScore.bestScore)*/
         param.Add("bestScore", PlayerScore.currBestScore);
-        param.Add("bestStage", PlayerScore.currBestStage);
-        param.Add("bestBossTime", PlayerScore.currBestBossTime);
 
         //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
         var bro = Backend.GameData.Insert("UserData_Kill", param);           
@@ -116,8 +114,6 @@ public class ScoreManager : MonoBehaviour
                 PlayerScore.armShot = int.Parse(gameDataJson[0]["armShot"].ToString());
                 PlayerScore.legShot = int.Parse(gameDataJson[0]["legShot"].ToString());
                 PlayerScore.bestScore = int.Parse(gameDataJson[0]["bestScore"].ToString());
-                PlayerScore.bestStage = int.Parse(gameDataJson[0]["bestStage"].ToString());
-                PlayerScore.bestBossTime = int.Parse(gameDataJson[0]["bestBossTime"].ToString());
 
                 Debug.Log("데이터의 갯수가 있습니다");
 
@@ -140,7 +136,7 @@ public class ScoreManager : MonoBehaviour
         //}
 
         PlayerScore.currBestScore = (PlayerScore.currHeadShot * 10) + (PlayerScore.currBodyShot * 6) +
-             (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 7) + (PlayerScore.tankerZombie * 20);
+             (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 20) + (PlayerScore.tankerZombie * 10);
 
         Param param = new Param();
         if (PlayerScore.currHeadShot > PlayerScore.headShot) param.Add("headShot", PlayerScore.currHeadShot);
@@ -148,9 +144,6 @@ public class ScoreManager : MonoBehaviour
         if (PlayerScore.currArmShot > PlayerScore.armShot) param.Add("armShot", PlayerScore.currArmShot);
         if (PlayerScore.currLegShot > PlayerScore.legShot) param.Add("legShot", PlayerScore.currLegShot);
         if (PlayerScore.currBestScore > PlayerScore.bestScore) param.Add("bestScore", PlayerScore.currBestScore);
-        if (PlayerScore.currBestStage > PlayerScore.bestStage) param.Add("armShot", PlayerScore.currBestStage);
-        if (PlayerScore.currBestBossTime > PlayerScore.bestBossTime) param.Add("legShot", PlayerScore.currBestBossTime);
-      
 
         BackendReturnObject bro = null;
 

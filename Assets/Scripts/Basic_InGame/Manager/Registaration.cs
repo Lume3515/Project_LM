@@ -10,15 +10,13 @@ public enum LogInType
     logIn,
     newName,
     PVP,
-    Rank,   
-    Null
-
-
+    Rank,
+    Etc
 }
 
 public class Registaration
 {
-    private static Registaration instance = null; 
+    private static Registaration instance = null;
 
     public static Registaration Instance
     {
@@ -37,29 +35,25 @@ public class Registaration
 
     public void SignUp(string id, string pw, TextMeshProUGUI console)
     {
-       
 
-        Debug.Log("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Õ´Ï´ï¿½.");
 
         var responceOfBackEnd = Backend.BMember.CustomSignUp(id, pw);
 
         if (responceOfBackEnd.IsSuccess())
         {
-            console.text = $"È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. \nID : {id}ï¿½ï¿½";
+            console.text = $"È¸¿ø°¡ÀÔ¿¡ ¼º°øÇÏ¿´½À´Ï´Ù. È¯¿µÇÕ´Ï´Ù. \nID : {id}´Ô";
 
-            Nickname(id, console);
+            Nickname(id, console, LogInType.Etc);
         }
         else
         {
-            console.text = $"È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : {responceOfBackEnd}";
+            console.text = $"È¸¿ø°¡ÀÔ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.. : {responceOfBackEnd}";
 
         }
     }
 
     public void Login(string id, string pw, TextMeshProUGUI console, LogInType type, string text)
     {
-      
-        Debug.Log("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Õ´Ï´ï¿½.");
 
         var responceOfBackEnd = Backend.BMember.CustomLogin(id, pw);
         //Debug.Log(responceOfBackEnd);
@@ -76,8 +70,7 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
-                Registaration.Instance.Nickname(text, console);
-                Debug.Log(responceOfBackEnd);
+                Registaration.Instance.Nickname(text, console, LogInType.newName);
             }
             else if (type == LogInType.PVP)
             {
@@ -86,48 +79,33 @@ public class Registaration
             else if (type == LogInType.Rank)
             {
                 MainMenuManager.Instance.RankSetting();
-            }         
+            }
+
+
+
         }
         else
         {
-            console.text = $"ë¡œê·¸?¸ì´ ?¤íŒ¨?ˆìŠµ?ˆë‹¤. : {responceOfBackEnd}";
-
             console.text = $"·Î±×ÀÎÀÌ ½ÇÆĞÇß½À´Ï´Ù. : {responceOfBackEnd}";
-
         }
     }
 
-    public void Nickname(string nickname, TextMeshProUGUI console)
+    public void Nickname(string nickname, TextMeshProUGUI console, LogInType type)
     {
-        // Step 4. ï¿½Ğ³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
-
-        Debug.Log("ï¿½Ğ³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Õ´Ï´ï¿½.");
 
         var bro = Backend.BMember.UpdateNickname(nickname);
-
-        if (bro.IsSuccess())
+        if (type == LogInType.newName)
         {
-
-            console.text = "?‰ë„¤??ë³€ê²??„ë£Œ!";
-
-            console.text = "´Ğ³×ÀÓ º¯°æ ¿Ï·á!";
-        }        
-
-        else
-        {
-            console.text = ("?‰ë„¤??ë³€ê²½ì— ?¤íŒ¨?ˆìŠµ?ˆë‹¤ : " + bro);
-
             if (bro.IsSuccess())
             {
                 console.text = "´Ğ³×ÀÓ º¯°æ ¿Ï·á!";
+
             }
             else
             {
                 console.text = ("´Ğ³×ÀÓ º¯°æ¿¡ ½ÇÆĞÇß½À´Ï´Ù : " + bro);
 
             }
-
-
         }
     }
 }
