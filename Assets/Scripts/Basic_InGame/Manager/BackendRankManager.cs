@@ -22,6 +22,7 @@ public class BackendRankManager : MonoBehaviour
         }
     }
 
+    #region// 최고점수
     public void RankInsert_BestScore(int score)
     {      
         string rankUUID = "01948280-2e63-734b-be70-7d2a827362cb";
@@ -111,4 +112,5 @@ public class BackendRankManager : MonoBehaviour
             //Debug.Log(info);
         }
     }
+    #endregion
 }

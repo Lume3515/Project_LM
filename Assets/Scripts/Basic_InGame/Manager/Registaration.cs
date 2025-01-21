@@ -18,9 +18,7 @@ public enum LogInType
 
 public class Registaration
 {
-    private static Registaration instance = null;
-
-    private bool newName;
+    private static Registaration instance = null; 
 
     public static Registaration Instance
     {
@@ -78,7 +76,6 @@ public class Registaration
             }
             else if (type == LogInType.newName)
             {
-
                 Registaration.Instance.Nickname(text, console);
                 Debug.Log(responceOfBackEnd);
             }
@@ -89,10 +86,7 @@ public class Registaration
             else if (type == LogInType.Rank)
             {
                 MainMenuManager.Instance.RankSetting();
-            }
-
-
-
+            }         
         }
         else
         {
@@ -113,13 +107,17 @@ public class Registaration
 
         if (bro.IsSuccess())
         {
+
             console.text = "?âÎÑ§??Î≥ÄÍ≤??ÑÎ£å!";
-        }
+
+            console.text = "¥–≥◊¿” ∫Ø∞Ê øœ∑·!";
+        }        
+
         else
         {
             console.text = ("?âÎÑ§??Î≥ÄÍ≤ΩÏóê ?§Ìå®?àÏäµ?àÎã§ : " + bro);
 
-            if (bro.IsSuccess() && newName)
+            if (bro.IsSuccess())
             {
                 console.text = "¥–≥◊¿” ∫Ø∞Ê øœ∑·!";
             }
