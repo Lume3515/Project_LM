@@ -11,7 +11,7 @@ public enum LogInType
     newName,
     PVP,
     Rank,
-    Etc
+
 
 }
 
@@ -36,29 +36,29 @@ public class Registaration
 
     public void SignUp(string id, string pw, TextMeshProUGUI console)
     {
-        // Step 2. È¸¿ø°¡ÀÔ ±¸ÇöÇÏ±â ·ÎÁ÷        
+        // Step 2. È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½        
 
-        Debug.Log("È¸¿ø°¡ÀÔÀ» ¿äÃ»ÇÕ´Ï´Ù.");
+        Debug.Log("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Õ´Ï´ï¿½.");
 
         var responceOfBackEnd = Backend.BMember.CustomSignUp(id, pw);
 
         if (responceOfBackEnd.IsSuccess())
         {
-            console.text = $"È¸¿ø°¡ÀÔ¿¡ ¼º°øÇß½À´Ï´Ù. \nID : {id}´Ô";
+            console.text = $"È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. \nID : {id}ï¿½ï¿½";
 
             Nickname(id, console, LogInType.Etc);
         }
         else
         {
-            console.text = $"È¸¿ø°¡ÀÔ¿¡ ½ÇÆÐÇß½À´Ï´Ù. : {responceOfBackEnd}";
+            console.text = $"È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : {responceOfBackEnd}";
 
         }
     }
 
     public void Login(string id, string pw, TextMeshProUGUI console, LogInType type, string text)
     {
-        // Step 3. ·Î±×ÀÎ ±¸ÇöÇÏ±â ·ÎÁ÷
-        Debug.Log("·Î±×ÀÎÀ» ¿äÃ»ÇÕ´Ï´Ù.");
+        // Step 3. ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Debug.Log("ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Õ´Ï´ï¿½.");
 
         var responceOfBackEnd = Backend.BMember.CustomLogin(id, pw);
         //Debug.Log(responceOfBackEnd);
@@ -76,7 +76,7 @@ public class Registaration
             else if (type == LogInType.newName)
             {
 
-                // ¾Æ´Ï¶ó¸é º¯°æ
+                // ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 Registaration.Instance.Nickname(text, console, LogInType.newName);
                 Debug.Log(responceOfBackEnd);
             }
@@ -94,7 +94,7 @@ public class Registaration
         }
         else
         {
-            console.text = $"·Î±×ÀÎÀÌ ½ÇÆÐÇß½À´Ï´Ù. : {responceOfBackEnd}";
+            console.text = $"ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½. : {responceOfBackEnd}";
 
 
         }
@@ -102,35 +102,40 @@ public class Registaration
 
     public void Nickname(string nickname, TextMeshProUGUI console, LogInType type)
     {
-        // Step 4. ´Ð³×ÀÓ º¯°æ ±¸ÇöÇÏ±â ·ÎÁ÷
+        // Step 4. ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        Debug.Log("´Ð³×ÀÓ º¯°æÀ» ¿äÃ»ÇÕ´Ï´Ù.");
+        Debug.Log("ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Õ´Ï´ï¿½.");
 
         var bro = Backend.BMember.UpdateNickname(nickname);
+
 
         if (type == LogInType.newName)
         {
             if (bro.IsSuccess())
             {
-                console.text = "´Ð³×ÀÓ º¯°æ ¿Ï·á!";
+                console.text = "ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!";
             }
             else
             {
-                console.text = ("´Ð³×ÀÓ º¯°æ¿¡ ½ÇÆÐÇß½À´Ï´Ù : " + bro);
+                console.text = ("ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½æ¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + bro);
             }
-        }
-        else
-        {
+
             if (bro.IsSuccess())
             {
-                Debug.Log("´Ð³×ÀÓ º¯°æ ¿Ï·á!");
+                console.text = "ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!";
             }
             else
             {
-                Debug.Log("´Ð³×ÀÓ º¯°æ¿¡ ½ÇÆÐÇß½À´Ï´Ù : " + bro);
+                if (bro.IsSuccess())
+                {
+                    Debug.Log("ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!");
+                }
+                else
+                {
+                    Debug.Log("ï¿½Ð³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½æ¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½ : " + bro);
+                }
             }
+
+
         }
-
-
     }
-}
