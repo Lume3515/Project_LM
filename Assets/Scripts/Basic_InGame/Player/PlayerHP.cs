@@ -25,6 +25,14 @@ public class PlayerHP : MonoBehaviour
         currHP = maxHP;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Die();
+        }
+    }
+
     // 체력 감소
     public IEnumerator MinousHP(int damage)
     {

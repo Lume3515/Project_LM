@@ -23,7 +23,7 @@ public static class PlayerScore
     public static int basicZombie;// 일반좀비
     public static int tankerZombie;// 탱커좀비
     public static int speedZombie; // 속도 좀비   
-
+    public static int enemyGun; // 총쏘는 적
 }
 
 public class ScoreManager : MonoBehaviour
