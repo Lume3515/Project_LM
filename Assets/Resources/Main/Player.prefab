@@ -1513,6 +1513,11 @@ MonoBehaviour:
   firePos: {fileID: 8202726443535879559}
   bulletUI_ObjectPooling: {fileID: 0}
   ammoNumberParentTr: {fileID: 0}
+  aims:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2091172175
 MonoBehaviour:
   m_ObjectHideFlags: 0

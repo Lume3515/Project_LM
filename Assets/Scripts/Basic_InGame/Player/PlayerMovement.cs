@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             Movement();
         }
 
-        if (!roll && Input.GetKeyDown(KeyCode.Space) && rollCoolTIme)
+        if (!roll && Input.GetKeyDown(KeyCode.Space) && rollCoolTIme && !PlayerFire.Instance.IsReload && PlayerFire.Instance.Shooting_Bool)
         {
            if(firstClick_Bool) firstClick_Bool = true;
             StartCoroutine(AddTime());
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetBool("isRun", false);
         }
         // 달리기 구현
-        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown && !PlayerFire.Instance.IsReload && Gamemanager.Instance.ShootingType != ShootingType.Shoulder)
+        else if (Input.GetKey(KeyCode.LeftShift) && !sitDown && !PlayerFire.Instance.IsReload && Gamemanager.Instance.ShootingType != ShootingType.Shoulder && !roll)
         {
             playerAnimator.SetBool("isWalk", false);
             playerAnimator.SetBool("isRun", true);
@@ -242,8 +242,7 @@ public class PlayerMovement : MonoBehaviour
         rollCoolTIme = false;
 
         playerAnimator.SetTrigger("roll");
-
-        playerRb.velocity = Vector3.zero;
+        transform.rotation = cameraTr.rotation;
         playerRb.velocity = transform.forward * 4.5f;
 
         yield return new WaitForSeconds(2.2f);

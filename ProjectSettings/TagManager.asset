@@ -25,6 +25,7 @@ TagManager:
   - SpawnPos
   - firePos
   - ObjectPooling Bullet
+  - PlayerHP(World Space Canvas)
   layers:
   - Default
   - TransparentFX

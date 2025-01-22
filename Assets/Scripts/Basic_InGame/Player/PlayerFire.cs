@@ -12,7 +12,7 @@ public class PlayerFire : MonoBehaviour
 
     // true : 가능
     private bool shooting = true;
-
+    public bool Shooting_Bool => shooting;
     // 발사 딜레이
     private WaitForSeconds shootingDelay;
 

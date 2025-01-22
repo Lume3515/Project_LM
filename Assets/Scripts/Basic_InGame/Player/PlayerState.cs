@@ -36,22 +36,28 @@ public class PlayerState : MonoBehaviour
 
             yield return null;
         }
-
         //Debug.Log("@");
 
         // 2초 기다리기
         yield return new WaitForSeconds(2f);
 
-        //Debug.Log("#");
+        StartCoroutine(Check());
+        //Debug.Log("#");       
 
+        yield break;
+    }
+
+    // 위에다 하니까 호출중 죽으면 버그 생김;;
+    private IEnumerator Check()
+    {
         while (alpha > 0)
-        {        
+        {
 
             alpha -= Time.deltaTime;
             alpha = Mathf.Clamp(alpha, 0, 0.7f); // 알파값 제한
             color.a = alpha;
             horrorEffect_Image.color = color;
-         
+
             yield return null;
         }
 

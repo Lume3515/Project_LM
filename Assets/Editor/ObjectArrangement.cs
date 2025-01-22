@@ -39,6 +39,7 @@ public class ObjectArrangement : MonoBehaviour
             mainObj.Add(GameObject.FindWithTag("Camera parent"));
             mainObj.Add(GameObject.FindWithTag("Directional Light"));
             mainObj.Add(GameObject.FindWithTag("SpawnPos"));
+            mainObj.Add(GameObject.FindWithTag("PlayerHP(World Space Canvas)"));
 
             // °ª ³Ö±â
             foreach (GameObject item in obj)
@@ -125,7 +126,7 @@ public class ObjectArrangement : MonoBehaviour
                 Vector3 resoucePos = new Vector3(float.Parse(datas[2]), float.Parse(datas[3]), float.Parse(datas[4]));
                 Vector3 resouceScale = new Vector3(float.Parse(datas[8]), float.Parse(datas[9]), float.Parse(datas[10]));
                 Vector3 resouceRot = new Vector3(float.Parse(datas[5]), float.Parse(datas[6]), float.Parse(datas[7]));
-
+               
                 GameObject obj = GameObject.Instantiate(Resources.Load<GameObject>("Main/" + resourceName));
 
                 obj.name = $"{resourceName}";

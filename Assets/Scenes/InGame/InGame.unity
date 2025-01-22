@@ -6152,7 +6152,7 @@ GameObject:
   - component: {fileID: 1441960866}
   m_Layer: 5
   m_Name: PlayerHP(World Space Canvas)
-  m_TagString: Untagged
+  m_TagString: PlayerHP(World Space Canvas)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10298,10 +10298,6 @@ PrefabInstance:
       propertyPath: objectPooling
       value: 
       objectReference: {fileID: 1817458349}
-    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: aims.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: aims.Array.data[0]
       value: 
