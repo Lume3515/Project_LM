@@ -51,6 +51,14 @@ public class PlayerMovement : MonoBehaviour
            if(firstClick_Bool) firstClick_Bool = true;
             StartCoroutine(AddTime());
         }
+        if (!firstClick_Bool)
+        {
+            if(firstClick >= 1)
+            {
+                firstClick = 0;
+                firstClick_Bool = true;
+            }
+        }
 
     }
 
@@ -235,6 +243,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerAnimator.SetTrigger("roll");
 
+        playerRb.velocity = Vector3.zero;
         playerRb.velocity = transform.forward * 4.5f;
 
         yield return new WaitForSeconds(2.2f);
@@ -267,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if(firstClick > 1)
+            if(firstClick < 1)
             {
                 StartCoroutine(Roll());
             }

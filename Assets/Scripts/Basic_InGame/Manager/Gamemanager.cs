@@ -18,8 +18,7 @@ public enum ShootingType
     Run, // ∂Ÿ±‚
     Walk, // ∞»±‚
     Sit, // æ…±‚
-    Stand, // º≠¿÷±‚
-    Obscuration, // æˆ∆Û
+    Stand, // º≠¿÷±‚ 
     SitWalk    // æ…æ∆º≠ ∞»±‚
 }
 

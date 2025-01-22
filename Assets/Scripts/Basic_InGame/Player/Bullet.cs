@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
         switch (shootingType)
         {          
             case ShootingType.Shoulder:
-                carbonSpread = new Vector3(Random.Range(-0.006f, 0.006f), Random.Range(-0.006f, 0.006f), Random.Range(-0.006f, 0.006f));
+                carbonSpread = new Vector3(0, 0, 0);
                 break;
 
             case ShootingType.Run:
@@ -82,18 +82,16 @@ public class Bullet : MonoBehaviour
                 break;
 
             case ShootingType.Sit:
-                carbonSpread = new Vector3(Random.Range(-0.04f, 0.04f), Random.Range(-0.04f, 0.04f), Random.Range(-0.04f, 0.04f));
+                carbonSpread = new Vector3(Random.Range(-0.005f, 0.005f), Random.Range(-0.005f, 0.005f), Random.Range(-0.05f, 0.05f));
                 break;
 
             case ShootingType.SitWalk:
-                carbonSpread = new Vector3(Random.Range(-0.05f, 0.5f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f));
+                carbonSpread = new Vector3(Random.Range(-0.008f, 0.008f), Random.Range(-0.008f, 0.008f), Random.Range(-0.008f, 0.008f));
                 break;
 
             default: // 서있기 및 엄폐
-                carbonSpread = new Vector3(Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f), Random.Range(-0.02f, 0.02f));
+                carbonSpread = new Vector3(Random.Range(-0.002f, 0.002f), Random.Range(-0.002f, 0.002f), Random.Range(-0.002f, 0.002f));
                 break;
-
-
         }
 
 
