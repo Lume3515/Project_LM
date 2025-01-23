@@ -102,15 +102,7 @@ public class Enemy_Gun : MonoBehaviour
     // 이동위치 찾기
     private IEnumerator FindPos()
     {
-        yield return null;
-
-        for(int i = 0; i < obscurations.Length; i++)
-        {
-            if(Vector3.Distance(transform.position, obscurations[i].position) > )
-            {
-
-            }
-        }
+        yield return null;     
 
     }
 }

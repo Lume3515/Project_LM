@@ -98,43 +98,45 @@ public class LoadingManager : MonoBehaviour
         {
             if (loading == Loading.InGame)
             {
-                // 90%도 안 됐을 떄
-                if (op.progress < 0.9f)
+                // 70%도 안 됐을 떄
+                if (op.progress < 0.7f)
                 {
                     console.text = $"{op.progress.ToString()}%";
+
                 }
-                // 90%까지 완료 됐을 때
+                // 70%까지 완료 됐을 때
                 else
                 {
 
-                    timer += Time.unscaledDeltaTime;
-                    progress = Mathf.Lerp(0.9f, 1, timer);
+                    timer += Random.Range(0.001f, 0.006f);
+                    progress = Mathf.Lerp(0.7f, 1f, timer);
+                    console.text = $"[{progress * 100:00.00}]%";
 
-                    console.text = $"{progress:##}%";
-
-                    if (progress >= 1)
+                    if (progress >= 1f)
                     {
                         nextScene = true;
                         yield break;
                     }
+
                 }
-              
+                yield return new WaitForSeconds(0.035f);
+
             }
-            else if(loading == Loading.MultiPlay)
+            else if (loading == Loading.MultiPlay)
             {
-                // 90%도 안 됐을 떄
-                if (PhotonNetwork.LevelLoadingProgress < 0.9f)
+                // 70%도 안 됐을 떄
+                if (PhotonNetwork.LevelLoadingProgress < 0.7f)
                 {
                     console.text = $"{PhotonNetwork.LevelLoadingProgress.ToString()}%";
+
                 }
-                // 90%까지 완료 됐을 때
+                // 70%까지 완료 됐을 때
                 else
                 {
 
-                    timer += Time.unscaledDeltaTime;
-                    progress = Mathf.Lerp(0.9f, 1, timer);
-
-                    console.text = $"{progress:##}%";
+                    timer += Random.Range(0.001f, 0.006f);
+                    progress = Mathf.Lerp(0.7f, 1f, timer);
+                    console.text = $"[{progress * 100:00.00}]%";
 
                     if (progress >= 1)
                     {
@@ -143,7 +145,7 @@ public class LoadingManager : MonoBehaviour
                     }
                 }
 
-                yield return null;
+                yield return new WaitForSeconds(0.035f);
             }
         }
     }
