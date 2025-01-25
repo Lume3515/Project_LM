@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4045051617603108824
+--- !u!1 &8161591961841524629
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4045051617603108830}
-  - component: {fileID: 4045051617603108825}
-  - component: {fileID: 4045051617603108828}
-  - component: {fileID: 4045051617603108831}
+  - component: {fileID: 8161591961841524627}
+  - component: {fileID: 8161591961841524625}
+  - component: {fileID: 8161591961841524626}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -19,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4045051617603108830
+--- !u!4 &8161591961841524627
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4045051617603108824}
+  m_GameObject: {fileID: 8161591961841524629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,26 +33,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4045051617603108825
+--- !u!114 &8161591961841524625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4045051617603108824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa057890e53522498524fcf24efbd20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4045051617603108828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4045051617603108824}
-  m_Enabled: 1
+  m_GameObject: {fileID: 8161591961841524629}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c82fe47b1ac7d6d4e9cf550513611740, type: 3}
   m_Name: 
@@ -61,15 +48,21 @@ MonoBehaviour:
   spawnPos:
   - {fileID: 0}
   - {fileID: 0}
-  objectPooling_zombie: {fileID: 0}
---- !u!114 &4045051617603108831
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objectPooling_Zombie_Basic: {fileID: 0}
+  objectPooling_Zombie_Tanker: {fileID: 0}
+  objectPooling_Zombie_Speed: {fileID: 0}
+--- !u!114 &8161591961841524626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4045051617603108824}
-  m_Enabled: 1
+  m_GameObject: {fileID: 8161591961841524629}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106ef0e8aadcfef458e6e69a2c24791b, type: 3}
   m_Name: 

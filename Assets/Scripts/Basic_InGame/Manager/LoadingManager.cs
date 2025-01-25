@@ -98,18 +98,18 @@ public class LoadingManager : MonoBehaviour
         {
             if (loading == Loading.InGame)
             {
-                // 70%도 안 됐을 떄
-                if (op.progress < 0.7f)
+                // 90%도 안 됐을 떄
+                if (op.progress < 0.9f)
                 {
                     console.text = $"{op.progress.ToString()}%";
 
                 }
-                // 70%까지 완료 됐을 때
+                // 90%까지 완료 됐을 때
                 else
                 {
 
-                    timer += Random.Range(0.001f, 0.006f);
-                    progress = Mathf.Lerp(0.7f, 1f, timer);
+                    timer += Random.Range(0.0001f, 0.0006f);
+                    progress = Mathf.Lerp(0.9f, 1f, timer);
                     console.text = $"[{progress * 100:00.00}]%";
 
                     if (progress >= 1f)
@@ -119,23 +119,23 @@ public class LoadingManager : MonoBehaviour
                     }
 
                 }
-                yield return new WaitForSeconds(0.035f);
+                yield return new WaitForSeconds(0.035f * Time.deltaTime);
 
             }
             else if (loading == Loading.MultiPlay)
             {
-                // 70%도 안 됐을 떄
-                if (PhotonNetwork.LevelLoadingProgress < 0.7f)
+                // 90%도 안 됐을 떄
+                if (PhotonNetwork.LevelLoadingProgress < 0.9f)
                 {
                     console.text = $"{PhotonNetwork.LevelLoadingProgress.ToString()}%";
 
                 }
-                // 70%까지 완료 됐을 때
+                // 90%까지 완료 됐을 때
                 else
                 {
 
-                    timer += Random.Range(0.001f, 0.006f);
-                    progress = Mathf.Lerp(0.7f, 1f, timer);
+                    timer += Random.Range(0.0001f, 0.0006f);
+                    progress = Mathf.Lerp(0.9f, 1f, timer);
                     console.text = $"[{progress * 100:00.00}]%";
 
                     if (progress >= 1)
@@ -145,7 +145,7 @@ public class LoadingManager : MonoBehaviour
                     }
                 }
 
-                yield return new WaitForSeconds(0.035f);
+                yield return new WaitForSeconds(0.035f * Time.deltaTime);
             }
         }
     }
