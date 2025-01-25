@@ -12,6 +12,10 @@ public class Enemy_Gun : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    // 무기
+    [SerializeField] Transform weapon;
+    [SerializeField] Transform firePos;
+
     // 현재체력
     private int currHP;
     // 죽었는지?
@@ -24,7 +28,10 @@ public class Enemy_Gun : MonoBehaviour
     private bool nearPlayer;
 
     // 총알 오브젝트 풀링 객체
-    [SerializeField] ObjectPooling bulletPool;
+    private ObjectPooling bulletPool;
+
+    // 총 쏘는 적의 오브젝트 풀링
+    private ObjectPooling enemy_Gun_Pool;
 
     // 장애물들
     private NavMeshObstacle[] obscurationsNMObstacle;
@@ -34,8 +41,15 @@ public class Enemy_Gun : MonoBehaviour
     // 몇 초 동안 공격을 안 받는 다면 다시 플레이어 향해 이동
     private float damageTimer;
 
+    // 공격 딜레이
+    private WaitForSeconds attackDelay;
+    private bool attackDelay_Bool;
 
-    private void Start()
+    private float fireSpeed;
+
+    private bool firstSpawn = true; // 처음 생성됐는지?
+
+    private void Awake()
     {
         obscurationsNMObstacle = new NavMeshObstacle[FindObjectsOfType<NavMeshObstacle>().Length];
         obscurationsTr = new Transform[FindObjectsOfType<NavMeshObstacle>().Length];
@@ -54,26 +68,40 @@ public class Enemy_Gun : MonoBehaviour
 
         playerTr = GameObject.FindWithTag("Player").transform;
 
-        StartCoroutine(Move());
+        attackDelay = new WaitForSeconds(0.14f);
+
+        enemy_Gun_Pool = GetComponentInParent<ObjectPooling>();
+
+        bulletPool = GameObject.FindWithTag("BulletPool").GetComponent<ObjectPooling>();
     }
 
-    private void OnEnable()
+    public void Setting(Vector3 pos)
     {
+        gameObject.SetActive(true);
+        firstSpawn = true;
+
+        fireSpeed = 500;
+
         die = false;
 
         currHP = 80;
+
+        agent.Warp(pos); // 순간이동
+
+        StartCoroutine(Move());
     }
 
     // 체력감소 구현
-    private void MinousHP(int damage, DamageType type)
+    public void MinousHP(int damage, DamageType type)
     {
         if (die) return;
-        damageTimer = 0;
+        damageTimer = 0; // 총알에 맞았다면 0으로 할당해서 그 자리 유지하기
         currHP -= damage;
 
         if (currHP <= 0)
         {
             die = true;
+            animator.SetTrigger("die");
 
             switch (type)
             {
@@ -92,27 +120,42 @@ public class Enemy_Gun : MonoBehaviour
                 case DamageType.legShot:
                     PlayerScore.currLegShot++;
                     break;
-
             }
+
+            StartCoroutine(Die());
             PlayerScore.enemyGun++;
         }
     }
 
+    private GameObject bulletObj;
+
     // 죽음 구현
     private IEnumerator Die()
     {
-        yield return null;
+        animator.SetTrigger("die");
+
+        yield return new WaitForSeconds(1.23f);
+
+        enemy_Gun_Pool.Input(gameObject);
     }
 
     //  발사구현
     private IEnumerator Fire()
     {
-        
-        yield return null;
+        attackDelay_Bool = true;// 중복 발사 방지
+
+        animator.SetBool("attack", true);
+
+        // 총알 생성
+        bulletObj = bulletPool.OutPut();
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos);
+
+        yield return attackDelay;
+
+        attackDelay_Bool = false;
     }
 
-    private bool firstColl;
-
+    private bool firstColl; // 한번만 호출
     // 움직임 구현
     private IEnumerator Move()
     {
@@ -126,7 +169,7 @@ public class Enemy_Gun : MonoBehaviour
             }
             else
             {
-                if (firstColl) damageTimer = 0;
+                if (firstColl) damageTimer = 0; // 플레이어와 닿을 시 true가 되고 true가 되면 0이 할당됨
                 firstColl = false;
 
                 //Debug.Log("장애물로 이동중");
@@ -136,20 +179,53 @@ public class Enemy_Gun : MonoBehaviour
 
                 damageTimer += Time.deltaTime;
 
-                if (damageTimer >= 20)
+                if (damageTimer >= 20) // 20초 동안 아무 공격이 없었다면 플레이어가 근처에 없다고 판단하고 다시 플레이어를 향해 이동함
                 {
                     nearPlayer = false;
                 }
             }
 
             // 멈췄다면
-            if (agent.velocity.magnitude == 0)
+            if (agent.velocity.magnitude == 0 && !firstSpawn)
             {
-                Debug.Log("멈춤");
+                //Debug.Log("멈춤");
+
+                // 위치가 다를 때만
+                if (weapon.localPosition.x != 0.211f || weapon.localPosition.y != -0.03f || weapon.localPosition.z != -0.109f)
+                {
+                    //Debug.Log("위치 다름");
+                    weapon.localPosition = new Vector3(0.211f, -0.03f, -0.109f);
+                }
+                // 방향이 다를 때만
+                if (weapon.localRotation.x != -1.414f || weapon.localRotation.y != -48.906f || weapon.localRotation.z != -56.61f)
+                {
+                    weapon.localRotation = Quaternion.Euler(-1.414f, -48.906f, -56.61f);
+                }
+
                 transform.LookAt(playerTr.position);
 
-                StartCoroutine(Fire());
+                if (!attackDelay_Bool) StartCoroutine(Fire());
             }
+            else
+            {
+                firstSpawn = false; // 이걸 하는 이유는 처음 스폰 되면 속도가 0이라 위에있는 if문이 작동해서 이기 때문이다.
+
+                // 위치가 다를 때만
+                if (weapon.localPosition.x != 0.236f || weapon.localPosition.y != -0.042f || weapon.localPosition.z != -0.033f)
+                {
+                    //Debug.Log("위치 다름");
+                    weapon.localPosition = new Vector3(0.236f, -0.042f, -0.033f);
+                }
+                // 방향이 다를 때만
+                if (weapon.localRotation.x != -3.971f || weapon.localRotation.y != -60.232f || weapon.localRotation.z != -100.141f)
+                {
+                    weapon.localRotation = Quaternion.Euler(-3.971f, -60.232f, -100.141f);
+                }
+
+                animator.SetBool("attack", false);
+            }
+
+            
 
             yield return null;
         }
@@ -163,6 +239,7 @@ public class Enemy_Gun : MonoBehaviour
             if (Vector3.Distance(transform.position, obscurationsTr[i].position) < Vector3.Distance(transform.position, movePos))
             {
                 movePos = obscurationsTr[i].position + new Vector3(0.1f, 0, 0.94f);
+                
                 //Debug.Log(movePos);
             }
         }
@@ -175,5 +252,6 @@ public class Enemy_Gun : MonoBehaviour
             firstColl = true;
             nearPlayer = true;
         }
+        
     }
 }

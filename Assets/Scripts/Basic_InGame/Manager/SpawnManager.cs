@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ZombieType
+public enum SpawnType
 {
-    basic,
-    speed,
-    tanker,
-    shild,
+    basic, // 일반좀비
+    speed, // 스피드 좀비
+    tanker, // 탱커 좀비
+    gun, // 총 쏘는 적
 }
 
 public class SpawnManager : MonoBehaviour
@@ -21,7 +21,11 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] ObjectPooling objectPooling_Zombie_Speed;
 
-    private ZombieType zombieType;
+    [SerializeField] ObjectPooling objectPooling_Enemy_Gun;
+
+    [SerializeField] Transform[] etcSpawnPos;
+
+    private SpawnType spawnType;
 
     private WaitForSeconds spawnDelay;
 
@@ -29,11 +33,11 @@ public class SpawnManager : MonoBehaviour
 
     private int randomZombe;
 
-    // 좀비 소환 가능?
+    // 소환 가능?
     private bool basic;
     private bool speed;
     private bool tanker;
-    private bool shild;
+    private bool gun;
 
     private void Start()
     {
@@ -53,19 +57,19 @@ public class SpawnManager : MonoBehaviour
         switch (stage)
         {
             case 1:
-                basic = true;               
+                gun = true;
                 break;
 
             case 3:
-                tanker = true;
-                break;
-
-            case 5:
                 speed = true;
                 break;
 
+            case 5:
+                tanker = true;
+                break;
+
             case 7:
-                shild = true;
+                basic = true;
                 break;
 
             case 10:
@@ -87,7 +91,7 @@ public class SpawnManager : MonoBehaviour
 
                     if (!basic) continue;
 
-                    zombieType = ZombieType.basic;
+                    spawnType = SpawnType.basic;
 
                     break;
 
@@ -95,7 +99,7 @@ public class SpawnManager : MonoBehaviour
 
                     if (!speed) continue;
 
-                    zombieType = ZombieType.speed;
+                    spawnType = SpawnType.speed;
 
                     break;
 
@@ -103,21 +107,21 @@ public class SpawnManager : MonoBehaviour
 
                     if (!tanker) continue;
 
-                    zombieType = ZombieType.tanker;
+                    spawnType = SpawnType.tanker;
 
                     break;
 
                 case 3:
 
-                    if (!shild) continue;
+                    if (!gun) continue;
 
-                    zombieType = ZombieType.shild;
+                    spawnType = SpawnType.gun;
 
                     break;
             }
 
 
-            Spawn(zombieType);
+            Spawn(spawnType);
 
             this.stage++;
 
@@ -125,48 +129,48 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    GameObject spawn_Zombie;
+    GameObject spawn;
 
-    private void Spawn(ZombieType type)
+    private void Spawn(SpawnType type)
     {
         switch (type)
         {
-            case ZombieType.basic:
+            case SpawnType.basic:
 
-                spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
+                spawn = objectPooling_Zombie_Basic.OutPut();
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 150, 2.13f, 5);
+                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 150, 2.13f, 5);
 
-                Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
-
-                break;
-
-            case ZombieType.speed:
-
-                spawn_Zombie = objectPooling_Zombie_Speed.OutPut();
-
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 6f, 100, 1.4f, 10);
-
-                Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
+                Gamemanager.Instance.CurrNumber.Add(spawn);
 
                 break;
 
-            case ZombieType.tanker:
+            case SpawnType.speed:
 
-                spawn_Zombie = objectPooling_Zombie_Tanker.OutPut();
-                spawn_Zombie.GetComponent<Zombie>(). Setting(spawnPos[Random.Range(0, 6)], 0.2f, 250, 3f, 0);
+                spawn = objectPooling_Zombie_Speed.OutPut();
 
-                Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
+                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 6f, 100, 1.4f, 10);
+
+                Gamemanager.Instance.CurrNumber.Add(spawn);
 
                 break;
 
-            case ZombieType.shild:
+            case SpawnType.tanker:
 
-                spawn_Zombie = objectPooling_Zombie_Basic.OutPut();
+                spawn = objectPooling_Zombie_Tanker.OutPut();
+                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.2f, 250, 3f, 0);
 
-                spawn_Zombie.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 100, 2.13f, 5);
+                Gamemanager.Instance.CurrNumber.Add(spawn);
 
-                Gamemanager.Instance.CurrNumber.Add(spawn_Zombie);
+                break;
+
+            case SpawnType.gun:
+
+                spawn = objectPooling_Enemy_Gun.OutPut();
+
+                spawn.GetComponent<Enemy_Gun>().Setting(etcSpawnPos[Random.Range(0, 2)].position);
+
+                Gamemanager.Instance.CurrNumber.Add(spawn);
 
                 break;
         }

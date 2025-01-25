@@ -26,6 +26,11 @@ TagManager:
   - firePos
   - ObjectPooling Bullet
   - PlayerHP(World Space Canvas)
+  - EnemyGun_Head
+  - EnemyGun_Arm
+  - EnemyGun_Leg
+  - BulletPool
+  - EnemyGun_Body
   layers:
   - Default
   - TransparentFX

@@ -104,7 +104,7 @@ public class Gamemanager : MonoBehaviour
             waitTimer -= Time.deltaTime;
 
             // 부분 마다 색깔 입려주고 1의 자리만 나오도록 설정 
-            console.text = $"<color=#ffffff>다음 스테이지 까지 {waitTimer:##} 초</color>\n<color=#87CEEB>'K'키를 눌러 스킵 할 수 있습니다.</color>\n<color=#ffffff>다음 스테이지 : {currstage}</color>";
+            console.text = $"<color=#ffffff>다음 스테이지 까지 {waitTimer:00} 초</color>\n<color=#87CEEB>'K'키를 눌러 스킵 할 수 있습니다.</color>\n<color=#ffffff>다음 스테이지 : {currstage}</color>";
 
             // 대기 시간 스킵
             if (Input.GetKeyDown(KeyCode.K) && !isSpawn)

@@ -31,7 +31,7 @@ public class ScoreManager : MonoBehaviour
     private static ScoreManager instance = null;
     public static ScoreManager Instance => instance;
 
-    private string gameDataRowInDate = string.Empty;   
+    private string gameDataRowInDate = string.Empty;
 
     private void Awake()
     {
@@ -49,7 +49,7 @@ public class ScoreManager : MonoBehaviour
         //Debug.Log("뒤끝 업데이트 목록에 해당 데이터들을 추가합니다.");
 
         PlayerScore.currBestScore = (PlayerScore.currHeadShot * 10) + (PlayerScore.currBodyShot * 6) +
-            (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 20) + (PlayerScore.tankerZombie * 10);
+               (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 10) + (PlayerScore.tankerZombie * 20) + (PlayerScore.enemyGun * 30);
 
         Param param = new Param();
 
@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviour
         param.Add("bestScore", PlayerScore.currBestScore);
 
         //Debug.Log("게임 정보 데이터 삽입을 요청합니다.");
-        var bro = Backend.GameData.Insert("UserData_Kill", param);           
+        var bro = Backend.GameData.Insert("UserData_Kill", param);
 
         if (bro.IsSuccess())
         {
@@ -102,12 +102,12 @@ public class ScoreManager : MonoBehaviour
 
             // 받아온 데이터의 갯수가 0이라면 데이터가 존재하지 않는 것입니다.  
             if (gameDataJson.Count <= 0)
-            {              
+            {
                 Debug.LogWarning("데이터가 존재하지 않습니다.");
                 GameDataInsert_kill();
             }
             else
-            {                             
+            {
 
                 gameDataRowInDate = gameDataJson[0]["inDate"].ToString(); //불러온 게임 정보의 고유값입니다.  
 
@@ -138,7 +138,7 @@ public class ScoreManager : MonoBehaviour
         //}
 
         PlayerScore.currBestScore = (PlayerScore.currHeadShot * 10) + (PlayerScore.currBodyShot * 6) +
-             (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 20) + (PlayerScore.tankerZombie * 10);
+             (PlayerScore.currArmShot * 4) + (PlayerScore.currLegShot * 2) + (PlayerScore.basicZombie * 5) + (PlayerScore.speedZombie * 10) + (PlayerScore.tankerZombie * 20) + (PlayerScore.enemyGun * 30);
 
         Param param = new Param();
         if (PlayerScore.currHeadShot > PlayerScore.headShot) param.Add("headShot", PlayerScore.currHeadShot);

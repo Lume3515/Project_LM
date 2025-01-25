@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using Photon.Pun;
+
 
 public class Bullet : MonoBehaviour
 {
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
 
     // 탄퍼짐 정도
     public void Setting(float speed, ShootingType type, Transform pos)
-    { 
+    {
 
         gameObject.SetActive(true);
 
@@ -61,13 +61,13 @@ public class Bullet : MonoBehaviour
         Fire();
     }
 
-    
+
     private void Fire()
     {
 
         // 반동
         switch (shootingType)
-        {          
+        {
             case ShootingType.Shoulder:
                 carbonSpread = new Vector3(0, 0, 0);
                 break;
@@ -123,10 +123,10 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {      
+    {
 
         impact_Info = collision.GetContact(0);
-
+        #region// 좀비 & 맵
         if (collision.collider.CompareTag("Map"))
         {
             //Debug.Log(impact_Info.normal);
@@ -171,8 +171,66 @@ public class Bullet : MonoBehaviour
             Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
             objectPooling.Input(gameObject);
         }
+        #endregion
 
+        #region// 총 쏘는 적
+        if (collision.collider.CompareTag("EnemyGun_Body"))
+        {
+            collision.collider.GetComponentInParent<Enemy_Gun>().MinousHP(body_Damage, DamageType.BodyShot);
 
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
+        }
+        else if (collision.collider.CompareTag("EnemyGun_Head"))
+        {
+            collision.collider.GetComponentInParent<Enemy_Gun>().MinousHP(head_Damage, DamageType.HeadSHot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
+        }
+        else if (collision.collider.CompareTag("EnemyGun_Arm"))
+        {
+            collision.collider.GetComponentInParent<Enemy_Gun>().MinousHP(arm_Damage, DamageType.armShot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
+        }
+        else if (collision.collider.CompareTag("EnemyGun_Leg"))
+        {
+            collision.collider.GetComponentInParent<Enemy_Gun>().MinousHP(Leg_Damage, DamageType.legShot);
+
+            // 임팩트 프립팹을생성, 총알의 충돌 위치에 생성, 충돌 시 총알의 각도를 반전 시켜 인스턴싱
+            Instantiate(impact_Enemy, impact_Info.point, Quaternion.LookRotation(transform.forward * -1));
+            objectPooling.Input(gameObject);
+        }
+        #endregion
+
+        #region// 플레이어
+
+        if (collision.collider.CompareTag("Player_Body"))
+        {
+            collision.collider.GetComponentInParent<PlayerHP>().MinousHP(body_Damage);
+
+        }
+        else if (collision.collider.CompareTag("Player_Head"))
+        {
+            collision.collider.GetComponentInParent<PlayerHP>().MinousHP(head_Damage);
+
+        }
+        else if (collision.collider.CompareTag("Player_Arm"))
+        {
+            collision.collider.GetComponentInParent<PlayerHP>().MinousHP(arm_Damage);
+
+        }
+        else if (collision.collider.CompareTag("Player_Leg"))
+        {
+            collision.collider.GetComponentInParent<PlayerHP>().MinousHP(Leg_Damage);
+
+        }
+        #endregion
     }
 
 
