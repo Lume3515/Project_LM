@@ -134,7 +134,7 @@ public class Enemy_Gun : MonoBehaviour
     private IEnumerator Die()
     {
         animator.SetTrigger("die");
-
+        StopAllCoroutines(); // 모든 코드 멈추기
         yield return new WaitForSeconds(1.23f);
 
         enemy_Gun_Pool.Input(gameObject);

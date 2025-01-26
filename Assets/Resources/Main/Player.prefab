@@ -1384,7 +1384,7 @@ GameObject:
   - component: {fileID: 5238646793743811435}
   - component: {fileID: 2091172175}
   - component: {fileID: 5238646793979385532}
-  - component: {fileID: 3553924430937057197}
+  - component: {fileID: 2931858280249898907}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horrorEffect_Image: {fileID: 0}
---- !u!54 &3553924430937057197
+--- !u!54 &2931858280249898907
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1538,7 +1538,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0

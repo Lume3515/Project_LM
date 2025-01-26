@@ -48,12 +48,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (!roll && Input.GetKeyDown(KeyCode.Space) && rollCoolTIme && !PlayerFire.Instance.IsReload && PlayerFire.Instance.Shooting_Bool)
         {
-           if(firstClick_Bool) firstClick_Bool = true;
+            if (firstClick_Bool) firstClick_Bool = true;
             StartCoroutine(AddTime());
         }
         if (!firstClick_Bool)
         {
-            if(firstClick >= 1)
+            if (firstClick >= 1)
             {
                 firstClick = 0;
                 firstClick_Bool = true;
@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
         moveDirection = cameraTr.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0); // 로컬 기준
 
-        if(!roll) playerRb.velocity = moveDirection;
+        if (!roll) playerRb.velocity = moveDirection;
     }
 
     private void Rotation()
@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
 
     // 입력 시간 재기
     private float firstClick;
-    private bool firstClick_Bool = true;       
+    private bool firstClick_Bool = true;
 
     // 구르기
     private IEnumerator Roll()
@@ -247,12 +247,12 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(2.2f);
 
-        roll = false;
 
         firstClick = 0;
         firstClick_Bool = true;
         StopCoroutine(AddTime());
 
+        roll = false;
         yield return new WaitForSeconds(5f);
 
         rollCoolTIme = true;
@@ -267,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
             while (firstClick < 1)
             {
                 firstClick += Time.deltaTime;
-                
+
                 yield return null;
             }
 
@@ -275,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if(firstClick < 1)
+            if (firstClick < 1)
             {
                 StartCoroutine(Roll());
             }
