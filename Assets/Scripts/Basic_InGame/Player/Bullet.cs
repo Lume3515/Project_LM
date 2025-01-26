@@ -213,36 +213,38 @@ public class Bullet : MonoBehaviour
                 objectPooling.Input(gameObject);
             }
         }
-        #endregion
+        #endregion       
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
         #region// 플레이어
         if (actorNumber == 0) // 적이 발사했을 때만
         {
-            if (collision.collider.CompareTag("Player_Body"))
+            if (other.CompareTag("Player_Body"))
             {
                 //Debug.Log("1");
-                StartCoroutine(collision.collider.GetComponentInParent<PlayerHP>().MinousHP(5));
+                StartCoroutine(other.GetComponentInParent<PlayerHP>().MinousHP(5));
 
             }
-            else if (collision.collider.CompareTag("Player_Head"))
+            else if (other.CompareTag("Player_Head"))
             {
-                StartCoroutine(collision.collider.GetComponentInParent<PlayerHP>().MinousHP(8));
+                StartCoroutine(other.GetComponentInParent<PlayerHP>().MinousHP(8));
 
             }
-            else if (collision.collider.CompareTag("Player_Arm"))
+            else if (other.CompareTag("Player_Arm"))
             {
-                StartCoroutine(collision.collider.GetComponentInParent<PlayerHP>().MinousHP(3));
+                StartCoroutine(other.GetComponentInParent<PlayerHP>().MinousHP(3));
 
             }
-            else if (collision.collider.CompareTag("Player_Leg"))
+            else if (other.CompareTag("Player_Leg"))
             {
-                StartCoroutine(collision.collider.GetComponentInParent<PlayerHP>().MinousHP(1));
+                StartCoroutine(other.GetComponentInParent<PlayerHP>().MinousHP(1));
 
             }
         }
         #endregion
     }
-
 
     private void OnTriggerExit(Collider other)
     {

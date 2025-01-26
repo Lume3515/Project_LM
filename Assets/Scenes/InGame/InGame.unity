@@ -8385,18 +8385,6 @@ PrefabInstance:
       propertyPath: playerHpBar
       value: 
       objectReference: {fileID: 297541859}
-    - target: {fileID: 1862797174058884564, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2931858280249898907, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2931858280249898907, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 4932004890213621012, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: m_Name
       value: Player

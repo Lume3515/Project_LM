@@ -183,7 +183,11 @@ public class PlayerMovement : MonoBehaviour
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
         moveDirection = cameraTr.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0); // 로컬 기준
 
-        if (!roll) playerRb.velocity = moveDirection;
+        if (!roll)
+        {
+            //Debug.Log("구르는 중 아님");
+            playerRb.velocity = moveDirection;
+        }
     }
 
     private void Rotation()
@@ -246,7 +250,6 @@ public class PlayerMovement : MonoBehaviour
         playerRb.velocity = transform.forward * 4.5f;
 
         yield return new WaitForSeconds(2.2f);
-
 
         firstClick = 0;
         firstClick_Bool = true;
