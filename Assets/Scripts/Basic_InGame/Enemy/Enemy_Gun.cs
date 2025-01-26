@@ -79,6 +79,9 @@ public class Enemy_Gun : MonoBehaviour
 
         bulletPool = GameObject.FindWithTag("BulletPool").GetComponent<ObjectPooling>();
         fireSpeed = 500;
+
+        //Debug.Log(enemy_Gun_Pool == null);
+        //Debug.Log(enemy_Gun_Pool.gameObject.name);
     }
 
     public void Setting(Vector3 pos)
@@ -139,17 +142,19 @@ public class Enemy_Gun : MonoBehaviour
     private IEnumerator Die()
     {
         animator.SetTrigger("die");
-        StopAllCoroutines(); // 모든 코드 멈추기
         yield return new WaitForSeconds(1.23f);
 
         //Debug.Log("2");
         Gamemanager.Instance.CurrNumber.Remove(gameObject);
         enemy_Gun_Pool.Input(gameObject);
+        
     }
 
     //  발사구현
     private IEnumerator Fire()
     {
+        if (die) yield break;
+
         attackDelay_Bool = true;// 중복 발사 방지
 
         animator.SetBool("attack", true);
@@ -168,6 +173,8 @@ public class Enemy_Gun : MonoBehaviour
     // 움직임 구현
     private IEnumerator Move()
     {
+        if (die) yield break;
+
         while (!Gamemanager.Instance.GameOver)
         {
             // 플레이어 근처가 아닐 때
@@ -277,6 +284,7 @@ public class Enemy_Gun : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (die) return;
             firstColl = true;
             nearPlayer = true;
         }
