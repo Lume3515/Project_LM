@@ -6,16 +6,12 @@ TagManager:
   tags:
   - Map
   - Console
-  - Player_Head
   - Bullet
   - Destroy Zone
   - Zombie_Head
-  - Player_Body
   - Zombie_Body
   - Zombie_Leg
   - Zombie_Arm
-  - Player_Leg
-  - Player_Arm
   - GameManager
   - Object Pooling
   - Canvas
@@ -32,6 +28,7 @@ TagManager:
   - BulletPool
   - EnemyGun_Body
   - Enemy_Gun
+  - EnemyAim
   layers:
   - Default
   - TransparentFX

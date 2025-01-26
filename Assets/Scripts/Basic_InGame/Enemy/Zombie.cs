@@ -114,7 +114,7 @@ public class Zombie : MonoBehaviour
 
             if (this.damage == 0) PlayerScore.tankerZombie++;
             else if (this.damage == 5) PlayerScore.basicZombie++;
-            else if (this.damage == 10) PlayerScore.speedZombie++;
+            else if (this.damage == 7) PlayerScore.speedZombie++;
 
             // ¿Ãµø ∏ÿ√ﬂ±‚
             die = true;

@@ -17,20 +17,11 @@ public class PlayerHP : MonoBehaviour
     // 플레이어 체력 바
     [SerializeField] Image playerHpBar;
 
-
     private void Start()
     {
         maxHP = 100;
 
         currHP = maxHP;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Die();
-        }
     }
 
     // 체력 감소
@@ -55,12 +46,6 @@ public class PlayerHP : MonoBehaviour
 
 
         yield break;
-    }
-
-    // 체력 더하기
-    private IEnumerator AddHP()
-    {
-        yield return null;
     }
 
     private void Die()
