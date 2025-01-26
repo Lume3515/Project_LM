@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Enemy_Gun : MonoBehaviour
 {
@@ -144,11 +145,11 @@ public class Enemy_Gun : MonoBehaviour
     {
         attackDelay_Bool = true;// 중복 발사 방지
 
-        animator.SetBool("attack", true);
+        animator.SetBool("attack", true);        
 
         // 총알 생성
         bulletObj = bulletPool.OutPut();
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos);
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, 0);
 
         yield return attackDelay;
 
@@ -225,7 +226,7 @@ public class Enemy_Gun : MonoBehaviour
                 animator.SetBool("attack", false);
             }
 
-            
+
 
             yield return null;
         }
@@ -234,13 +235,32 @@ public class Enemy_Gun : MonoBehaviour
     // 이동위치 찾기
     private void FindPos()
     {
+        GameObject[] enemyGunObjects = GameObject.FindGameObjectsWithTag("Enemy_Gun");
+        NavMeshAgent[] otherAgents = new NavMeshAgent[enemyGunObjects.Length];
+
+        for (int j = 0; j < enemyGunObjects.Length; j++)
+        {
+            otherAgents[j] = enemyGunObjects[j].GetComponent<NavMeshAgent>();
+        }
+
         for (int i = 0; i < obscurationsTr.Length; i++)
         {
-            if (Vector3.Distance(transform.position, obscurationsTr[i].position) < Vector3.Distance(transform.position, movePos))
+            Vector3 potentialPos = obscurationsTr[i].position + new Vector3(0.1f, 0, 0.94f); // 이동할 장애물(엄폐물)의 위치
+
+            bool isOverlapping = false; // 중복인지?
+            foreach (NavMeshAgent nav in otherAgents)
             {
-                movePos = obscurationsTr[i].position + new Vector3(0.1f, 0, 0.94f);
-                
-                //Debug.Log(movePos);
+                if (nav != agent && (nav.destination - potentialPos).sqrMagnitude < 8) // agent가 내꺼가 아니고, 방향을구하고 크기가 8보다 작다면(다른 agent 즉 ai가 이미 있다면) 중복처리
+                {
+                    isOverlapping = true;
+                    break;
+                }
+            }
+
+            if (!isOverlapping && (transform.position - obscurationsTr[i].position).sqrMagnitude <
+                (transform.position - movePos).sqrMagnitude) // 내 위치에서 장애물의 위치를 빼고 그 거리가 갱신한? movePos보다 작다면(가깝다면) 새로운 값 할당, 그리고 그 위치가 중복이 아닐 때
+            {
+                movePos = potentialPos;
             }
         }
     }
@@ -252,6 +272,5 @@ public class Enemy_Gun : MonoBehaviour
             firstColl = true;
             nearPlayer = true;
         }
-        
     }
 }

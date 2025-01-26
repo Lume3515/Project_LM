@@ -31,6 +31,7 @@ TagManager:
   - EnemyGun_Leg
   - BulletPool
   - EnemyGun_Body
+  - Enemy_Gun
   layers:
   - Default
   - TransparentFX

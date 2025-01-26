@@ -108,7 +108,7 @@ public class LoadingManager : MonoBehaviour
                 else
                 {
 
-                    timer += Random.Range(0.0001f, 0.0006f);
+                    timer += Random.Range(0.001f, 0.006f);
                     progress = Mathf.Lerp(0.9f, 1f, timer);
                     console.text = $"[{progress * 100:00.00}]%";
 
@@ -134,7 +134,7 @@ public class LoadingManager : MonoBehaviour
                 else
                 {
 
-                    timer += Random.Range(0.0001f, 0.0006f);
+                    timer += Random.Range(0.001f, 0.006f);
                     progress = Mathf.Lerp(0.9f, 1f, timer);
                     console.text = $"[{progress * 100:00.00}]%";
 

@@ -38,17 +38,18 @@ public class PlayerHP : MonoBehaviour
     {
         currHP -= damage;
 
-        if (currHP <= 0)
-        {
-            Die();
-        }
 
         while (playerHpBar.fillAmount != currHP)
-        {          
+        {
 
             playerHpBar.fillAmount = Mathf.Lerp(playerHpBar.fillAmount, currHP / 100f, Time.deltaTime * 5);
 
             yield return null;
+        }
+
+        if (currHP <= 0)
+        {
+            Die();
         }
         //Debug.Log(currHP);
 
