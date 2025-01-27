@@ -69,6 +69,9 @@ public class PlayerFire : MonoBehaviour
 
     // 오왼위아래
     [SerializeField] Transform[] aims;
+
+    // 조준점 옆 탄창
+    [SerializeField] Image ammoClip_Number;
     private void Start()
     {
 
@@ -151,7 +154,7 @@ public class PlayerFire : MonoBehaviour
         }
         // 달릴 때
         else if (Gamemanager.Instance.ShootingType == ShootingType.Walk)
-        {            
+        {
             Gamemanager.Instance.ShootingType = ShootingType.Walk;
 
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
@@ -202,7 +205,11 @@ public class PlayerFire : MonoBehaviour
                 shooting = true;
             }
         }
+
+        // 오류 났었는데 "currAmmo / "나누는 부분을 int로 해서 오류났었음 ㅠ
+        ammoClip_Number.fillAmount = Mathf.Lerp(ammoClip_Number.fillAmount, currAmmo / (float)maxAmmo, Time.deltaTime * 10);
     }
+
 
     // 재장전
     private IEnumerator Reload()
@@ -215,7 +222,6 @@ public class PlayerFire : MonoBehaviour
         while (currAmmo < maxAmmo)
         {
             currAmmo++;
-
             bulletUI_ObjectPooling.OutPut();
 
             yield return null;

@@ -8394,6 +8394,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1817458349}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: ammoClip_Number
+      value: 
+      objectReference: {fileID: 8234327346306764831}
+    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: aims.Array.data[0]
       value: 
       objectReference: {fileID: 1139322422}
@@ -8892,6 +8896,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 388273050, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
+      propertyPath: m_Name
+      value: AmmoClip_Number
+      objectReference: {fileID: 0}
     - target: {fileID: 8234327347377243106, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -8982,3 +8990,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
+--- !u!114 &8234327346306764831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 388273052, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
+  m_PrefabInstance: {fileID: 8234327346306764830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
