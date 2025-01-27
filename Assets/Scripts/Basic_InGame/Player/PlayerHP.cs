@@ -25,10 +25,19 @@ public class PlayerHP : MonoBehaviour
     }
 
     // 체력 감소
-    public IEnumerator MinousHP(int damage)
+    public void MinousHP(int damage)
     {
         currHP -= damage;
 
+        StartCoroutine(MinousHP_Gauge());
+    }
+
+    private IEnumerator MinousHP_Gauge()
+    {
+        if (currHP <= 0)
+        {
+            Die();
+        }
 
         while (playerHpBar.fillAmount != currHP)
         {
@@ -38,10 +47,6 @@ public class PlayerHP : MonoBehaviour
             yield return null;
         }
 
-        if (currHP <= 0)
-        {
-            Die();
-        }
         //Debug.Log(currHP);
 
 

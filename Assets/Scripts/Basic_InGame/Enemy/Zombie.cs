@@ -208,7 +208,7 @@ public class Zombie : MonoBehaviour
                 yield break;
             }
 
-            StartCoroutine(playerHp.MinousHP(damage));
+          playerHp.MinousHP(damage);
         }
 
         yield break;

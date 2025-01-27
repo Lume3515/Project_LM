@@ -94,6 +94,7 @@ public class Registaration
     {
 
         var bro = Backend.BMember.UpdateNickname(nickname);
+
         if (type == LogInType.newName)
         {
             if (bro.IsSuccess())
@@ -107,5 +108,18 @@ public class Registaration
 
             }
         }
+        else
+        {
+
+            if (!bro.IsSuccess())
+            {           
+                Nickname(Random.Range(1, 999999).ToString(), console, LogInType.Etc);                
+            }
+            else
+            {
+                console.text = $"회원가입에 성공하였습니다. 환영합니다. \nID : {nickname}님";
+            }
+        }
+
     }
 }

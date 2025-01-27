@@ -198,7 +198,7 @@ public class Bullet : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 //Debug.Log("1");
-                StartCoroutine(other.GetComponent<PlayerHP>().MinousHP(13));
+                other.GetComponent<PlayerHP>().MinousHP(13);
                 objectPooling.Input(gameObject);
             }
         }
