@@ -57,7 +57,7 @@ public class SpawnManager : MonoBehaviour
         switch (stage)
         {
             case 1:
-                basic = true;
+                gun = true;
                 break;
 
             case 3:
@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
                 break;
 
             case 7:
-                gun = true;
+                basic = true;
                 break;
 
             case 10:

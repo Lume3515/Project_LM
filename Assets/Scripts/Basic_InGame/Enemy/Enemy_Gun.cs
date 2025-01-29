@@ -163,6 +163,7 @@ public class Enemy_Gun : MonoBehaviour
 
         // ÃÑ¾Ë »ý¼º
         bulletObj = bulletPool.OutPut();
+        Debug.Log("1");
         bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, 0);
         yield return attackDelay;
 

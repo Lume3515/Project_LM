@@ -27,6 +27,7 @@ public class PlayerHP : MonoBehaviour
     // 체력 감소
     public void MinousHP(int damage)
     {
+        //Debug.Log("2");
         currHP -= damage;
 
         StartCoroutine(MinousHP_Gauge());

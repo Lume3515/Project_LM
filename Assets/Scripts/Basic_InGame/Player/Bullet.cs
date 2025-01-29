@@ -195,9 +195,10 @@ public class Bullet : MonoBehaviour
         #region// 플레이어
         if (actorNumber == 0) // 적이 발사했을 때만
         {
+            Debug.Log("2");
             if (other.CompareTag("Player"))
             {
-                //Debug.Log("1");
+                Debug.Log("3");
                 other.GetComponent<PlayerHP>().MinousHP(13);
                 objectPooling.Input(gameObject);
             }
