@@ -62,13 +62,11 @@ public class Bullet : MonoBehaviour
         shootingType = type;
 
 
-        Fire();
+        Rebound();
     }
 
-
-    private void Fire()
+    private void Rebound()
     {
-
         // 반동
         switch (shootingType)
         {
@@ -98,7 +96,11 @@ public class Bullet : MonoBehaviour
                 break;
         }
 
+        Fire();
+    }
 
+    private void Fire()
+    {
         transform.position = firePos.position;
         transform.rotation = firePos.rotation;
 
@@ -190,18 +192,15 @@ public class Bullet : MonoBehaviour
         #endregion       
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         #region// 플레이어
-        if (actorNumber == 0) // 적이 발사했을 때만
-        {
-            Debug.Log("2");
-            if (other.CompareTag("Player"))
-            {
-                Debug.Log("3");
-                other.GetComponent<PlayerHP>().MinousHP(13);
-                objectPooling.Input(gameObject);
-            }
+        if (actorNumber == 0 && other.CompareTag("Player")) // 적이 발사했을 때만
+        {        
+            Debug.Log("3");
+            other.GetComponent<PlayerHP>().MinousHP(13);
+            objectPooling.Input(gameObject);
+
         }
         #endregion
     }

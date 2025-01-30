@@ -52,6 +52,8 @@ public class Enemy_Gun : MonoBehaviour
 
     private Transform fireAim;
 
+    // 지역에 있는지?
+    private bool isArea;
     private void Awake()
     {
         obscurationsNMObstacle = new NavMeshObstacle[FindObjectsOfType<NavMeshObstacle>().Length];
@@ -147,7 +149,7 @@ public class Enemy_Gun : MonoBehaviour
         //Debug.Log("2");
         Gamemanager.Instance.CurrNumber.Remove(gameObject);
         enemy_Gun_Pool.Input(gameObject);
-        
+
     }
 
     //  발사구현
@@ -163,8 +165,9 @@ public class Enemy_Gun : MonoBehaviour
 
         // 총알 생성
         bulletObj = bulletPool.OutPut();
-        Debug.Log("1");
+        //Debug.Log("1");
         bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, 0);
+        bulletObj.GetComponent<SphereCollider>().isTrigger = true;
         yield return attackDelay;
 
         attackDelay_Bool = false;
@@ -202,8 +205,10 @@ public class Enemy_Gun : MonoBehaviour
                 }
             }
 
+            isArea = Vector3.Distance(transform.position, agent.destination) < 1.5f; // 보정한 목적지 범위에 위치한지?
+
             // 멈췄다면
-            if (agent.velocity.magnitude == 0 && !firstSpawn)
+            if (isArea && !firstSpawn)
             {
                 //Debug.Log("멈춤");
 
