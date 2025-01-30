@@ -13,9 +13,6 @@ public class Bullet : MonoBehaviour
     // 발사할 대상의 트랜스 폼
     private Transform firePos;
 
-    // 발사 위치
-    private Vector3 fireDirection;
-
     // 적의 임팩트
     private ParticleSystem impact_Enemy;
 
@@ -91,6 +88,10 @@ public class Bullet : MonoBehaviour
                 carbonSpread = new Vector3(Random.Range(-0.008f, 0.008f), Random.Range(-0.008f, 0.008f), Random.Range(-0.008f, 0.008f));
                 break;
 
+            case ShootingType.Null:
+                carbonSpread = new Vector3(0, 0, 0);
+                break;
+
             default: // 서있기 및 엄폐
                 carbonSpread = new Vector3(Random.Range(-0.002f, 0.002f), Random.Range(-0.002f, 0.002f), Random.Range(-0.002f, 0.002f));
                 break;
@@ -102,13 +103,11 @@ public class Bullet : MonoBehaviour
     private void Fire()
     {
         transform.position = firePos.position;
-        transform.rotation = firePos.rotation;
-
-        fireDirection = (firePos.forward + firePos.right * carbonSpread.x + firePos.up * carbonSpread.y).normalized;
+        transform.rotation = firePos.rotation;     
 
         bulletRb.velocity = Vector3.zero;
 
-        bulletRb.AddForce(fireDirection * fireSpeed, ForceMode.Impulse);
+        bulletRb.AddForce((transform.forward + carbonSpread)  * fireSpeed , ForceMode.Impulse);
     }
 
 
@@ -130,7 +129,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         impact_Info = collision.GetContact(0);
 
         if (collision.collider.CompareTag("Map"))
@@ -192,18 +190,19 @@ public class Bullet : MonoBehaviour
         #endregion       
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         #region// 플레이어
-        if (actorNumber == 0 && other.CompareTag("Player")) // 적이 발사했을 때만
-        {        
-            Debug.Log("3");
-            other.GetComponent<PlayerHP>().MinousHP(13);
+        if (actorNumber == 0 && other.CompareTag("EnemyAim")) // 적이 발사했을 때만
+        {
+            other.GetComponentInParent<PlayerHP>().MinousHP(13);
             objectPooling.Input(gameObject);
 
         }
         #endregion
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {

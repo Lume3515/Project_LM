@@ -13,13 +13,14 @@ public enum DamageType
 
 // ¹ß»ç Å¸ÀÔ
 public enum ShootingType
-{   
+{
     Shoulder, // °ßÂø  
     Run, // ¶Ù±â
     Walk, // °È±â
     Sit, // ¾É±â
     Stand, // ¼­ÀÖ±â 
-    SitWalk    // ¾É¾Æ¼­ °È±â
+    SitWalk,    // ¾É¾Æ¼­ °È±â
+    Null
 }
 
 public class Gamemanager : MonoBehaviour
@@ -55,14 +56,14 @@ public class Gamemanager : MonoBehaviour
 
     // °ÔÀÓ¿À¹ö ÀÎÁö?
     private bool gameOver;
-    public bool GameOver { get { return gameOver; }  set { gameOver = value; } }
-    
+    public bool GameOver { get { return gameOver; } set { gameOver = value; } }
+
 
 
     private void Awake()
     {
         if (instance == null) instance = this;
-        else if (instance != this) Destroy(this.gameObject);       
+        else if (instance != this) Destroy(this.gameObject);
 
     }
 
@@ -79,7 +80,7 @@ public class Gamemanager : MonoBehaviour
         //Debug.Log(currNumber.Count);
         // Á»ºñ°¡ ´Ù Á×¾ú´Ù¸é
         if (currNumber.Count <= 0 && !firstColl)
-        {           
+        {
             currstage++;
             firstColl = true;
 
