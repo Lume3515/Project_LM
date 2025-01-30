@@ -277,7 +277,7 @@ public class PlayerFire : MonoBehaviour
 
         // ÃÑ¾Ë »ý¼º
         bulletObj = objectPooling.OutPut();
-        bulletObj.GetComponent<SphereCollider>().isTrigger = false;
+        //bulletObj.GetComponent<SphereCollider>().isTrigger = false;
         bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, 1);
 
         // ÃÑ¾Ë µô·¹ÀÌ ¿ë

@@ -190,7 +190,7 @@ public class Bullet : MonoBehaviour
         #endregion       
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         #region// 플레이어
         if (actorNumber == 0 && other.CompareTag("EnemyAim")) // 적이 발사했을 때만
