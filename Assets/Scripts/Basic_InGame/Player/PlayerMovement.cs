@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerAnimator.SetTrigger("roll");
         transform.rotation = cameraTr.rotation;
-        playerRb.velocity = transform.forward * 4.5f;
+        playerRb.velocity = transform.forward * 6.5f;
 
         yield return new WaitForSeconds(2.2f);
 

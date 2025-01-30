@@ -195,7 +195,7 @@ public class Bullet : MonoBehaviour
         #region// 플레이어
         if (actorNumber == 0 && other.CompareTag("EnemyAim")) // 적이 발사했을 때만
         {
-            other.GetComponentInParent<PlayerHP>().MinousHP(13);
+            other.GetComponentInParent<PlayerHP>().MinousHP(7);
             objectPooling.Input(gameObject);
 
         }
