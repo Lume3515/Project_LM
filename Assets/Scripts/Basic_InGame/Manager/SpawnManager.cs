@@ -57,22 +57,22 @@ public class SpawnManager : MonoBehaviour
         switch (stage)
         {
             case 1:
-                gun = true;
-                break;
-
-            case 3:
-                speed = true;
-                break;
-
-            case 5:
-                tanker = true;
-                break;
-
-            case 7:
                 basic = true;
                 break;
 
-            case 10:
+            case 2:
+                speed = true;
+                break;
+
+            case 3:
+                tanker = true;
+                break;
+
+            case 5:
+                gun = true;
+                break;
+
+            case 7:
                 basic = false;
                 break;
 

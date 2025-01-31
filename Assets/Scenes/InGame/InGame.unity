@@ -8310,6 +8310,14 @@ PrefabInstance:
       propertyPath: poolParent
       value: 
       objectReference: {fileID: 1793022755}
+    - target: {fileID: 3231053742454855106, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
+      propertyPath: maxValue
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231053742454855106, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
+      propertyPath: defaultValue
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3231053742454855108, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
       propertyPath: m_TagString
       value: BulletPool
@@ -8417,6 +8425,10 @@ PrefabInstance:
       propertyPath: ammoNumberParentTr
       value: 
       objectReference: {fileID: 1793022755}
+    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: buletObjectPooling
+      value: 
+      objectReference: {fileID: 1817458349}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: bulletUI_ObjectPooling
       value: 

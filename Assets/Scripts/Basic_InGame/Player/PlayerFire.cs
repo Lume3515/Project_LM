@@ -30,7 +30,7 @@ public class PlayerFire : MonoBehaviour
     private float maxTime;
 
     // 오브젝트 풀링 스크립트
-    [SerializeField] ObjectPooling objectPooling;
+    [SerializeField] ObjectPooling buletObjectPooling;
 
     // 총알 객체
     private GameObject bulletObj;
@@ -276,7 +276,7 @@ public class PlayerFire : MonoBehaviour
 
 
         // 총알 생성
-        bulletObj = objectPooling.OutPut();
+        bulletObj = buletObjectPooling.OutPut();
         //bulletObj.GetComponent<SphereCollider>().isTrigger = false;
         bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, 1);
 

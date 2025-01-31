@@ -22,7 +22,7 @@ public class ObjectPooling : MonoBehaviour
             createFunc: Create, // 기본(초반) 생성
             actionOnGet: OutPut_Event, // 꺼낼 때 이벤트
             actionOnRelease: Input_Envent, // 넣을 때 이벤트
-           actionOnDestroy: Destroy, // 삭제 시 이벤트
+           actionOnDestroy: ObjDestroy, // 삭제 시 이벤트
            collectionCheck: false, // 중복?
           defaultCapacity: defaultValue, // 기본 값
            maxSize: maxValue // 최대 값
@@ -32,7 +32,9 @@ public class ObjectPooling : MonoBehaviour
     // 생성
     public GameObject Create()
     {
+        Debug.Log("호출됨");
         return Instantiate(prefab, poolParent);
+       
     }
 
     // 꺼낼 때 이벤트
@@ -48,14 +50,15 @@ public class ObjectPooling : MonoBehaviour
     }
 
     // 삭제
-    public void Destroy(GameObject obj)
+    public void ObjDestroy(GameObject obj)
     {
-        Destroy(obj.gameObject);
+        Destroy(obj);
     }
 
     // 꺼내다
     public GameObject OutPut()
-    {       
+    {
+        Debug.Log("호출됨2");
         return objectPooling.Get();
     }
 
