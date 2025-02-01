@@ -8310,18 +8310,6 @@ PrefabInstance:
       propertyPath: poolParent
       value: 
       objectReference: {fileID: 1793022755}
-    - target: {fileID: 3231053742454855106, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
-      propertyPath: maxValue
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 3231053742454855106, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
-      propertyPath: defaultValue
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 3231053742454855108, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
-      propertyPath: m_TagString
-      value: BulletPool
-      objectReference: {fileID: 0}
     - target: {fileID: 3231053742892120791, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8397,10 +8385,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: objectPooling
-      value: 
-      objectReference: {fileID: 1817458349}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: ammoClip_Number
       value: 
@@ -8483,14 +8467,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5708823790081558446, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8182328359333132826, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_Radius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8182328359333132826, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8784,14 +8760,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: etcSpawnPos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
       propertyPath: spawnPos.Array.data[0]
       value: 
       objectReference: {fileID: 2039075965}
@@ -8839,26 +8807,10 @@ PrefabInstance:
       propertyPath: objectPooling_Zombie_Tanker
       value: 
       objectReference: {fileID: 544248289}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: enemy_Gun_SpawnPos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: enemy_Gun_SpawnPos.Array.data[0]
-      value: 
-      objectReference: {fileID: 365732037}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: enemy_Gun_SpawnPos.Array.data[1]
-      value: 
-      objectReference: {fileID: 1968596054}
     - target: {fileID: 8161591961841524626, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
       propertyPath: console
       value: 
       objectReference: {fileID: 146808987}
-    - target: {fileID: 8161591961841524626, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8161591961841524627, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -8916,10 +8868,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 388273050, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
-      propertyPath: m_Name
-      value: AmmoClip_Number
-      objectReference: {fileID: 0}
     - target: {fileID: 8234327347377243106, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
       propertyPath: m_Name
       value: Canvas

@@ -198,7 +198,7 @@ public class Zombie : MonoBehaviour
 
         yield return minousHPDelay;
 
-        if (!stopAttack)
+        if (!stopAttack && !die)
         {
             if (damage == 0 && !playerState.HorrorEffect_bool && !die)
             {

@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8161591961841524629}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c82fe47b1ac7d6d4e9cf550513611740, type: 3}
   m_Name: 
@@ -55,6 +55,10 @@ MonoBehaviour:
   objectPooling_Zombie_Basic: {fileID: 0}
   objectPooling_Zombie_Tanker: {fileID: 0}
   objectPooling_Zombie_Speed: {fileID: 0}
+  objectPooling_Enemy_Gun: {fileID: 0}
+  etcSpawnPos:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8161591961841524626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +66,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8161591961841524629}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106ef0e8aadcfef458e6e69a2c24791b, type: 3}
   m_Name: 

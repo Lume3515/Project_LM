@@ -32,7 +32,6 @@ public class ObjectPooling : MonoBehaviour
     // ª˝º∫
     public GameObject Create()
     {
-        Debug.Log("»£√‚µ ");
         return Instantiate(prefab, poolParent);
        
     }
@@ -52,13 +51,14 @@ public class ObjectPooling : MonoBehaviour
     // ªË¡¶
     public void ObjDestroy(GameObject obj)
     {
-        Destroy(obj);
+        //Debug.Log("»£√‚µ ");
+        obj.SetActive(false);
     }
 
     // ≤®≥ª¥Ÿ
     public GameObject OutPut()
     {
-        Debug.Log("»£√‚µ 2");
+        //Debug.Log("»£√‚µ 2");
         return objectPooling.Get();
     }
 

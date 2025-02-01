@@ -45,7 +45,7 @@ CapsuleCollider:
   m_Radius: 1.5
   m_Height: 1.2
   m_Direction: 1
-  m_Center: {x: 0, y: -0.15, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &107636250086489264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m4MuzzleFlash: {fileID: 1883117542354111772}
   animator: {fileID: 1862797174058884564}
-  objectPooling: {fileID: 0}
+  buletObjectPooling: {fileID: 0}
   firePos: {fileID: 8202726443535879559}
   bulletUI_ObjectPooling: {fileID: 0}
   ammoNumberParentTr: {fileID: 0}
