@@ -106,16 +106,7 @@ public class PlayerFire : MonoBehaviour
         if (currAmmo < maxAmmo && shooting)
         {
             if (currAmmo <= 0) notShoot = true;
-            else notShoot = false;
-
-            // 시간 동기화
-            if (isReload)
-            {
-                AnimatorStateInfo stateInfo_Reload = animator.GetCurrentAnimatorStateInfo(0);
-                float progress_Reload = stateInfo_Reload.normalizedTime % 1;
-
-                animator.SetFloat("StateProgress_Reload", progress_Reload);
-            }
+            else notShoot = false;                      
 
             if (Input.GetKeyDown(KeyCode.R) && !isReload)
             {
@@ -135,6 +126,10 @@ public class PlayerFire : MonoBehaviour
             animator.SetBool("isShoot", true);
 
             StartCoroutine(Fire());
+        }
+        else
+        {
+            animator.SetBool("isShoot", false);
         }
 
         // 우클릭 시 > 토글
@@ -200,8 +195,6 @@ public class PlayerFire : MonoBehaviour
             {
                 time = 0;
 
-                animator.SetBool("isShoot", false);
-
                 shooting = true;
             }
         }
@@ -216,8 +209,8 @@ public class PlayerFire : MonoBehaviour
     {
         isReload = true;
 
-        SoundManager.Instance.Sound(SoundType.Reload);
-        yield return new WaitForSeconds(2.5f);
+        //SoundManager.Instance.Sound(SoundType.Reload);
+        yield return new WaitForSeconds(2.5f);       
 
         while (currAmmo < maxAmmo)
         {
@@ -293,7 +286,7 @@ public class PlayerFire : MonoBehaviour
         index++;
         currAmmo--;
 
-        SoundManager.Instance.Sound(SoundType.Shooting);
+        //SoundManager.Instance.Sound(SoundType.Shooting);
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 

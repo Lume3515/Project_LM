@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 즉각적인 반응 필요
 
-        if ((sitDown && PlayerFire.Instance.IsReload) || roll)
+        if (roll)
         {
             moveX = 0;
             moveZ = 0;
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // 앉기 구현
-        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !PlayerFire.Instance.IsReload && !roll)
+        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !roll)
         {
             sitDown = true;
 
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
             moveSpeed = 1.5f;
         }
-        else if ((Input.GetKeyDown(KeyCode.C) && sitDown && !PlayerFire.Instance.IsReload))
+        else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
         {
             sitDown = false;
             if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Stand;

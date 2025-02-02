@@ -82,18 +82,18 @@ ModelImporter:
     serializedVersion: 3
     human: []
     skeleton:
-    - name: Player(Clone)
+    - name: Player_Model(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Rio
-      parentName: Player(Clone)
+      parentName: Player_Model(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: root
-      parentName: Player(Clone)
+      parentName: Player_Model(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
