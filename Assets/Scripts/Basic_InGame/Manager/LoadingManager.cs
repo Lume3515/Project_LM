@@ -18,11 +18,9 @@ public class LoadingManager : MonoBehaviour
     // 진행도 알려주는 콘솔
     [SerializeField] TextMeshProUGUI console;
 
-    // 유저에게 보내는 메세지
-    [SerializeField] TextMeshProUGUI message;
-
     // 이미지
-    [SerializeField] Transform image;
+    [SerializeField] Transform rotImage;
+
 
     private static LoadingManager instance;
     public static LoadingManager Instance => instance;
@@ -50,7 +48,7 @@ public class LoadingManager : MonoBehaviour
 
     private void Update()
     {
-        image.Rotate(0, 0.5f, 0);
+        rotImage.Rotate(0, 250 * Time.deltaTime, 0);
 
         if (nextScene)
         {
@@ -84,15 +82,22 @@ public class LoadingManager : MonoBehaviour
         {
             PhotonNetwork.LoadLevel(name_Scene);
             //op.allowSceneActivation = true;
-
-
         }
+
 
         // allowSceneActivation : 씬을 비동기로 불러들일 떄 씬의 로딩이 끝나면 자동을 불러온 씬으로 이동할 것인지? ㄴㄴ
         op.allowSceneActivation = false;
 
         float timer = 0;
         float progress;
+
+        console.text = "게임 데이터를 초기화 중입니다···";
+
+        yield return new WaitForSeconds(5);
+
+        console.text = "게임에 필요한 리소스의 압축을 해제하는 중입니다...";
+
+        yield return new WaitForSeconds(2);
 
         while (!op.isDone)
         {
@@ -101,16 +106,15 @@ public class LoadingManager : MonoBehaviour
                 // 90%도 안 됐을 떄
                 if (op.progress < 0.9f)
                 {
-                    console.text = $"{op.progress.ToString()}%";
+                    //console.text = $"{op.progress.ToString()}%";
 
                 }
                 // 90%까지 완료 됐을 때
                 else
                 {
-
-                    timer += Random.Range(0.001f, 0.006f);
-                    progress = Mathf.Lerp(0.9f, 1f, timer);
-                    console.text = $"[{progress * 100:00.00}]%";
+                    timer += Random.Range(0.0001f, 0.0006f);
+                    progress = Mathf.Lerp(0f, 1f, timer);
+                    console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}]%";
 
                     if (progress >= 1f)
                     {
@@ -127,16 +131,15 @@ public class LoadingManager : MonoBehaviour
                 // 90%도 안 됐을 떄
                 if (PhotonNetwork.LevelLoadingProgress < 0.9f)
                 {
-                    console.text = $"{PhotonNetwork.LevelLoadingProgress.ToString()}%";
+                    //console.text = $"{PhotonNetwork.LevelLoadingProgress.ToString()}%";
 
                 }
                 // 90%까지 완료 됐을 때
                 else
                 {
-
-                    timer += Random.Range(0.001f, 0.006f);
-                    progress = Mathf.Lerp(0.9f, 1f, timer);
-                    console.text = $"[{progress * 100:00.00}]%";
+                    timer += Random.Range(0.0001f, 0.0006f);
+                    progress = Mathf.Lerp(0f, 1f, timer);
+                    console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}]%";
 
                     if (progress >= 1)
                     {
