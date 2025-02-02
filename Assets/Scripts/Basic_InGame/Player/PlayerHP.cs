@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 
 public class PlayerHP : MonoBehaviour
@@ -60,5 +60,6 @@ public class PlayerHP : MonoBehaviour
 
         ScoreManager.Instance.GameDataGet_Kill();
 
+        SceneManager.LoadScene(0);
     }
 }

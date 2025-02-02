@@ -13,9 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerFire playerFire;
 
+    private static PlayerMovement instance;
+    public static PlayerMovement Instance => instance;
 
     private void Awake()
     {
+
+        if (instance == null) instance = this;
+
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
 
@@ -232,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     #region// 구르기
 
     // 구르는 중?
-    private bool roll;
+    public bool roll;   
     private bool rollCoolTIme = true; // 쿨타임
 
     // 입력 시간 재기

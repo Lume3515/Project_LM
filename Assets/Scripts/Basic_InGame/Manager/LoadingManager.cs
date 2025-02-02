@@ -114,7 +114,7 @@ public class LoadingManager : MonoBehaviour
                 {
                     timer += Random.Range(0.0001f, 0.0006f);
                     progress = Mathf.Lerp(0f, 1f, timer);
-                    console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}]%";
+                    console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}%]";
 
                     if (progress >= 1f)
                     {
@@ -139,7 +139,7 @@ public class LoadingManager : MonoBehaviour
                 {
                     timer += Random.Range(0.0001f, 0.0006f);
                     progress = Mathf.Lerp(0f, 1f, timer);
-                    console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}]%";
+                    console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}%]";
 
                     if (progress >= 1)
                     {

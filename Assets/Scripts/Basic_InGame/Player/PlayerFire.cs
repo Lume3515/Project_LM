@@ -65,7 +65,7 @@ public class PlayerFire : MonoBehaviour
     private int index;
 
     // 쏠수 업음
-    private bool notShoot;
+    private bool dontShoot;
 
     // 오왼위아래
     [SerializeField] Transform[] aims;
@@ -105,12 +105,11 @@ public class PlayerFire : MonoBehaviour
         // 총알이 없거나 최대총알 수보다 낮을 때만
         if (currAmmo < maxAmmo && shooting)
         {
-            if (currAmmo <= 0) notShoot = true;
-            else notShoot = false;                      
+            if (currAmmo <= 0) dontShoot = true;
+            else dontShoot = false;                      
 
-            if (Input.GetKeyDown(KeyCode.R) && !isReload)
+            if (Input.GetKeyDown(KeyCode.R) && !isReload && !PlayerMovement.Instance.roll)
             {
-
 
                 StartCoroutine(Reload());
                 animator.SetBool("reload", true);
@@ -120,20 +119,16 @@ public class PlayerFire : MonoBehaviour
         //Debug.Log(Gamemanager.Instance.ShootingType);
 
         // 좌클릭 시
-        if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
+        if (Input.GetMouseButton(0) && shooting && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !dontShoot && !PlayerMovement.Instance.roll)
         {
             // 애니메이션
             animator.SetBool("isShoot", true);
 
             StartCoroutine(Fire());
-        }
-        else
-        {
-            animator.SetBool("isShoot", false);
-        }
+        }        
 
         // 우클릭 시 > 토글
-        if (Input.GetMouseButton(1) && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !notShoot)
+        if (Input.GetMouseButton(1) && Gamemanager.Instance.ShootingType != ShootingType.Run && !isReload && !dontShoot)
         {
             Gamemanager.Instance.ShootingType = ShootingType.Shoulder;
             //Debug.Log(shootingType);
@@ -149,9 +144,10 @@ public class PlayerFire : MonoBehaviour
         }
         // 달릴 때
         else if (Gamemanager.Instance.ShootingType == ShootingType.Walk)
-        {
-            Gamemanager.Instance.ShootingType = ShootingType.Walk;
+        {                       
 
+            Gamemanager.Instance.ShootingType = ShootingType.Walk;
+     
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
 
             aims[0].localPosition = Vector3.Lerp(aims[0].localPosition, new Vector3(80, 0), Time.deltaTime * 5);
@@ -174,6 +170,7 @@ public class PlayerFire : MonoBehaviour
         // 서있을 때
         else
         {
+
             ShoulderAndAim = false;
             mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 60, Time.deltaTime * 13);
 
@@ -194,7 +191,7 @@ public class PlayerFire : MonoBehaviour
             if (time > maxTime)
             {
                 time = 0;
-
+                animator.SetBool("isShoot", false);
                 shooting = true;
             }
         }
@@ -209,7 +206,7 @@ public class PlayerFire : MonoBehaviour
     {
         isReload = true;
 
-        //SoundManager.Instance.Sound(SoundType.Reload);
+        SoundManager.Instance.Sound(SoundType.Reload);
         yield return new WaitForSeconds(2.5f);       
 
         while (currAmmo < maxAmmo)
@@ -222,7 +219,7 @@ public class PlayerFire : MonoBehaviour
 
         animator.SetBool("reload", false);
         isReload = false;
-        notShoot = false;
+        dontShoot = false;
         yield break;
     }
 
@@ -286,7 +283,7 @@ public class PlayerFire : MonoBehaviour
         index++;
         currAmmo--;
 
-        //SoundManager.Instance.Sound(SoundType.Shooting);
+        SoundManager.Instance.Sound(SoundType.Shooting);
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 
