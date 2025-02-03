@@ -1422,7 +1422,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 24fc2c3e62c52bf4e9e63fd980b8e85d, type: 3}
   m_Controller: {fileID: 9100000, guid: de471f5f5fb20c544ae78ef04a504dd8, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 1
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1444,6 +1444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTr: {fileID: 0}
+  roll: 0
 --- !u!195 &5238646793743811445
 NavMeshAgent:
   m_ObjectHideFlags: 0
