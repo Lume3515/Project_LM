@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         mainCameraTr.position = Vector3.Lerp(mainCameraTr.position, aimPos.position, Time.deltaTime * 10);
 
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.8f, Time.deltaTime * 10);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 30, Time.deltaTime * 10);
     }
 
 

@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class PlayerGunChange : MonoBehaviour
 {
-    // 0 : Hk416, 1 : 
+    // 0 : Hk416, 1 : 9mm Pistol, 2 : 
     [SerializeField] GunInfo[] infos;
 
     [SerializeField] Transform parent;
 
     private void Start()
     {
+        SpawnGun(2, infos[1]);
         SpawnGun(0, infos[0]);
+    }
+
+    private void Update()
+    {
+        ChangeGun();
+    }
+
+    private void ChangeGun()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) FirstSpace(null, false);
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) SecondSpace(null, false);
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) PistolSpace(null, false);
     }
 
     // 몇 번 인벤토리에 넣을건지 또 정보를 넣어야함
@@ -19,18 +32,18 @@ public class PlayerGunChange : MonoBehaviour
     {
         if (index == 0)
         {
-            Instantiate(info.Gun, parent);
-            FirstSpace(info);
+            firstSpace_Obj = Instantiate(info.Gun, parent);
+            FirstSpace(info, true);
         }
-        if (index == 1)
+        else if (index == 1)
         {
-            Instantiate(info.Gun, parent);
-            SecondSpace(info);
+            secondSpace_Obj = Instantiate(info.Gun, parent);
+            SecondSpace(info, true);
         }
-        if (index == 2)
+        else if (index == 2)
         {
-            Instantiate(info.Gun, parent);
-            PistolSpace(info);
+            pistolSpace_Obj = Instantiate(info.Gun, parent);
+            PistolSpace(info, true);
         }
     }
 
@@ -41,9 +54,15 @@ public class PlayerGunChange : MonoBehaviour
 
     private GunInfo firstInfo;
     private GameObject firstSpace_Obj;
-    public void FirstSpace(GunInfo info)
+    public void FirstSpace(GunInfo info, bool reference)
     {
-        firstInfo = info;
+        if (reference) firstInfo = info;
+
+        if (firstSpace_Obj == null) return;
+
+        firstSpace_Obj.SetActive(true);
+        if (secondSpace_Obj != null) secondSpace_Obj.SetActive(false);
+        pistolSpace_Obj.SetActive(false);
 
         // 팔 위치 수정
         arms[0].localPosition = firstInfo.LeftArmPos;
@@ -56,9 +75,14 @@ public class PlayerGunChange : MonoBehaviour
 
     private GunInfo secondInfo;
     private GameObject secondSpace_Obj;
-    public void SecondSpace(GunInfo info)
+    public void SecondSpace(GunInfo info, bool reference)
     {
-        secondInfo = info;
+        if (reference) secondInfo = info;
+
+        if (secondSpace_Obj == null) return;
+        secondSpace_Obj.SetActive(true);
+        if (firstSpace_Obj != null) firstSpace_Obj.SetActive(false);
+        pistolSpace_Obj.SetActive(false);
 
         // 팔 위치 수정
         arms[0].localPosition = secondInfo.LeftArmPos;
@@ -71,9 +95,13 @@ public class PlayerGunChange : MonoBehaviour
 
     private GunInfo pistolInfo;
     private GameObject pistolSpace_Obj;
-    public void PistolSpace(GunInfo info)
+    public void PistolSpace(GunInfo info, bool reference)
     {
-        pistolInfo = info;
+        if (reference) pistolInfo = info;
+
+        pistolSpace_Obj.SetActive(true);
+        if (firstSpace_Obj != null) firstSpace_Obj.SetActive(false);
+        else if (secondSpace_Obj != null) secondSpace_Obj.SetActive(false);
 
         // 팔 위치 수정
         arms[0].localPosition = pistolInfo.LeftArmPos;
