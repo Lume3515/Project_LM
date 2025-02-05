@@ -3,16 +3,44 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Map
+  - Console
+  - Player_Head
+  - Bullet
+  - Destroy Zone
+  - Zombie_Head
+  - Player_Body
+  - Zombie_Body
+  - Zombie_Leg
+  - Zombie_Arm
+  - Player_Leg
+  - Player_Arm
+  - GameManager
+  - Object Pooling
+  - Canvas
+  - EventSystem
+  - Camera parent
+  - Directional Light
+  - SpawnPos
+  - firePos
+  - ObjectPooling Bullet
+  - PlayerHP(World Space Canvas)
+  - EnemyGun_Head
+  - EnemyGun_Arm
+  - EnemyGun_Leg
+  - BulletPool
+  - EnemyGun_Body
+  - Enemy_Gun
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Map
   - 
   - 
   - 
@@ -40,4 +68,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2732187365
     locked: 0
