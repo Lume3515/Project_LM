@@ -23,7 +23,9 @@ public class GunInfo : ScriptableObject
     [SerializeField] Quaternion leftArmRot;
     [SerializeField] Quaternion rightArmRot;
 
-
+    [SerializeField] float fireDelay;
+    [SerializeField] float reloadDelay;
+    [SerializeField] Animator animation;
 
     public float FireSpeed => fireSpeed;
     public float HeadDamage => headDamage;
@@ -35,7 +37,9 @@ public class GunInfo : ScriptableObject
     public Vector3 RightArmPos => rightArmPos;
     public Quaternion LeftArmRot => leftArmRot;
     public Quaternion RightArmRot => rightArmRot;
-
+    public float FireDelay => FireDelay;
+    public float ReloadDelay => reloadDelay;
+    public Animator Animation => animation;
 
 }
 
