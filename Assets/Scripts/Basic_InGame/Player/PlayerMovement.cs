@@ -13,9 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerFire playerFire;
 
+    private static PlayerMovement instance;
+    public static PlayerMovement Instance => instance;
 
     private void Awake()
     {
+
+        if (instance == null) instance = this;
+
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
 
@@ -97,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // 즉각적인 반응 필요
 
-        if ((sitDown && PlayerFire.Instance.IsReload) || roll)
+        if (roll)
         {
             moveX = 0;
             moveZ = 0;
@@ -142,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // 앉기 구현
-        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !PlayerFire.Instance.IsReload && !roll)
+        if (Input.GetKeyDown(KeyCode.C) && !sitDown && !roll)
         {
             sitDown = true;
 
@@ -154,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
             moveSpeed = 1.5f;
         }
-        else if ((Input.GetKeyDown(KeyCode.C) && sitDown && !PlayerFire.Instance.IsReload))
+        else if ((Input.GetKeyDown(KeyCode.C) && sitDown))
         {
             sitDown = false;
             if (!playerFire.ShoulderAndAim) Gamemanager.Instance.ShootingType = ShootingType.Stand;
@@ -183,7 +188,11 @@ public class PlayerMovement : MonoBehaviour
         // playerRb.velocity.y를 따로 뺀 이유는 playerRb.velocity.y를 0에 할당하면 moveSpeed가 곱해져서 총 벡터의 값이 0이 돼서 > 안되는거 같다!!(안 움직임)
         moveDirection = cameraTr.TransformDirection(moveX, 0, moveZ) * moveSpeed + new Vector3(0, playerRb.velocity.y, 0); // 로컬 기준
 
-        if (!roll) playerRb.velocity = moveDirection;
+        if (!roll)
+        {
+            //Debug.Log("구르는 중 아님");
+            playerRb.velocity = moveDirection;
+        }
     }
 
     private void Rotation()
@@ -228,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
     #region// 구르기
 
     // 구르는 중?
-    private bool roll;
+    public bool roll;   
     private bool rollCoolTIme = true; // 쿨타임
 
     // 입력 시간 재기
@@ -243,10 +252,9 @@ public class PlayerMovement : MonoBehaviour
 
         playerAnimator.SetTrigger("roll");
         transform.rotation = cameraTr.rotation;
-        playerRb.velocity = transform.forward * 4.5f;
+        playerRb.velocity = transform.forward * 6.5f;
 
         yield return new WaitForSeconds(2.2f);
-
 
         firstClick = 0;
         firstClick_Bool = true;

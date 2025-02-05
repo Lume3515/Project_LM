@@ -113,8 +113,8 @@ public class Zombie : MonoBehaviour
             }
 
             if (this.damage == 0) PlayerScore.tankerZombie++;
-            else if (this.damage == 5) PlayerScore.basicZombie++;
-            else if (this.damage == 10) PlayerScore.speedZombie++;
+            else if (this.damage == 2) PlayerScore.basicZombie++;
+            else if (this.damage == 5) PlayerScore.speedZombie++;
 
             // ¿Ãµø ∏ÿ√ﬂ±‚
             die = true;
@@ -198,7 +198,7 @@ public class Zombie : MonoBehaviour
 
         yield return minousHPDelay;
 
-        if (!stopAttack)
+        if (!stopAttack && !die)
         {
             if (damage == 0 && !playerState.HorrorEffect_bool && !die)
             {
@@ -208,7 +208,7 @@ public class Zombie : MonoBehaviour
                 yield break;
             }
 
-            StartCoroutine(playerHp.MinousHP(damage));
+          playerHp.MinousHP(damage);
         }
 
         yield break;

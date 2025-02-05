@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 
 public class PlayerHP : MonoBehaviour
@@ -17,7 +17,6 @@ public class PlayerHP : MonoBehaviour
     // 플레이어 체력 바
     [SerializeField] Image playerHpBar;
 
-
     private void Start()
     {
         maxHP = 100;
@@ -25,19 +24,21 @@ public class PlayerHP : MonoBehaviour
         currHP = maxHP;
     }
 
-    private void Update()
+    // 체력 감소
+    public void MinousHP(int damage)
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        //Debug.Log("2");
+        currHP -= damage;
+
+        StartCoroutine(MinousHP_Gauge());
+    }
+
+    private IEnumerator MinousHP_Gauge()
+    {
+        if (currHP <= 0)
         {
             Die();
         }
-    }
-
-    // 체력 감소
-    public IEnumerator MinousHP(int damage)
-    {
-        currHP -= damage;
-
 
         while (playerHpBar.fillAmount != currHP)
         {
@@ -47,20 +48,10 @@ public class PlayerHP : MonoBehaviour
             yield return null;
         }
 
-        if (currHP <= 0)
-        {
-            Die();
-        }
         //Debug.Log(currHP);
 
 
         yield break;
-    }
-
-    // 체력 더하기
-    private IEnumerator AddHP()
-    {
-        yield return null;
     }
 
     private void Die()
@@ -69,5 +60,6 @@ public class PlayerHP : MonoBehaviour
 
         ScoreManager.Instance.GameDataGet_Kill();
 
+        SceneManager.LoadScene(0);
     }
 }

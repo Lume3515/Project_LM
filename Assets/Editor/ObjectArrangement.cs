@@ -14,7 +14,7 @@ public class ObjectArrangement : MonoBehaviour
     private static void InPut()
     {
         // csv파일 생성? 작성
-        using (StreamWriter streamWriter = new StreamWriter($"C:/Users/이태언/source/Map.csv"))
+        using (StreamWriter streamWriter = new StreamWriter($"C:/Users/User/source/Map.csv"))
         {
             // 맵의 크기 만큼 배열 생성
             GameObject[] obj = new GameObject[GameObject.FindGameObjectsWithTag("Map").Length];

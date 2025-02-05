@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1801442039472909739, guid: 30d8ca5c80b1bb3488d5dd4262872f92, type: 3}
   poolParent: {fileID: 1665997738}
-  defaultValue: 10
+  defaultValue: 5
   maxValue: 20
 --- !u!1 &3231053742360643971
 GameObject:
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1303132222812110179, guid: b20e915deae135846a57e8f2ae5fa61b, type: 3}
   poolParent: {fileID: 0}
-  defaultValue: 150
-  maxValue: 500
+  defaultValue: 50
+  maxValue: 80
 --- !u!1 &3231053742454855108
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 3231053742454855106}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: BulletPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 9216956144599210459, guid: 932994743331e8f48864c8f30f1e7543, type: 3}
   poolParent: {fileID: 3231053742454855107}
-  defaultValue: 80
-  maxValue: 100
+  defaultValue: 20
+  maxValue: 30
 --- !u!1 &3231053742892120792
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5709108119648842909, guid: d546e6ddec764fc4fb26b2e206b50e53, type: 3}
   poolParent: {fileID: 3231053743028200465}
-  defaultValue: 10
+  defaultValue: 5
   maxValue: 20
 --- !u!1 &3231053743459103408
 GameObject:

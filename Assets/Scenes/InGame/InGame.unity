@@ -8310,10 +8310,6 @@ PrefabInstance:
       propertyPath: poolParent
       value: 
       objectReference: {fileID: 1793022755}
-    - target: {fileID: 3231053742454855108, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
-      propertyPath: m_TagString
-      value: BulletPool
-      objectReference: {fileID: 0}
     - target: {fileID: 3231053742892120791, guid: c171d86aeee1ea745a7084dce41a82ad, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8386,25 +8382,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 297541859}
     - target: {fileID: 1862797174058884564, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_ApplyRootMotion
+      propertyPath: m_UpdateMode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2931858280249898907, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2931858280249898907, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: m_Constraints
-      value: 116
+    - target: {fileID: 1862797174058884564, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4932004890213621012, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
-      propertyPath: objectPooling
+      propertyPath: ammoClip_Number
       value: 
-      objectReference: {fileID: 1817458349}
+      objectReference: {fileID: 8234327346306764831}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: aims.Array.data[0]
       value: 
@@ -8425,6 +8417,10 @@ PrefabInstance:
       propertyPath: ammoNumberParentTr
       value: 
       objectReference: {fileID: 1793022755}
+    - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
+      propertyPath: buletObjectPooling
+      value: 
+      objectReference: {fileID: 1817458349}
     - target: {fileID: 5238646793743811435, guid: ff60280fd0b05d8448d95d7443deb3fb, type: 3}
       propertyPath: bulletUI_ObjectPooling
       value: 
@@ -8772,14 +8768,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: etcSpawnPos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
       propertyPath: spawnPos.Array.data[0]
       value: 
       objectReference: {fileID: 2039075965}
@@ -8827,26 +8815,10 @@ PrefabInstance:
       propertyPath: objectPooling_Zombie_Tanker
       value: 
       objectReference: {fileID: 544248289}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: enemy_Gun_SpawnPos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: enemy_Gun_SpawnPos.Array.data[0]
-      value: 
-      objectReference: {fileID: 365732037}
-    - target: {fileID: 8161591961841524625, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: enemy_Gun_SpawnPos.Array.data[1]
-      value: 
-      objectReference: {fileID: 1968596054}
     - target: {fileID: 8161591961841524626, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
       propertyPath: console
       value: 
       objectReference: {fileID: 146808987}
-    - target: {fileID: 8161591961841524626, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8161591961841524627, guid: cc7f2713c1e63344a82d6818405aaef6, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -8994,3 +8966,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
+--- !u!114 &8234327346306764831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 388273052, guid: 0ea25c23d7abe784f9b874d6e4d303a5, type: 3}
+  m_PrefabInstance: {fileID: 8234327346306764830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

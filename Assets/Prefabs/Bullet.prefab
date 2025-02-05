@@ -45,12 +45,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!135 &5252526642735277193
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7665341738190177501
 MonoBehaviour:
@@ -126,8 +126,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.03529471
-        value: 0.07999134
+        time: 0.04117316
+        value: 0.03540039
         inSlope: 0
         outSlope: 0
         tangentMode: 0

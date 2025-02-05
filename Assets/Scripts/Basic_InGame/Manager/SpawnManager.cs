@@ -57,22 +57,22 @@ public class SpawnManager : MonoBehaviour
         switch (stage)
         {
             case 1:
-                gun = true;
-                break;
-
-            case 3:
-                speed = true;
-                break;
-
-            case 5:
-                tanker = true;
-                break;
-
-            case 7:
                 basic = true;
                 break;
 
-            case 10:
+            case 2:
+                speed = true;
+                break;
+
+            case 3:
+                tanker = true;
+                break;
+
+            case 5:
+                gun = true;
+                break;
+
+            case 7:
                 basic = false;
                 break;
 
@@ -139,7 +139,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn = objectPooling_Zombie_Basic.OutPut();
 
-                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 150, 2.13f, 5);
+                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 0.5f, 150, 2.13f, 2);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn);
 
@@ -149,7 +149,7 @@ public class SpawnManager : MonoBehaviour
 
                 spawn = objectPooling_Zombie_Speed.OutPut();
 
-                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 6f, 100, 1.4f, 10);
+                spawn.GetComponent<Zombie>().Setting(spawnPos[Random.Range(0, 6)], 6f, 100, 1.4f, 5);
 
                 Gamemanager.Instance.CurrNumber.Add(spawn);
 

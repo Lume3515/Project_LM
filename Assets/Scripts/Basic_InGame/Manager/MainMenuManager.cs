@@ -19,9 +19,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         if (instance == null) instance = this;
-        else if (instance != this) Destroy(this.gameObject);
-
-        console_Room_TMP = console_Room.GetComponent<TextMeshProUGUI>();
+        else if (instance != this) Destroy(this.gameObject);        
 
         #region// 로그인 & 비번 & 체크
 
@@ -446,8 +444,6 @@ public class MainMenuManager : MonoBehaviour
 
 
     [SerializeField] TMP_InputField input_PVP;
-
-    [SerializeField] GameObject console_Room;
 
     private TextMeshProUGUI console_Room_TMP;
     public TextMeshProUGUI Console_Room_TMP { get { return console_Room_TMP; } set { console = value; } }

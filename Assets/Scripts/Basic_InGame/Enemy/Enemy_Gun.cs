@@ -50,6 +50,10 @@ public class Enemy_Gun : MonoBehaviour
 
     private bool firstSpawn = true; // 처음 생성됐는지?
 
+    private Transform fireAim;
+
+    // 지역에 있는지?
+    private bool isArea;
     private void Awake()
     {
         obscurationsNMObstacle = new NavMeshObstacle[FindObjectsOfType<NavMeshObstacle>().Length];
@@ -69,11 +73,17 @@ public class Enemy_Gun : MonoBehaviour
 
         playerTr = GameObject.FindWithTag("Player").transform;
 
-        attackDelay = new WaitForSeconds(0.14f);
+        fireAim = GameObject.FindWithTag("EnemyAim").transform;
+
+        attackDelay = new WaitForSeconds(0.3f);
 
         enemy_Gun_Pool = GetComponentInParent<ObjectPooling>();
 
         bulletPool = GameObject.FindWithTag("BulletPool").GetComponent<ObjectPooling>();
+        fireSpeed = 500;
+
+        //Debug.Log(enemy_Gun_Pool == null);
+        //Debug.Log(enemy_Gun_Pool.gameObject.name);
     }
 
     public void Setting(Vector3 pos)
@@ -81,11 +91,10 @@ public class Enemy_Gun : MonoBehaviour
         gameObject.SetActive(true);
         firstSpawn = true;
 
-        fireSpeed = 500;
 
         die = false;
 
-        currHP = 80;
+        currHP = 50;
 
         agent.Warp(pos); // 순간이동
 
@@ -96,13 +105,14 @@ public class Enemy_Gun : MonoBehaviour
     public void MinousHP(int damage, DamageType type)
     {
         if (die) return;
-        damageTimer = 0; // 총알에 맞았다면 0으로 할당해서 그 자리 유지하기
+
+        damageTimer = 0; // 총알에 맞았다면 0을 할당해서 그 자리 유지하기
+
         currHP -= damage;
 
         if (currHP <= 0)
         {
             die = true;
-            animator.SetTrigger("die");
 
             switch (type)
             {
@@ -134,23 +144,30 @@ public class Enemy_Gun : MonoBehaviour
     private IEnumerator Die()
     {
         animator.SetTrigger("die");
-        StopAllCoroutines(); // 모든 코드 멈추기
         yield return new WaitForSeconds(1.23f);
 
+        //Debug.Log("2");
+        Gamemanager.Instance.CurrNumber.Remove(gameObject);
         enemy_Gun_Pool.Input(gameObject);
+
     }
 
     //  발사구현
     private IEnumerator Fire()
     {
+        if (die) yield break;
+
         attackDelay_Bool = true;// 중복 발사 방지
 
-        animator.SetBool("attack", true);        
+        animator.SetBool("attack", true);
+
+        firePos.LookAt(fireAim.position);
 
         // 총알 생성
         bulletObj = bulletPool.OutPut();
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, Gamemanager.Instance.ShootingType, firePos, 0);
-
+        //Debug.Log("1");
+        //bulletObj.GetComponent<SphereCollider>().isTrigger = true;
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, ShootingType.Null, firePos, 0);
         yield return attackDelay;
 
         attackDelay_Bool = false;
@@ -160,6 +177,8 @@ public class Enemy_Gun : MonoBehaviour
     // 움직임 구현
     private IEnumerator Move()
     {
+        if (die) yield break;
+
         while (!Gamemanager.Instance.GameOver)
         {
             // 플레이어 근처가 아닐 때
@@ -186,8 +205,10 @@ public class Enemy_Gun : MonoBehaviour
                 }
             }
 
+            isArea = Vector3.Distance(transform.position, agent.destination) < 1.5f; // 보정한 목적지 범위에 위치한지?
+
             // 멈췄다면
-            if (agent.velocity.magnitude == 0 && !firstSpawn)
+            if (isArea && !firstSpawn)
             {
                 //Debug.Log("멈춤");
 
@@ -269,6 +290,7 @@ public class Enemy_Gun : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (die) return;
             firstColl = true;
             nearPlayer = true;
         }
