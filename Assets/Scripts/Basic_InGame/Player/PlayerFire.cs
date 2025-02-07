@@ -206,7 +206,7 @@ public class PlayerFire : MonoBehaviour
     {
         isReload = true;
 
-        SoundManager.Instance.Sound(SoundType.Reload);
+        //SoundManager.Instance.Sound(SoundType.Reload);
         yield return new WaitForSeconds(2.5f);       
 
         while (currAmmo < maxAmmo)
@@ -283,7 +283,7 @@ public class PlayerFire : MonoBehaviour
         index++;
         currAmmo--;
 
-        SoundManager.Instance.Sound(SoundType.Shooting);
+        //SoundManager.Instance.Sound(SoundType.Shooting);
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 
