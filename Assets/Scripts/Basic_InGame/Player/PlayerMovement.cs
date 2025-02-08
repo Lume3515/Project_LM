@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private static PlayerMovement instance;
     public static PlayerMovement Instance => instance;
 
+    private bool isStop;
+
     private void Awake()
     {
 
@@ -27,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         playerFire = GetComponent<PlayerFire>();
+
+        PlayerHP.AllStop += StopMove;
     }
 
     private void Start()
@@ -40,16 +44,9 @@ public class PlayerMovement : MonoBehaviour
     // 입력
     private void Update()
     {
-        if (Gamemanager.Instance.GameOver)
-        {
-            playerRb.velocity = Vector3.zero;
-            return;
-        }
-        else
-        {
+        if (isStop) return;
+        Movement();
 
-            Movement();
-        }
 
         if (!roll && Input.GetKeyDown(KeyCode.Space) && rollCoolTIme && !PlayerFire.Instance.IsReload && PlayerFire.Instance.Shooting_Bool)
         {
@@ -237,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
     #region// 구르기
 
     // 구르는 중?
-    public bool roll;   
+    public bool roll;
     private bool rollCoolTIme = true; // 쿨타임
 
     // 입력 시간 재기
@@ -291,5 +288,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    private void StopMove()
+    {
+        isStop = true;
+    }
 
 }

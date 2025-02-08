@@ -48,8 +48,6 @@ public class Enemy_Gun : MonoBehaviour
 
     private float fireSpeed;
 
-    private bool firstSpawn = true; // 처음 생성됐는지?
-
     private Transform fireAim;
 
     // 지역에 있는지?
@@ -82,15 +80,18 @@ public class Enemy_Gun : MonoBehaviour
         bulletPool = GameObject.FindWithTag("BulletPool").GetComponent<ObjectPooling>();
         fireSpeed = 500;
 
+
         //Debug.Log(enemy_Gun_Pool == null);
         //Debug.Log(enemy_Gun_Pool.gameObject.name);
     }
 
+    private void Start()
+    {
+        PlayerHP.AllStop += Stop;
+    }
     public void Setting(Vector3 pos)
     {
         gameObject.SetActive(true);
-        firstSpawn = true;
-
 
         die = false;
 
@@ -152,6 +153,12 @@ public class Enemy_Gun : MonoBehaviour
 
     }
 
+    public void Die_Reset()
+    {
+        Gamemanager.Instance.CurrNumber.Remove(gameObject);
+        enemy_Gun_Pool.Input(gameObject);
+    }
+
     //  발사구현
     private IEnumerator Fire()
     {
@@ -179,8 +186,9 @@ public class Enemy_Gun : MonoBehaviour
     {
         if (die) yield break;
 
-        while (!Gamemanager.Instance.GameOver)
+        while (true)
         {
+
             // 플레이어 근처가 아닐 때
             if (!nearPlayer)
             {
@@ -208,7 +216,7 @@ public class Enemy_Gun : MonoBehaviour
             isArea = Vector3.Distance(transform.position, agent.destination) < 1.5f; // 보정한 목적지 범위에 위치한지?
 
             // 멈췄다면
-            if (isArea && !firstSpawn)
+            if (isArea)
             {
                 //Debug.Log("멈춤");
 
@@ -230,7 +238,7 @@ public class Enemy_Gun : MonoBehaviour
             }
             else
             {
-                firstSpawn = false; // 이걸 하는 이유는 처음 스폰 되면 속도가 0이라 위에있는 if문이 작동해서 이기 때문이다.
+
 
                 // 위치가 다를 때만
                 if (weapon.localPosition.x != 0.236f || weapon.localPosition.y != -0.042f || weapon.localPosition.z != -0.033f)
@@ -246,11 +254,9 @@ public class Enemy_Gun : MonoBehaviour
 
                 animator.SetBool("attack", false);
             }
-
-
-
             yield return null;
         }
+
     }
 
     // 이동위치 찾기
@@ -294,5 +300,10 @@ public class Enemy_Gun : MonoBehaviour
             firstColl = true;
             nearPlayer = true;
         }
+    }
+
+    private void Stop()
+    {
+        StopAllCoroutines();
     }
 }

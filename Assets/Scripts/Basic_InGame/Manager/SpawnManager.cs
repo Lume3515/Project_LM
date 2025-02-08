@@ -42,12 +42,8 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         spawnDelay = new WaitForSeconds(0.5f);
-    }
-
-    private void Update()
-    {
-
-    }
+        PlayerHP.AllStop += Stop;  
+    }   
 
     public IEnumerator zombieSpawn(int stage)
     {
@@ -57,7 +53,7 @@ public class SpawnManager : MonoBehaviour
         switch (stage)
         {
             case 1:
-                basic = true;
+                gun = true;
                 break;
 
             case 2:
@@ -69,7 +65,7 @@ public class SpawnManager : MonoBehaviour
                 break;
 
             case 5:
-                gun = true;
+                basic = true;
                 break;
 
             case 7:
@@ -176,5 +172,8 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-
+    private void Stop()
+    {
+        StopAllCoroutines();
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum DamageType
 {
@@ -9,6 +10,7 @@ public enum DamageType
     BodyShot,
     armShot,
     legShot,
+    Etc
 }
 
 // 발사 타입
@@ -54,26 +56,19 @@ public class Gamemanager : MonoBehaviour
     // 현재 스테이지
     private int currstage;
 
-    // 게임오버 인지?
-    private bool gameOver;
-    public bool GameOver { get { return gameOver; } set { gameOver = value; } }
-
-
-
     private void Awake()
     {
         if (instance == null) instance = this;
-        else if (instance != this) Destroy(this.gameObject);
 
+        PlayerHP.AllStop += GamoOver;
     }
 
     private void Start()
     {
-
-        DontDestroyOnLoad(this.gameObject);
-
         spawnManager = GetComponent<SpawnManager>();
     }
+
+
 
     private void Update()
     {
@@ -85,7 +80,7 @@ public class Gamemanager : MonoBehaviour
             firstColl = true;
 
             isSpawn = false;
-
+            //print("초기화 성공");
             // 활성화 > 보이게
             console.enabled = true;
 
@@ -137,7 +132,6 @@ public class Gamemanager : MonoBehaviour
 
     public void GamoOver()
     {
-        gameOver = true;
         StopAllCoroutines();
     }
 

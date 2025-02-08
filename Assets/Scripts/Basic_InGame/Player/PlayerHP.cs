@@ -17,6 +17,9 @@ public class PlayerHP : MonoBehaviour
     // 플레이어 체력 바
     [SerializeField] Image playerHpBar;
 
+    public delegate void PlayerDie();
+    public static event PlayerDie AllStop;
+
     private void Start()
     {
         maxHP = 100;
@@ -30,15 +33,16 @@ public class PlayerHP : MonoBehaviour
         //Debug.Log("2");
         currHP -= damage;
 
-        StartCoroutine(MinousHP_Gauge());
-    }
-
-    private IEnumerator MinousHP_Gauge()
-    {
         if (currHP <= 0)
         {
             Die();
         }
+
+        StartCoroutine(MinousHP_Gauge());
+    }
+
+    private IEnumerator MinousHP_Gauge()
+    {       
 
         while (playerHpBar.fillAmount != currHP)
         {
@@ -56,10 +60,13 @@ public class PlayerHP : MonoBehaviour
 
     private void Die()
     {
-        Gamemanager.Instance.GamoOver();
+        AllStop();             
+
+        SceneManager.LoadSceneAsync(0); // 비동기
 
         ScoreManager.Instance.GameDataGet_Kill();
 
-        SceneManager.LoadScene(0);
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
     }
 }

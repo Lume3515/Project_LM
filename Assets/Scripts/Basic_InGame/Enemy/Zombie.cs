@@ -43,6 +43,8 @@ public class Zombie : MonoBehaviour
     private PlayerHP playerHp;
     private void Awake()
     {
+        PlayerHP.AllStop += Stop;
+
         animator = GetComponent<Animator>();
 
         spawnMaxTime = 4.05f;
@@ -56,6 +58,8 @@ public class Zombie : MonoBehaviour
         dieDelay = new WaitForSeconds(2.5f);
 
         minousHPDelay = new WaitForSeconds(1.3f);
+
+        stop = false;
     }
 
     private void OnEnable()
@@ -137,10 +141,16 @@ public class Zombie : MonoBehaviour
         objectPooling.Input(gameObject);
     }
 
+    public void Die_Reset()
+    {
+        Gamemanager.Instance.CurrNumber.Remove(gameObject);
+        objectPooling.Input(gameObject);
+    }
+
 
     private void Update()
     {
-        if (Gamemanager.Instance.GameOver) return;
+        if (stop) return;
 
         if (spawnTime <= spawnMaxTime) spawnTime += Time.deltaTime;
 
@@ -194,8 +204,6 @@ public class Zombie : MonoBehaviour
     // 플레이어 체력 감소
     private IEnumerator MinousHP_Player()
     {
-        if (Gamemanager.Instance.GameOver) yield break;
-
         yield return minousHPDelay;
 
         if (!stopAttack && !die)
@@ -208,7 +216,7 @@ public class Zombie : MonoBehaviour
                 yield break;
             }
 
-          playerHp.MinousHP(damage);
+            playerHp.MinousHP(damage);
         }
 
         yield break;
@@ -219,8 +227,6 @@ public class Zombie : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Gamemanager.Instance.GameOver) return;
-
         // 걸을 때만 공격 가능
         if (other.CompareTag("Player") && !isAttack)
         {
@@ -240,6 +246,13 @@ public class Zombie : MonoBehaviour
         {
             stopAttack = true;
         }
+    }
+
+    private bool stop;
+    private void Stop()
+    {
+        stop = true;
+        StopAllCoroutines();
     }
 
     //private void OnDrawGizmos()
