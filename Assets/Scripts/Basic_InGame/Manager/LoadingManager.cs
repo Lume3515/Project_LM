@@ -93,11 +93,11 @@ public class LoadingManager : MonoBehaviour
 
         console.text = "게임 데이터를 초기화 중입니다···";
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
 
         console.text = "게임에 필요한 리소스의 압축을 해제하는 중입니다...";
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         while (!op.isDone)
         {
@@ -112,7 +112,7 @@ public class LoadingManager : MonoBehaviour
                 // 90%까지 완료 됐을 때
                 else
                 {
-                    timer += Random.Range(0.001f, 0.006f);
+                    timer += Random.Range(0.001f, 0.002f);
                     progress = Mathf.Lerp(0f, 1f, timer);
                     console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}%]";
 
@@ -137,7 +137,7 @@ public class LoadingManager : MonoBehaviour
                 // 90%까지 완료 됐을 때
                 else
                 {
-                    timer += Random.Range(0.001f, 0.006f);
+                    timer += Random.Range(0.001f, 0.002f);
                     progress = Mathf.Lerp(0f, 1f, timer);
                     console.text = $"게임 데이터를 초기화 중입니다···[Data initialization...{progress * 100:00.00}%]";
 

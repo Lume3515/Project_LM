@@ -8,8 +8,6 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody bulletRb;
 
-    private float fireSpeed;
-
     // 발사할 대상의 트랜스 폼
     private Transform firePos;
 
@@ -44,20 +42,17 @@ public class Bullet : MonoBehaviour
     private int actorNumber;
 
     // 탄퍼짐 정도
-    public void Setting(float speed, ShootingType type, Transform pos, int number)
+    public void Setting(ShootingType type, Transform pos, int number)
     {
-
         gameObject.SetActive(true);
         actorNumber = number;
 
-        fireSpeed = speed;
         //Debug.Log(speed);
 
         firePos = pos;
 
 
         shootingType = type;
-
 
         Rebound();
     }
@@ -103,18 +98,19 @@ public class Bullet : MonoBehaviour
     private void Fire()
     {
         transform.position = firePos.position;
-        transform.rotation = firePos.rotation;     
+        transform.rotation = firePos.rotation;
 
         bulletRb.velocity = Vector3.zero;
 
-        bulletRb.AddForce((transform.forward + carbonSpread)  * fireSpeed , ForceMode.Impulse);
-    }
 
+        // 500은 속도        
+        bulletRb.velocity = (transform.forward + carbonSpread) * 30;
+               
+    }   
 
     private void Awake()
     {
         bulletRb = GetComponent<Rigidbody>();
-
         objectPooling = GetComponentInParent<ObjectPooling>();
 
         impact_Enemy = Resources.Load("Bullet_Impact_Enemy").GetComponentInChildren<ParticleSystem>();
@@ -193,8 +189,10 @@ public class Bullet : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         #region// 플레이어
+        Debug.Log(other.name);
         if (actorNumber == 0 && other.CompareTag("EnemyAim")) // 적이 발사했을 때만
         {
+            Debug.Log("2번창" + other.name);
             other.GetComponentInParent<PlayerHP>().MinousHP(7);
             objectPooling.Input(gameObject);
 
@@ -206,8 +204,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
-
         if (other.CompareTag("Destroy Zone"))
         {
             objectPooling.Input(gameObject);

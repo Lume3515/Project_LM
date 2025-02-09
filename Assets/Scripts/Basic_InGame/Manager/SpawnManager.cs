@@ -75,7 +75,7 @@ public class SpawnManager : MonoBehaviour
         }
         #endregion
 
-        stage += 3;
+        //stage += 3;
 
         while (this.stage < stage)
         {

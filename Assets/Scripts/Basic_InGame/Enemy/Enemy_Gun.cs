@@ -174,7 +174,7 @@ public class Enemy_Gun : MonoBehaviour
         bulletObj = bulletPool.OutPut();
         //Debug.Log("1");
         //bulletObj.GetComponent<SphereCollider>().isTrigger = true;
-        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, ShootingType.Null, firePos, 0);
+        bulletObj.GetComponent<Bullet>().Setting( ShootingType.Null, firePos, 0);
         yield return attackDelay;
 
         attackDelay_Bool = false;
