@@ -22,9 +22,6 @@ public class PlayerFire : MonoBehaviour
     // 플레이어 애니메이터
     [SerializeField] Animator animator;
 
-    // 총알의 속도
-    private float fireSpeed;
-
     // 총 내리는 시간
     private float time;
     private float maxTime;
@@ -32,8 +29,6 @@ public class PlayerFire : MonoBehaviour
     // 오브젝트 풀링 스크립트
     [SerializeField] ObjectPooling buletObjectPooling;
 
-    // 총알 객체
-    private GameObject bulletObj;
 
     [SerializeField] Transform firePos;
 
@@ -72,9 +67,13 @@ public class PlayerFire : MonoBehaviour
 
     // 조준점 옆 탄창
     [SerializeField] Image ammoClip_Number;
+
+    [SerializeField] ObjectPooling mapParticle;
+    [SerializeField] ObjectPooling enemyParticle;
+
+
     private void Start()
     {
-
         if (instance == null) instance = this;
 
         shootingDelay = new WaitForSeconds(0.1f);
@@ -82,8 +81,6 @@ public class PlayerFire : MonoBehaviour
         maxTime = 0.7f;
 
         mainCamera = Camera.main;
-
-        fireSpeed = 500;
 
         mainCamera.fieldOfView = 60;
 
@@ -250,19 +247,10 @@ public class PlayerFire : MonoBehaviour
         // 방향구하는 식 이다. screen_RayPos - firePos.position(normalized은 정규화를 위해서 이다 1로 만들기 위해)
         Vector3 direction = (screen_RayPos - firePos.position).normalized;
 
-        //// 레이와 총구의 거리가 가깝다면  위치를 카메라로 변경
-        //if (Vector3.Distance(firePos.position, screen_RayPos) < 7.5f)
-        //{
-        //    firePos.position = mainCamera.transform.position;
-        //}
-        //else
-        //{
-        //    firePos.localPosition = originPos_firePos;
-        //}
-
         // 바라보게 한다 Euler를 쓰면 위치부터가 다르기 때문에 글렀다. 그러므로 LookRotation을 쓴다.
         firePos.rotation = Quaternion.LookRotation(direction);
-             
+
+
         // 총알 딜레이 용
         shooting = false;
 
@@ -277,11 +265,47 @@ public class PlayerFire : MonoBehaviour
         currAmmo--;
 
         //SoundManager.Instance.Sound(SoundType.Shooting);
+
+        GameObject spawn;
+
+        // 레이를 쏘고 맞으면 hit에 값을 넣어줌 사정거리는 150이다.
+        if (Physics.Raycast(firePos.position, firePos.forward, out hit, 150, 1 << 6 | 1 << 7))
+        {
+            if (hit.collider.CompareTag("Map"))
+            {
+                spawn = mapParticle.OutPut();
+                spawn.transform.position = hit.point;
+                spawn.transform.rotation = Quaternion.LookRotation(firePos.forward * -1);
+            }
+            else
+            {
+                spawn = enemyParticle.OutPut();
+                spawn.transform.position = hit.point;
+                spawn.transform.rotation = Quaternion.LookRotation(firePos.forward * -1);
+
+                if (hit.collider.CompareTag("Enemy_Head"))
+                {
+
+                }
+                else if (hit.collider.CompareTag("Enemy_Arm&Leg"))
+                {
+
+                }
+                else if (hit.collider.CompareTag("Enemy_Body"))
+                {
+
+                }            
+
+            }
+
+
+        }     
+
         StopCoroutine(Rebound());
         StartCoroutine(Rebound());
 
         // 총 딜레이
-        yield return shootingDelay;
+        yield return shootingDelay;        
 
         shooting = true;
     }

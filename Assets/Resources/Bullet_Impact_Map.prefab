@@ -4894,7 +4894,7 @@ GameObject:
   - component: {fileID: 1591345365123092623}
   - component: {fileID: 1590126732339837885}
   m_Layer: 0
-  m_Name: Bullet_Impact_Obstacl
+  m_Name: Bullet_Impact_Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

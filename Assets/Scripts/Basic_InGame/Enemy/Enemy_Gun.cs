@@ -42,9 +42,7 @@ public class Enemy_Gun : MonoBehaviour
     // 공격 딜레이
     private WaitForSeconds attackDelay;
     private bool attackDelay_Bool;
-
-    private float fireSpeed;
-
+    
     private Transform fireAim;
 
     // 지역에 있는지?
@@ -74,8 +72,7 @@ public class Enemy_Gun : MonoBehaviour
 
         enemy_Gun_Pool = GetComponentInParent<ObjectPooling>();
 
-        fireSpeed = 500;
-
+        
 
         //Debug.Log(enemy_Gun_Pool == null);
         //Debug.Log(enemy_Gun_Pool.gameObject.name);
