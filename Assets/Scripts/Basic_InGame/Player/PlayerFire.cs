@@ -262,14 +262,7 @@ public class PlayerFire : MonoBehaviour
 
         // 바라보게 한다 Euler를 쓰면 위치부터가 다르기 때문에 글렀다. 그러므로 LookRotation을 쓴다.
         firePos.rotation = Quaternion.LookRotation(direction);
-
-
-
-        // 총알 생성
-        bulletObj = buletObjectPooling.OutPut();
-        //bulletObj.GetComponent<SphereCollider>().isTrigger = false;
-        bulletObj.GetComponent<Bullet>().Setting( Gamemanager.Instance.ShootingType, firePos, 1);
-
+             
         // 총알 딜레이 용
         shooting = false;
 
