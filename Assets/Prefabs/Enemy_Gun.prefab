@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 1801442039472909741}
   m_Layer: 0
   m_Name: Enemy_Gun
-  m_TagString: Untagged
+  m_TagString: Enemy_Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 1090637494}
   m_Layer: 6
   m_Name: head
-  m_TagString: Enemy_Head
+  m_TagString: EnemyGun_Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 1961272175}
   m_Layer: 6
   m_Name: calf_l
-  m_TagString: Enemy_Arm&Leg
+  m_TagString: EnemyGun_Leg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 1795611198}
   m_Layer: 6
   m_Name: calf_r
-  m_TagString: Enemy_Arm&Leg
+  m_TagString: EnemyGun_Leg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2501,7 +2501,7 @@ GameObject:
   - component: {fileID: 43605378}
   m_Layer: 6
   m_Name: spine_01
-  m_TagString: Enemy_Body
+  m_TagString: EnemyGun_Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2767,7 +2767,7 @@ GameObject:
   - component: {fileID: 194844475}
   m_Layer: 6
   m_Name: lowerarm_l
-  m_TagString: Enemy_Arm&Leg
+  m_TagString: EnemyGun_Arm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2815,7 +2815,7 @@ GameObject:
   - component: {fileID: 143257062}
   m_Layer: 6
   m_Name: lowerarm_r
-  m_TagString: Enemy_Arm&Leg
+  m_TagString: EnemyGun_Arm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

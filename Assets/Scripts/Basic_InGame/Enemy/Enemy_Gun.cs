@@ -28,6 +28,9 @@ public class Enemy_Gun : MonoBehaviour
     // 플레이어와 가까운지?
     private bool nearPlayer;
 
+    // 총알 오브젝트 풀링 객체
+    private ObjectPooling bulletPool;
+
     // 총 쏘는 적의 오브젝트 풀링
     private ObjectPooling enemy_Gun_Pool;
 
@@ -42,7 +45,9 @@ public class Enemy_Gun : MonoBehaviour
     // 공격 딜레이
     private WaitForSeconds attackDelay;
     private bool attackDelay_Bool;
-    
+
+    private float fireSpeed;
+
     private Transform fireAim;
 
     // 지역에 있는지?
@@ -72,7 +77,9 @@ public class Enemy_Gun : MonoBehaviour
 
         enemy_Gun_Pool = GetComponentInParent<ObjectPooling>();
 
-        
+        bulletPool = GameObject.FindWithTag("BulletPool").GetComponent<ObjectPooling>();
+        fireSpeed = 500;
+
 
         //Debug.Log(enemy_Gun_Pool == null);
         //Debug.Log(enemy_Gun_Pool.gameObject.name);
@@ -163,8 +170,11 @@ public class Enemy_Gun : MonoBehaviour
 
         firePos.LookAt(fireAim.position);
 
-
-        // 공격
+        // 총알 생성
+        bulletObj = bulletPool.OutPut();
+        //Debug.Log("1");
+        //bulletObj.GetComponent<SphereCollider>().isTrigger = true;
+        bulletObj.GetComponent<Bullet>().Setting(fireSpeed, ShootingType.Null, firePos, 0);
         yield return attackDelay;
 
         attackDelay_Bool = false;
